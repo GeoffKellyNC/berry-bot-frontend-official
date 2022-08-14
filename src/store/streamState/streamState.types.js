@@ -1,0 +1,1 @@
+export const GET_VIEWER_COUNT = 'GET_VIEWER_COUNT'
