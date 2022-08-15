@@ -50,7 +50,7 @@ export default connect(mapStateToProps, action)(ModerationPanel)
 
 
 const ModPanel = styled.div`
-    width: 300px;
+    width: 500px;
     height: 300px;
     font-family: ${pr => pr.theme.fonts.primary};
     background: rgba(255, 255, 255, 0.2);
@@ -59,7 +59,6 @@ const ModPanel = styled.div`
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid ${pr => pr.theme.colors.secondary};
-    margin: 10px;
 
     .mod-points{
     }

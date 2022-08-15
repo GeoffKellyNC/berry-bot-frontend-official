@@ -6,8 +6,8 @@ const TwitchChat = ({ target }) => {
   return (
     <div>
         <iframe src={`https://www.twitch.tv/embed/${target}/chat?parent=http://localhost:3000/dashboard`}
-        height="500"
-        width="400"
+        height="300"
+        width="500"
         title='twitch-chat-iframe'
         className='twitch-chat-iframe'>
         </iframe>
