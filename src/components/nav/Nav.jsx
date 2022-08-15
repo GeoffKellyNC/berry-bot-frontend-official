@@ -18,7 +18,7 @@ import { getUserData } from '../../util/localData'
 
 
 import { NavLink } from 'react-router-dom'
-import LogOutBtn from '../buttons/LogOut.btn'
+import LogoutButton from '../buttons/Logout.button'
 
 function Nav({ isLoggedIn, checkLoggedIn  } ) {
     const [userData, setUserData] = useState({})
@@ -35,7 +35,7 @@ useEffect(() => {
       <div className = 'top-nav'>
         <div className = 'reg-login-nav'>
           {
-            isLoggedIn ? <LogOutBtn /> : null
+            isLoggedIn ? <LogoutButton /> : null
           }
           <span className = 'signed-in-as'> {isLoggedIn ? userData.user_name : null} </span>
         </div>

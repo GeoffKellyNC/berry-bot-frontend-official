@@ -10,11 +10,18 @@ import ButtonPanel from '../components/control-panel/ButtonPanel'
 import TitleBox from '../components/home/TitleBox'
 import TestModal from '../components/home/modals/TestModal'
 import TwitchChat from '../components/iframe/TwitchChat'
+import PollsHome from '../components/home/PollsHome'
 
 
 
 function Home(props) {
   const [selected, setSelected] = useState(null)
+
+  const { userData, refreshUserData } = props
+
+  useEffect(() => {
+    refreshUserData()
+  }, [])
 
 
 
@@ -31,24 +38,27 @@ function Home(props) {
     }
   }
 
-  const target = 'rhyeznc'
 
 
-
+  console.log(userData.profile_image_url)
 
   return (
     <HomeStyled>
-      {
-        selected === 'test' && <TestModal setSelected = { setSelected } />
-      }
+      <div className = 'profile-information'>
+        <div className = 'profile-image'>
+          <img src={userData.profile_img} alt='profile-pic'/>
+          <span className='profile-name'>{userData.twitch_user}</span>
+        </div>
+      </div>
       <div className='home-body'>
         <div className = 'column-1'>
           <TitleBox />
           <ButtonPanel />
           <ModerationPanel />
+          <PollsHome target = { userData.twitch_user } userData = { userData }  />
         </div>
         <div className = 'column-2'>
-          <TwitchChat target = { target } />
+          <TwitchChat target = { userData.twitch_user } />
         </div>
       </div>
     </HomeStyled>
@@ -57,8 +67,7 @@ function Home(props) {
 
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.isLoggedIn,
-    modPlayerPointData: state.modPlayerPointData
+        userData: state.userData
   }
 }
 
@@ -68,6 +77,31 @@ const HomeStyled = styled.div`
   height: 100vh;
   background: rgb(0,185,255);
   background: linear-gradient(180deg, rgba(0,185,255,1) 0%, rgba(24,24,24,1) 3%, rgba(46,46,46,1) 97%, rgba(0,185,255,1) 100%);
+
+  .profile-information {
+    display: flex;
+    margin-top: 20px;
+    color: white;
+    font-size: ${pr => pr.theme.fontSizes.medium};
+    width: 95%;
+    margin-left: auto;
+  }
+
+  .profile-image img{
+    width: 50px;
+    height: 50px;
+  }
+
+  .profile-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+  }
 
   .home-body {
     width: 90%;
@@ -79,7 +113,6 @@ const HomeStyled = styled.div`
 
   .column-1 {
     display: flex;
-    padding-top: 5%;
     flex-direction: column;
 
   }
@@ -103,6 +136,8 @@ const HomeStyled = styled.div`
     text-align: center;
     font-size: 1.5rem;
   }
+
+
 
 
 `

@@ -31,6 +31,7 @@ const StartModStyled = styled.div`
     display: flex;
     flex-flow: column;
     justify-content: center;
+    align-items: center;
 
 
   .mod-btn{
@@ -47,6 +48,10 @@ const StartModStyled = styled.div`
             cursor: pointer;
             transform: scale(1.1);
         }
+  }
+
+  .mod-text{
+      font-size: ${pr => pr.theme.fontSizes.small};
   }
 
     

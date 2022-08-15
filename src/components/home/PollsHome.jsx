@@ -31,6 +31,7 @@ const PollsHome = ({ userData, target, token }) => {
   const onSubmit = async e => {
     e.preventDefault()
     const {bitVote, channelPoints, choiceArray, duration, title} = formValues
+    console.log('formValues', formValues) // !REMOVE
     const newChoiceArray = choiceArray.split('&')
     console.log('PollsHome.js New Array: ',newChoiceArray) //! Remove
     const newPoll = await postPoll(target, userData.unx_id, token, bitVote, channelPoints, newChoiceArray, duration, title )
@@ -49,6 +50,7 @@ export default PollsHome
 
 
 const StyledPoll = styled.div`
+  color: white; 
 
 
 `

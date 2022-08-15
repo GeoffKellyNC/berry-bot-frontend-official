@@ -36,6 +36,19 @@ export const loginUser = (code) => async (dispatch) => {
     }
 }
 
+export const refreshUserData = () => async (dispatch) => {
+    try{
+        const data = localStorage.getItem('user')
+        dispatch({
+            type: type.SET_USER_DATA,
+            payload: JSON.parse(data)
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+
+
 export const logoutUser = () => async (dispatch) => {
     try{
         localStorage.clear()

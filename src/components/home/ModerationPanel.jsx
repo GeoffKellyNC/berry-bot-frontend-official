@@ -54,7 +54,7 @@ const ModPanel = styled.div`
     height: 300px;
     font-family: ${pr => pr.theme.fonts.primary};
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
+    border-radius: 5px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
@@ -81,7 +81,7 @@ const ModPanel = styled.div`
         &:hover{
             color: ${props => props.theme.colors.white};
             background: rgba(255, 3, 148, 0.41);
-            border-radius: 16px;
+            border-radius: 5px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(4.9px);
             -webkit-backdrop-filter: blur(4.9px);

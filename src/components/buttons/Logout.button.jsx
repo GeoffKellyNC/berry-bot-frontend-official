@@ -4,7 +4,7 @@ import * as action from '../../store/authState/authState.creators'
 import styled from 'styled-components'
 import { useNavigate  } from 'react-router'
 
-const LogOutBtn = (props) => {
+const LogoutButton = (props) => {
     const { logoutUser } = props
 
     const navigate = useNavigate()
@@ -30,7 +30,7 @@ const mapStateToProps = state => {
   })
 }
 
-export default connect (mapStateToProps, action)(LogOutBtn)
+export default connect (mapStateToProps, action)(LogoutButton)
 
 
 const LogOutButton = styled.button`

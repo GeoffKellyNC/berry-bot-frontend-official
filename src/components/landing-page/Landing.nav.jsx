@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
-import LogOutBtn from '../../components/buttons/LogOut.btn'
+import LogoutButton from '../../components/buttons/Logout.button'
 
 import twitchLink from '../../util/twitchLink'
 
@@ -30,7 +30,7 @@ const LandingNav = ({ isLoggedIn }) => {
                 <NavLink to = '/dashboard' className = 'nav-link nav-dashboard'>
                   <span> DashBoard </span>
                 </NavLink> 
-                <LogOutBtn />
+                <LogoutButton />
               </>
             }
             {

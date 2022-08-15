@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { GiVote } from 'react-icons/gi'
+
 const startVoteBtn = ({ startVote }) => {
 
     const handleClick = () => {
@@ -9,29 +11,42 @@ const startVoteBtn = ({ startVote }) => {
 
 
   return (
-    <StartVote
-        onClick={handleClick}> Start Vote </StartVote>
+    <StartVote>
+        <GiVote onClick={handleClick} className = 'vote-btn' />
+        <span className='start-vote-text'>Start Vote</span>
+    </StartVote> 
   )
 }
 
 export default startVoteBtn
 
 
-const StartVote = styled.button`
-      background-color: ${props => props.theme.colors.secondary};
-    border: none;
-    color: ${props => props.theme.colors.white};
-    font-size: ${pr => pr.theme.fontSizes.medium};
-    font-weight: bold;
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.2s ease-in-out;
-    &:hover{
-        background-color: ${props => props.theme.colors.primary};
-        color: ${props => props.theme.colors.white};
-    }
+const StartVote = styled.div`
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
     
+
+
+    .vote-btn{
+      color: white;
+      font-size: 2rem;
+      transition: all 0.3s ease-in-out;
+
+      &:hover{
+          cursor: pointer;
+          color: ${pr => pr.theme.colors.berry};
+      }
+
+      &:onClick{
+          cursor: pointer;
+          transform: scale(1.1);
+      }
+    }
+
+    .start-vote-text{
+      font-size: ${pr => pr.theme.fontSizes.small};
+    }
 
 `

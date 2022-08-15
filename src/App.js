@@ -11,7 +11,6 @@ import styled from "styled-components";
 import ConfigureBot from "./views/ConfigureBot";
 import Home from "./views/Home";
 import Landing from "./views/Landing";
-import Login from "./views/Login";
 import Nav from "./components/nav/Nav";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./views/Register";

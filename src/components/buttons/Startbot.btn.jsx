@@ -38,6 +38,7 @@ const StartBot = styled.div`
     display: flex;
     flex-flow: column;
     justify-content: center;
+    align-items: center;
 
     .start-btn{
         color: white;
@@ -53,6 +54,10 @@ const StartBot = styled.div`
             cursor: pointer;
             transform: scale(1.1);
         }
+    }
+
+    .start-bot-text{
+        font-size: ${pr => pr.theme.fontSizes.small};
     }
 
 

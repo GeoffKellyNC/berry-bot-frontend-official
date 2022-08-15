@@ -1,14 +1,7 @@
 import * as types from './authState.types';
 
 
-export function authUser(state = {}, action) {
-  switch (action.type) {
-    case types.SET_USER_DATA_DELETE:
-      return action.payload;
-    default:
-      return state;
-  }
-}
+
 
 export function isLoggedIn(state = false, action) {
   switch (action.type) {
