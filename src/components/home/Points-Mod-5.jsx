@@ -1,13 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const PointsMod = ({ pointData }) => {
+const PointsMod5 = ({ pointData }) => {
+
+
+    const top5 = pointData.sort((a, b) => b.points - a.points).slice(0, 5)
 
   return (
-    <PointsStyled>
+    <TopFive>
+        <p className = 'top-five-title'>Top 5 Bad Eggs</p>
         {
            pointData.length > 0 ? 
-                pointData.map((user, index) => {
+                top5.map((user, index) => {
                     return (
                         <PointObj key={index}>
                             <span className='text user-perm'>User: </span> <span className = 'user-text user-text-name'>{user.user_name}</span>
@@ -16,18 +20,27 @@ const PointsMod = ({ pointData }) => {
                     )}) :
                 <span className='text'>No Points</span>
         }
-    </PointsStyled>
+    </TopFive>
   )
 }
 
-export default PointsMod
+export default PointsMod5
 
-const PointsStyled = styled.div`
+const TopFive = styled.div`
     border: 1px solid black;
     padding: 10px;
     margin: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+
+    .top-five-title{ 
+        font-size: ${pr => pr.theme.fontSizes.small};
+        font-weight: bold;
+        color: ${pr => pr.theme.colors.secondary};
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
 `
 
 const PointObj = styled.div`

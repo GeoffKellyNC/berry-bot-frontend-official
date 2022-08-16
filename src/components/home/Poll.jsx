@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 import PollsHome from "./modals/PollsHome";
 
-const Poll = ({ userData, target, selected, handelSelection, setSelected }) => {
+const Poll = ({ userData, target, selected, setSelected }) => {
   return (
     <StyledPoll className="poll-tile">
       <button
-        onClick={() => handelSelection("poll")}
+        onClick={() => setSelected("poll")}
         className="poll-tile-button"
       >
         {" "}

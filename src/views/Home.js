@@ -8,13 +8,16 @@ import * as actions from "../store/authState/authState.creators";
 import ModerationPanel from "../components/home/ModerationPanel";
 import ButtonPanel from "../components/control-panel/ButtonPanel";
 import TitleBox from "../components/home/TitleBox";
-import TestModal from "../components/home/modals/TestModal";
 import TwitchChat from "../components/iframe/TwitchChat";
 import Poll from "../components/home/Poll";
-import PollsHome from "../components/home/modals/PollsHome";
+import Commercial from "../components/home/Commercial";
+
+
+import { getUserToken } from "../util/localData";
 
 function Home(props) {
   const [selected, setSelected] = useState(null);
+  const [token, setToken] = useState(getUserToken());
 
   const { userData, refreshUserData } = props;
 
@@ -22,21 +25,7 @@ function Home(props) {
     refreshUserData();
   }, []);
 
-  const handelSelection = (selection) => {
-    switch (selection) {
-      case "test": {
-        setSelected("test");
-        break;
-      }
-      case ("poll"): {
-        console.log('Poll Set!') //!
-        setSelected("poll");
-        break;
-      }
-      default:
-        return "default";
-    }
-  };
+
 
   console.log(userData.profile_image_url);
 
@@ -56,13 +45,13 @@ function Home(props) {
             target={userData.twitch_user}
             userData={userData}
             selected={selected}
-            handelSelection={handelSelection}
             setSelected = {setSelected}
           />
+          <Commercial token = { token } userData = { userData } />
         </div>
         <div className="column-2">
           <ModerationPanel />
-          <TwitchChat target={userData.twitch_user} />
+          <TwitchChat target={userData.twitch_user} userData = { userData } />
         </div>
       </div>
       <div className="footer-text">

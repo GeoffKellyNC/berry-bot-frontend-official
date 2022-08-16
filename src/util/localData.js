@@ -11,3 +11,8 @@ export const getTargetLocal = () => {
     return target
 }
 
+export const getUserToken = () => {
+    const token = localStorage.getItem('jwtToken')
+    return token
+}
+
