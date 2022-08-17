@@ -36,7 +36,7 @@ const StartVote = styled.div`
 
       &:hover{
           cursor: pointer;
-          color: ${pr => pr.theme.colors.berry};
+          color: ${pr => pr.theme.colors.secondary};
       }
 
       &:onClick{
@@ -46,7 +46,9 @@ const StartVote = styled.div`
     }
 
     .start-vote-text{
-      font-size: ${pr => pr.theme.fontSizes.small};
+      font-size: ${pr => pr.theme.fontSizes.medium};
+      padding: 0.5rem;
+      color: ${pr => pr.theme.colors.berry};
     }
 
 `

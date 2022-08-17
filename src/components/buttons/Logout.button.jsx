@@ -35,7 +35,7 @@ export default connect (mapStateToProps, action)(LogoutButton)
 
 const LogOutButton = styled.button`
     background-color: ${pr => pr.theme.colors.secondary};
-    color: ${pr => pr.theme.colors.primary};
+    color: ${pr => pr.theme.colors.berry};
     font-size: ${pr => pr.theme.fontSizes.small};
     font-weight: bold;
     padding: 0.5rem 1rem;

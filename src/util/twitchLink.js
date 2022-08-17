@@ -1,5 +1,4 @@
 
-const foo = 'bar'
  
  
  

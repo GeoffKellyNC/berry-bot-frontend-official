@@ -1,18 +1,6 @@
 import * as type from './authState.types';
 import axios from 'axios'
 
-const REG_EP = 'http://localHost:9001/users/register';
-const LOGIN_EP = 'http://localHost:9001/users/login';
-
-
-export const registerUser = (userObj) => async (dispatch) => {
-    try{
-        const res = await axios.post(REG_EP, userObj);
-        return res.status
-    }catch(err){
-        console.log(err)
-    }
-}
 
 export const loginUser = (code) => async (dispatch) => {
     try{

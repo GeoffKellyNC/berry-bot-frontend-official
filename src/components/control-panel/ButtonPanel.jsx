@@ -40,16 +40,14 @@ export default connect(mapStateToProps, actions)(ButtonPanel)
 
 const PanelStyled = styled.div`
     width: 300px;
-    height: 300px;
+    height: auto;
     font-family: ${pr => pr.theme.fonts.primary};
-    background: rgba(81, 95, 104, 0.2);
-    border-radius: 5px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(81, 95, 104, 0.3);
-    border: 1px solid ${pr => pr.theme.colors.secondary};
     margin: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background: rgba(19, 19, 19, 1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    color: white;
 
     .panel-btns{
         display: flex;
@@ -69,8 +67,8 @@ const PanelStyled = styled.div`
     }
 
     .control-panel-text{
-        color: ${pr => pr.theme.colors.berry};
-        font-size: ${pr => pr.theme.fontSizes.small};
+        color: ${pr => pr.theme.colors.secondary};
+        font-size: ${pr => pr.theme.fontSizes.large};
         font-weight: bold;        
     }
 

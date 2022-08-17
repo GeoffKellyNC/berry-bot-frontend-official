@@ -83,14 +83,14 @@ export default connect(mapStateToProps, action)(ModerationPanel)
 
 const ModPanel = styled.div`
     width: 500px;
-    height: 300px;
+    height: auto;
     font-family: ${pr => pr.theme.fonts.primary};
-    background: rgba(255, 255, 255, 0.2);
+    margin: 10px;
     border-radius: 5px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid ${pr => pr.theme.colors.secondary};
+    box-sizing: border-box;
+    background: rgba(19, 19, 19, 1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    color: white;
 
     .mod-header{
         justify-content: space-around;

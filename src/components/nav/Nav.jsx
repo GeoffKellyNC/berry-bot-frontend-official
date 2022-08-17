@@ -114,7 +114,6 @@ const StyledNav = styled.div`
     align-items: center;
     padding: 10px;
     text-decoration: none;
-    ${'' /* border: 1px solid black; */}
     color: red;
     font-size: 1.2rem;
     font-weight: bold;

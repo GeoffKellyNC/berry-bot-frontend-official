@@ -1,7 +1,7 @@
 import * as types from './botState.types'
 import axios from 'axios'
 
-const START_BOT_EP = 'http://localHost:9001/twitchBot/start'
+const START_BOT_EP = 'http://localhost:9001/twitchBot/start'
 const START_MOD_EP = 'http://localHost:9001/twitchBot/startModeration'
 const PLAYER_POINTS_EP = 'http://localHost:9001/twitchBot/modPointData'
 

@@ -60,18 +60,21 @@ const StyledPoll = styled.div`
   transform: translate(-50%, -50%);
   width: 50%;
   height: 50%;
-  background: rgb(0,185,255);
-  background: linear-gradient(180deg, rgba(0,185,255,1) 0%, rgba(24,24,24,1) 3%, rgba(46,46,46,1) 97%, rgba(0,185,255,1) 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 5%;
-  border-radius: 5px;
-  border: 1px solid black;
+  border: 1px solid ${pr => pr.theme.colors.berry};
   text-align: center;
   font-size: 1.5rem;
   z-index: 10;
+  height: auto;
+  font-family: ${pr => pr.theme.fonts.primary};
+  border-radius: 5px;
+  box-sizing: border-box;
+  background: rgba(19, 19, 19, 1);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 
   .close-button {
     color: white;

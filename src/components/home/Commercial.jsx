@@ -6,10 +6,15 @@ import { startAd } from '../../util/commercial'
 
 const Commercial = ({ token, userData}) => {
     const [ duration, setDuration ] = useState(30)
+    const [ error, setError ] = useState(null)
 
 
     const runAd = async () => {
-        await startAd(token, userData.unx_id, userData.twitch_id, duration)
+       const ad =  await startAd(token, userData.unx_id, userData.twitch_id, duration)
+         if(ad.error){
+             setError(ad.message)
+         }
+
     }
 
   return (
@@ -30,6 +35,7 @@ const Commercial = ({ token, userData}) => {
         <div className='start-commercial-button'>
             <button onClick={ runAd }> Start Ad </button>
         </div>
+        {error && <div className='error'>{error}</div>}
     </CommercialStyled>
   )
 }
@@ -38,29 +44,70 @@ export default Commercial
 
 const CommercialStyled = styled.div`
     width: 300px;
-    height: 75px;
+    height: auto;
     font-family: ${pr => pr.theme.fonts.primary};
-    background: rgba(255, 255, 255, 0.2);
+    margin: 10px;
     border-radius: 5px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid ${pr => pr.theme.colors.secondary};
+    box-sizing: border-box;
+    background: rgba(19, 19, 19, 1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 
     .commercial-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        justify-content: center;
+        padding: 10px;
     }
     .commercial-title {
         font-size: ${pr => pr.theme.fontSizes.medium};
+        text-align: center;
+        color: ${pr => pr.theme.colors.secondary};
+        font-weight: bold;
     }
     .commercial-config-form {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 10px;
-        border-bottom: 1px solid ${pr => pr.theme.colors.secondary};
+
+        & > label {
+            font-size: ${pr => pr.theme.fontSizes.medium};
+            font-weight: bold;
+            color: ${pr => pr.theme.colors.secondary};
+            margin-bottom: 0.5rem;
+        }
+
+        & > select {
+            font-size: ${pr => pr.theme.fontSizes.medium};
+            font-weight: bold;
+            color: ${pr => pr.theme.colors.secondary};
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .start-commercial-button button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        outline: none;
+        background: ${pr => pr.theme.colors.secondary};
+        color: ${pr => pr.theme.colors.white};
+        font-size: ${pr => pr.theme.fontSizes.small};
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background: ${pr => pr.theme.colors.berry};
+        }
+    }
+
+    .error {
+        color: ${pr => pr.theme.colors.berry};
+        font-size: ${pr => pr.theme.fontSizes.small};
+        font-weight: bold;
+        text-align: center;
+        margin-top: 0.5rem;
     }
 
 

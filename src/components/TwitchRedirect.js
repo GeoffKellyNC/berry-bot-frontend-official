@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect }  from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import * as actions from '../store/authState/authState.creators'
 

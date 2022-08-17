@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import * as actions from "../store/authState/authState.creators";
 
 import ModerationPanel from "../components/home/ModerationPanel";
@@ -12,8 +13,9 @@ import TwitchChat from "../components/iframe/TwitchChat";
 import Poll from "../components/home/Poll";
 import Commercial from "../components/home/Commercial";
 
-
 import { getUserToken } from "../util/localData";
+
+import twinkle_bg from "../assets/clouds.svg"
 
 function Home(props) {
   const [selected, setSelected] = useState(null);
@@ -25,15 +27,17 @@ function Home(props) {
     refreshUserData();
   }, []);
 
-
-
-  console.log(userData.profile_image_url);
-
+  
   return (
     <HomeStyled>
       <div className="profile-information">
         <div className="profile-image">
-          <img src={userData.profile_img} alt="profile-pic" />
+          <NavLink to="/">
+            <img
+              src={userData.profile_img}
+              alt="profile-pic"
+            />
+          </NavLink>
           <span className="profile-name">{userData.twitch_user}</span>
         </div>
       </div>
@@ -45,13 +49,13 @@ function Home(props) {
             target={userData.twitch_user}
             userData={userData}
             selected={selected}
-            setSelected = {setSelected}
+            setSelected={setSelected}
           />
-          <Commercial token = { token } userData = { userData } />
+          <Commercial token={token} userData={userData} />
         </div>
         <div className="column-2">
           <ModerationPanel />
-          <TwitchChat target={userData.twitch_user} userData = { userData } />
+          <TwitchChat target={userData.twitch_user} userData={userData} />
         </div>
       </div>
       <div className="footer-text">
@@ -73,26 +77,22 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, actions)(Home);
 
 const HomeStyled = styled.div`
-  background: rgb(0, 185, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(0, 185, 255, 1) 0%,
-    rgba(24, 24, 24, 1) 3%,
-    rgba(46, 46, 46, 1) 97%,
-    rgba(0, 185, 255, 1) 100%
-  );
+    ${'' /* background-image: url(${twinkle_bg}); */}
+    background-color: #0B0B0B;
 
   .profile-information {
     display: flex;
     color: white;
     font-size: ${(pr) => pr.theme.fontSizes.medium};
-    width: 95%;
+    width: 90%;
     margin-left: auto;
   }
 
   .profile-image img {
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
+    cursor: pointer;
+    padding: 5px;
   }
 
   .profile-image {
@@ -103,7 +103,14 @@ const HomeStyled = styled.div`
     color: white;
     width: 100px;
     height: 100px;
-    overflow: hidden;
+  }
+
+  .profile-name {
+    margin-left: 10px;
+    font-size: ${(pr) => pr.theme.fontSizes.large};
+    font-weight: bold;
+    color: ${pr => pr.theme.colors.secondary};
+    text-transform: uppercase;
   }
 
   .home-body {
@@ -111,12 +118,15 @@ const HomeStyled = styled.div`
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    ${'' /* gap: 5rem; */}
+    gap: 2rem;
+    align-items: center;
   }
 
   .column-1 {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+    align-items: center;
   }
 
   .column-2 {

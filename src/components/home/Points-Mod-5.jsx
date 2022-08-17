@@ -14,8 +14,8 @@ const PointsMod5 = ({ pointData }) => {
                 top5.map((user, index) => {
                     return (
                         <PointObj key={index}>
-                            <span className='text user-perm'>User: </span> <span className = 'user-text user-text-name'>{user.user_name}</span>
-                            <span className='text points-perm'>Points: </span> <span className = 'user-text user-text-points'>{user.points}</span>
+                            <span className = 'user-text user-text-name'><span className='number'>{index + 1}.</span>{user.user_name}</span>
+                            <span className = 'user-text user-text-points'>{user.points}</span>
                         </PointObj>
                     )}) :
                 <span className='text'>No Points</span>
@@ -30,12 +30,9 @@ const TopFive = styled.div`
     border: 1px solid black;
     padding: 10px;
     margin: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
     .top-five-title{ 
-        font-size: ${pr => pr.theme.fontSizes.small};
+        font-size: ${pr => pr.theme.fontSizes.heading};
         font-weight: bold;
         color: ${pr => pr.theme.colors.secondary};
         margin-bottom: 0.5rem;
@@ -46,7 +43,25 @@ const TopFive = styled.div`
 const PointObj = styled.div`
     display: flex;
     flex-direction: row;
+    gap: 4rem;
     justify-content: space-between;
+    align-items: center;
+
+
+    .number{
+        font-size: ${pr => pr.theme.fontSizes.xlarge};
+        font-weight: bold;
+        color: ${pr => pr.theme.colors.secondary};
+        margin-bottom: 0.5rem;
+        position: relative;
+        padding-right: 1rem;
+    }
+
+    .user-text{
+        font-size: ${pr => pr.theme.fontSizes.xlarge};
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
 
 
 `

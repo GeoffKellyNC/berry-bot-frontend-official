@@ -1,13 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import chat_bot from '../assets/chat_bot.svg'
 import FeaturesGrid from '../components/landing-page/FeaturesGrid'
 import LandingNav from '../components/landing-page/Landing.nav'
 
-import clouds from '../assets/clouds.svg'
-import field from '../assets/field2.svg'
-import valley from '../assets/valley.svg'
+
 
 
 const Landing = ({ isLoggedIn }) => {

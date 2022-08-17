@@ -33,11 +33,11 @@ const StyledPoll = styled.div`
   .poll-tile-button {
     width: 300px;
     height: 75px;
-    background-color: ${(pr) => pr.theme.colors.secondary};
+    background-color: rgba(19, 19, 19, 1);
     border: none;
     outline: none;
     border-radius: 0.5rem;
-    color: ${(pr) => pr.theme.colors.primary};
+    color: ${(pr) => pr.theme.colors.berry};
     font-size: ${(pr) => pr.theme.fontSizes.large};
     font-weight: bold;
     cursor: pointer;
