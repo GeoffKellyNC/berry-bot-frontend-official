@@ -88,7 +88,8 @@ const ModPanel = styled.div`
     margin: 10px;
     border-radius: 5px;
     box-sizing: border-box;
-    background: rgba(19, 19, 19, 1);
+    ${'' /* background: rgba(19, 19, 19, 1); */}
+    background: ${pr => pr.theme.colors.secondary};
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
     color: white;
 
@@ -97,21 +98,21 @@ const ModPanel = styled.div`
         display: flex;
         align-items: center;
         padding: 10px;
-        border-bottom: 1px solid ${pr => pr.theme.colors.secondary};
+        border-bottom: 1px solid ${pr => pr.theme.colors.berry};
 
     }
 
     .mod-panel-title{
         font-size: ${pr => pr.theme.fontSizes.medium};
         font-weight: bold;
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${pr => pr.theme.colors.berry};
         margin-bottom: 0.5rem;
 
     }
 
     .refresh-icon{
         font-size: ${pr => pr.theme.fontSizes.large};
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${pr => pr.theme.colors.berry};
         cursor: pointer;
         
         &:hover{

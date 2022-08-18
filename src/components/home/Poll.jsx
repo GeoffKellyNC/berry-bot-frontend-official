@@ -10,8 +10,7 @@ const Poll = ({ userData, target, selected, setSelected }) => {
         onClick={() => setSelected("poll")}
         className="poll-tile-button"
       >
-        {" "}
-        START POLL{" "}
+        START POLL
       </button>
       {selected === "poll" && (
         <PollsHome
@@ -33,7 +32,7 @@ const StyledPoll = styled.div`
   .poll-tile-button {
     width: 300px;
     height: 75px;
-    background-color: rgba(19, 19, 19, 1);
+    background-color: black;
     border: none;
     outline: none;
     border-radius: 0.5rem;

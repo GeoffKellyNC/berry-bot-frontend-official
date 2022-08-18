@@ -50,3 +50,16 @@ export const getPlayerModPoints = (unx_id) => async (dispatch) => {
     }
 }
 
+export const getChatSettings = (token, unx_id, id, target) => async (dispatch) => {
+    try {
+        const res = await axios.post(`http://localhost:9001/twitchBot/getChatSettings`, { data: { token, unx_id, id, target } })
+        const chatSettings = res.data.message.data[0]
+        dispatch({
+            type: types.GET_CHAT_SETTINGS,
+            payload: chatSettings
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+

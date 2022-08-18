@@ -6,12 +6,14 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import * as actions from "../store/authState/authState.creators";
 
+import ClipIt from '../components/home/ClipIt'
 import ModerationPanel from "../components/home/ModerationPanel";
 import ButtonPanel from "../components/control-panel/ButtonPanel";
 import TitleBox from "../components/home/TitleBox";
 import TwitchChat from "../components/iframe/TwitchChat";
 import Poll from "../components/home/Poll";
 import Commercial from "../components/home/Commercial";
+import SettingsDisplay from "../components/home/chat-settings/SettingsDisplay"
 
 import { getUserToken } from "../util/localData";
 
@@ -43,7 +45,7 @@ function Home(props) {
       </div>
       <div className="home-body">
         <div className="column-1">
-          <TitleBox />
+          <TitleBox userData = { userData } />
           <ButtonPanel />
           <Poll
             target={userData.twitch_user}
@@ -51,7 +53,9 @@ function Home(props) {
             selected={selected}
             setSelected={setSelected}
           />
+          <ClipIt userData = { userData } token = { token } />
           <Commercial token={token} userData={userData} />
+          <SettingsDisplay userData = { userData } token = { token } />
         </div>
         <div className="column-2">
           <ModerationPanel />
@@ -78,7 +82,9 @@ export default connect(mapStateToProps, actions)(Home);
 
 const HomeStyled = styled.div`
     ${'' /* background-image: url(${twinkle_bg}); */}
-    background-color: #0B0B0B;
+    ${'' /* background-color: #0B0B0B; */}
+    background: rgba(19, 19, 19, 1);
+
 
   .profile-information {
     display: flex;

@@ -3,11 +3,13 @@ import styled from 'styled-components'
 
 import LogoutButton from '../buttons/Logout.button'
 
-const TitleBox = () => {
+const TitleBox = ({ userData }) => {
   return (
     <TitleBoxStyled>
-        <h1 className='title-text'>Welcome to the Bot Control Panel</h1>
-        <LogoutButton />
+        <h1 className='title-text'>Welcome <span>{ userData.user_name}</span> to Berry Bot </h1>
+        <div className='log-out-button'>
+            <LogoutButton />
+        </div>
     </TitleBoxStyled>
   )
 }
@@ -27,8 +29,21 @@ const TitleBoxStyled = styled.div`
 
     .title-text {
         color: ${pr => pr.theme.colors.berry};
-        font-size: ${pr => pr.theme.fontSizes.small};
+        font-size: ${pr => pr.theme.fontSizes.large};
         font-weight: bold;
+        padding: 0.5rem 1rem;
+        margin: 0;
+        text-align: center;
+
+        & > span {
+            color: ${pr => pr.theme.colors.secondary};
+        }
+    }
+
+    .log-out-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 0.5rem 1rem;
         margin: 0;
         text-align: center;

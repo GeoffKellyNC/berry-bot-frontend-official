@@ -5,7 +5,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../store/authState/authState.creators'
 
-const TwitchRedirect = ({loginUser}) => {
+const TwitchRedirect = ({loginUser, refreshUserData}) => {
     const [searchParams, setSearchParams] = useSearchParams()
 
     const navigate = useNavigate()
@@ -14,6 +14,7 @@ const TwitchRedirect = ({loginUser}) => {
     const handleRedirect = async () => {
         const code = searchParams.get('code')
         await loginUser(code)
+        await refreshUserData()
 
     }
 

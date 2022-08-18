@@ -1,4 +1,7 @@
 import * as types from './authState.types';
+import { getUserData } from '../../util/localData';
+
+
 
 
 
@@ -19,7 +22,7 @@ export function userData  (state = {}, action) {
     case types.SET_USER_DATA:
       return action.payload;
     default:
-      return state;
+      return getUserData();
   }
 }
 

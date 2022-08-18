@@ -11,3 +11,12 @@ export function modPlayerPointData(state = [], action) {
       return state;
   }
 }
+
+export function chatSettings(state = {}, action){
+  switch (action.type) {
+    case types.GET_CHAT_SETTINGS:
+      return action.payload;
+    default:
+      return state;
+  }
+}

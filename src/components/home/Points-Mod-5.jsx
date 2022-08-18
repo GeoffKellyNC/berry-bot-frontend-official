@@ -34,7 +34,7 @@ const TopFive = styled.div`
     .top-five-title{ 
         font-size: ${pr => pr.theme.fontSizes.heading};
         font-weight: bold;
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${pr => pr.theme.colors.berry};
         margin-bottom: 0.5rem;
         text-align: center;
     }
@@ -51,7 +51,7 @@ const PointObj = styled.div`
     .number{
         font-size: ${pr => pr.theme.fontSizes.xlarge};
         font-weight: bold;
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${pr => pr.theme.colors.berry};
         margin-bottom: 0.5rem;
         position: relative;
         padding-right: 1rem;
