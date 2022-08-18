@@ -18,14 +18,14 @@ export default TitleBox
 
 
 const TitleBoxStyled = styled.div`
-    width: 300px;
+    min-width: 300px;
     height: auto;
     font-family: ${pr => pr.theme.fonts.primary};
     margin: 10px;
     border-radius: 5px;
     box-sizing: border-box;
     background: rgba(19, 19, 19, 1);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
 
     .title-text {
         color: ${pr => pr.theme.colors.berry};

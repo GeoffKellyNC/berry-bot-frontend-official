@@ -64,4 +64,9 @@ const PointObj = styled.div`
     }
 
 
+    @media(max-width: 520px){
+        max-width: 100%;
+    }
+
+
 `

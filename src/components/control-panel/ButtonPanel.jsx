@@ -46,7 +46,7 @@ const PanelStyled = styled.div`
     border-radius: 5px;
     box-sizing: border-box;
     background: rgba(19, 19, 19, 1);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
     color: white;
 
     .panel-btns{

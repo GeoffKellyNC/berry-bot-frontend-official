@@ -42,5 +42,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, actions)(App);
 
 const AppStyled = styled.div`
+  
 
 `;

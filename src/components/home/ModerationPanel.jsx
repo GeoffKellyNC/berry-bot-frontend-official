@@ -82,15 +82,13 @@ export default connect(mapStateToProps, action)(ModerationPanel)
 
 
 const ModPanel = styled.div`
-    width: 500px;
+    max-width: 500px;
     height: auto;
     font-family: ${pr => pr.theme.fonts.primary};
-    margin: 10px;
     border-radius: 5px;
     box-sizing: border-box;
-    ${'' /* background: rgba(19, 19, 19, 1); */}
-    background: ${pr => pr.theme.colors.secondary};
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    background: rgba(19, 19, 19, 1);
+    box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
     color: white;
 
     .mod-header{
@@ -128,6 +126,11 @@ const ModPanel = styled.div`
         &:hover{
             color: ${pr => pr.theme.colors.berry};
         }
+    }
+
+
+    @media(max-width: 520px){
+        width: 50%;
     }
 
 `

@@ -64,7 +64,8 @@ const Clips = styled.div`
     .clip-button {
         width: 300px;
         height: 75px;
-        background-color: black;
+        background: rgba(19, 19, 19, 1);
+        box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
         border: none;
         outline: none;
         border-radius: 0.5rem;

@@ -84,14 +84,15 @@ const HomeStyled = styled.div`
     ${'' /* background-image: url(${twinkle_bg}); */}
     ${'' /* background-color: #0B0B0B; */}
     background: rgba(19, 19, 19, 1);
+    width: 100%;
 
 
   .profile-information {
     display: flex;
     color: white;
     font-size: ${(pr) => pr.theme.fontSizes.medium};
-    width: 90%;
-    margin-left: auto;
+    width: 100%;
+    margin-left: 3%;
   }
 
   .profile-image img {
@@ -99,6 +100,7 @@ const HomeStyled = styled.div`
     height: 65px;
     cursor: pointer;
     padding: 5px;
+    margin-left: 10px;
   }
 
   .profile-image {
@@ -120,9 +122,10 @@ const HomeStyled = styled.div`
   }
 
   .home-body {
-    width: 90%;
+    min-width: 90%;
     margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     gap: 2rem;
     align-items: center;
@@ -138,7 +141,7 @@ const HomeStyled = styled.div`
   .column-2 {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    ${'' /* align-items: center; */}
     gap: 1rem;
   }
 
@@ -167,5 +170,13 @@ const HomeStyled = styled.div`
     color: white;
     margin-top: 1.7rem;
     font-family: ${(pr) => pr.theme.fonts.primary};
+  }
+
+
+  @media (max-width: 880px) {
+    .home-body {
+      flex-direction: column;
+      width: 100%;
+    }
   }
 `;
