@@ -24,7 +24,7 @@ const TwitchRedirect = ({loginUser, refreshUserData}) => {
 
     setTimeout(() => {
         navigate('/dashboard')
-    }, 1500);
+    }, 3000);
 
 
 

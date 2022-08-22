@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export const loginUser = (code) => async (dispatch) => {
     try{
-        const res = await axios.post('http://localhost:9001/users/login', { data : { code } })
+        const res = await axios.post('https://twitch-berry-bot.herokuapp.com/users/login', { data : { code } })
         const { jwtToken, userData } = res.data
         localStorage.setItem('jwtToken', jwtToken)
         localStorage.setItem('user', JSON.stringify(userData))

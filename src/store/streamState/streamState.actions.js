@@ -3,7 +3,7 @@ import * as types from './streamState.types';
 import axios from 'axios';
 
 
-const STREAM_DATA_VIEWERS_EP = 'http://localHost:9001/channelData/viewers'
+const STREAM_DATA_VIEWERS_EP = 'https://twitch-berry-bot.herokuapp.com1/channelData/viewers'
 
 
 export const getViewerCount = (unx_id, type, target, jwt) => async (dispatch) => {
