@@ -14,6 +14,7 @@ import TwitchChat from "../components/iframe/TwitchChat";
 import Poll from "../components/home/Poll";
 import Commercial from "../components/home/Commercial";
 import SettingsDisplay from "../components/home/chat-settings/SettingsDisplay"
+import CustomCommands from "../components/home/custom-commands/CustomCommands";
 
 import { getUserToken } from "../util/localData";
 
@@ -59,7 +60,8 @@ function Home(props) {
         </div>
         <div className="column-2">
           <ModerationPanel />
-          <TwitchChat target={userData.twitch_user} userData={userData} />
+          {/* <TwitchChat target={userData.twitch_user} userData={userData} /> */}
+          <CustomCommands token = { token } userData = { userData } />
         </div>
       </div>
       <div className="footer-text">

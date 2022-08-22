@@ -13,11 +13,6 @@ const SettingsDisplay = (props) => {
     const { chatSettings, getChatSettings, userData, token } = props
 
 
-    console.log('Chat Settings: ', chatSettings)
-
-
-
-
     useEffect(() => {
 
         getChatSettings(token, userData.unx_id, userData.twitch_id, userData.twitch_user)

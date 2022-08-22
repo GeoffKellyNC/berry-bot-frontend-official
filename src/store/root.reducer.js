@@ -5,6 +5,7 @@ import { modPlayerPointData } from './botState/botState.reducer';
 import { currentViewCount } from './streamState/streamState.reducer';
 import { userData } from './authState/authState.reducer';
 import { chatSettings } from './botState/botState.reducer';
+import { customCommands } from './botState/botState.reducer';
 
 
 
@@ -13,5 +14,6 @@ export default combineReducers({
     modPlayerPointData,
     currentViewCount,
     userData,
-    chatSettings
+    chatSettings,
+    customCommands
 });

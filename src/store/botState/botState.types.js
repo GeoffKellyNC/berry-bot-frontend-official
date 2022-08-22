@@ -6,3 +6,4 @@ export const GET_PLAYER_POINT_DATA = "GET_PLAYER_POINT_DATA";
 //! # Chat types
 
 export const GET_CHAT_SETTINGS = 'GET_CHAT_SETTINGS';
+export const GET_CUSTOM_COMMANDS = 'GET_CUSTOM_COMMANDS'

@@ -63,3 +63,15 @@ export const getChatSettings = (token, unx_id, id, target) => async (dispatch) =
     }
 }
 
+export const getCustomCommands = (token, unx_id) => async (dispatch) => {
+    try {
+        const commands = await axios.post('http://localhost:9001/twitchBot/getCustomCommands', { data : { token, unx_id}})
+        dispatch({
+            type: types.GET_CUSTOM_COMMANDS,
+            payload: commands.data.message
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+

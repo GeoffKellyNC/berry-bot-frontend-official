@@ -82,7 +82,7 @@ export default connect(mapStateToProps, action)(ModerationPanel)
 
 
 const ModPanel = styled.div`
-    max-width: 500px;
+    min-width: 500px;
     height: auto;
     font-family: ${pr => pr.theme.fonts.primary};
     border-radius: 5px;

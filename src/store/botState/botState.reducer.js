@@ -20,3 +20,12 @@ export function chatSettings(state = {}, action){
       return state;
   }
 }
+
+export function customCommands(state = [], action){
+  switch (action.type) {
+    case types.GET_CUSTOM_COMMANDS:
+      return action.payload;
+    default:
+      return state;
+  }
+}
