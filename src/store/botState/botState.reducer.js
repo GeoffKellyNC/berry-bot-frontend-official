@@ -29,3 +29,12 @@ export function customCommands(state = [], action){
       return state;
   }
 }
+
+export function currentAutoModSettings (state = {}, action){
+  switch (action.type) {
+    case types.GET_CURRENT_AUTO_MOD_SETTINGS:
+      return action.payload;
+    default:
+      return state;
+  }
+}

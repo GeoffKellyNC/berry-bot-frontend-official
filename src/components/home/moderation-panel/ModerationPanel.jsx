@@ -2,24 +2,26 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import * as action from '../../store/botState/botState.actions'
+import * as action from '../../../store/botState/botState.actions'
 
-import { getUserData, getUserToken } from '../../util/localData'
+import { getUserData, getUserToken } from '../../../util/localData'
 
 import PointsMod5 from './Points-Mod-5'
-import Banword from '../forms/Banword.form'
+import Banword from '../../forms/Banword.form'
+import AutoMod from './AutoMod'
+import BanUser from './BanUser'
 
 import { FiRefreshCw,  } from 'react-icons/fi'
 import { TbSettings } from 'react-icons/tb'
 
-import { setBannedWord } from '../../util/moderation'
+import { setBannedWord } from '../../../util/moderation'
 
 const iFormValues = {
     word: '',
 }
 
 const ModerationPanel = (props) => {
-    const { modPlayerPointData, getPlayerModPoints } = props
+    const { modPlayerPointData, getPlayerModPoints, token } = props
     const [ userData, setUserData ] = useState(getUserData())
     const [ formValues, setFormValues ] = useState(iFormValues)
 
@@ -36,10 +38,6 @@ const ModerationPanel = (props) => {
         setFormValues(iFormValues)
         
     }
-
-
-
-
 
     useEffect(() => {
         getPlayerModPoints(userData.unx_id)
@@ -66,6 +64,8 @@ const ModerationPanel = (props) => {
                 onChange = { onChangeBan }
                 onSubmit = { onSubmitBan }
             />
+            <BanUser token = { token } userData = { userData } />
+            <AutoMod userData = { userData } token = { token } />
         </div>
     </ModPanel>
   )

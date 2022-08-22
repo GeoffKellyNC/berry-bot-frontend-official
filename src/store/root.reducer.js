@@ -6,6 +6,7 @@ import { currentViewCount } from './streamState/streamState.reducer';
 import { userData } from './authState/authState.reducer';
 import { chatSettings } from './botState/botState.reducer';
 import { customCommands } from './botState/botState.reducer';
+import { currentAutoModSettings } from './botState/botState.reducer';
 
 
 
@@ -15,5 +16,6 @@ export default combineReducers({
     currentViewCount,
     userData,
     chatSettings,
-    customCommands
+    customCommands,
+    currentAutoModSettings
 });

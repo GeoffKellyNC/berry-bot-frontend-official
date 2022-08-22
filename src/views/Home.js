@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import * as actions from "../store/authState/authState.creators";
 
 import ClipIt from '../components/home/ClipIt'
-import ModerationPanel from "../components/home/ModerationPanel";
+import ModerationPanel from "../components/home/moderation-panel/ModerationPanel";
 import ButtonPanel from "../components/control-panel/ButtonPanel";
 import TitleBox from "../components/home/TitleBox";
 import TwitchChat from "../components/iframe/TwitchChat";
@@ -59,9 +59,7 @@ function Home(props) {
           <SettingsDisplay userData = { userData } token = { token } />
         </div>
         <div className="column-2">
-          <ModerationPanel />
-          {/* <TwitchChat target={userData.twitch_user} userData={userData} /> */}
-          <CustomCommands token = { token } userData = { userData } />
+          <ModerationPanel token = { token } />
         </div>
       </div>
       <div className="footer-text">

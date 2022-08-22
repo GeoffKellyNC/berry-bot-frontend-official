@@ -76,66 +76,47 @@ export default CreatePollForm;
 
 const PollForm = styled.form`
   display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  font-family: ${(pr) => pr.theme.fonts.primary};
+  flex-direction: column;
+
+  & > label {
+    font-size: ${(pr) => pr.theme.fontSizes.large};
+    font-weight: bold;
+    color: ${(pr) => pr.theme.colors.secondary};
+    margin: 1rem 0;
+  }
 
   & > input {
-    width: 50%;
-    height: 1rem;
-    border: 1px solid ${(pr) => pr.theme.colors.primary};
+    font-size: ${(pr) => pr.theme.fontSizes.medium};
+    font-weight: bold;
+    color: ${(pr) => pr.theme.colors.berry};
+    border: 1px solid ${(pr) => pr.theme.colors.berry};
     border-radius: 5px;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    font-size: 1.5rem;
+    background-color: black;
+    height: 2rem;
+
+    &:focus {
+      outline: none;
+    }
+
   }
 
-  .poll-title-text {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .poll-bit-text {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .poll-cPoint-text {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .poll-set-choice-text {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .poll-duration-text {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
   .poll-submit-button {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    background: rgb(0, 185, 255);
-
-    background: linear-gradient(
-      180deg,
-      rgba(0, 185, 255, 1) 0%,
-      rgba(24, 24, 24, 1) 3%,
-      rgba(46, 46, 46, 1) 97%,
-      rgba(0, 185, 255, 1) 100%
-    );
-    border: 1px solid black;
+    font-size: ${(pr) => pr.theme.fontSizes.large};
+    font-weight: bold;
+    color: ${(pr) => pr.theme.colors.berry};
+    border: none;
     border-radius: 5px;
-    padding: 1rem;
-    color: white;
+    background-color: ${(pr) => pr.theme.colors.secondary};
+    height: 2rem;
+    margin-top: 1rem;
+    outline: none;
     cursor: pointer;
 
     &:hover {
-        background: #0b0b0b;
-        color: white;
+      background-color: ${(pr) => pr.theme.colors.berry};
+      color: ${(pr) => pr.theme.colors.secondary};
     }
   }
 
-  .poll-set-choice-input {
-    width: 100%;
-  }
+
 `;

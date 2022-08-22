@@ -75,3 +75,14 @@ export const getCustomCommands = (token, unx_id) => async (dispatch) => {
     }
 }
 
+export const getAutoModSettings = (token, userObj) => async (dispatch) => {
+    try {
+        const res = await axios.post('http://localhost:9001/twitchBot/getAutoModSettings', { data : { token, userObj}})
+        dispatch({
+            type: types.GET_CURRENT_AUTO_MOD_SETTINGS,
+            payload: res.data.message
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
