@@ -8,7 +8,6 @@ import * as actions from '../../store/botState/botState.actions'
 // Importing Components 
 import StartbotBtn from '../buttons/Startbot.btn'
 import StartMod from '../buttons/StartMod.btn'
-import StartVoteBtn from '../buttons/StartVote.btn'
 
 
 const ButtonPanel = (props) => {
