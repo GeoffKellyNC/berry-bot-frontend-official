@@ -13,6 +13,9 @@ const Landing = ({ isLoggedIn }) => {
     <LandingPage>
         <LandingNav isLoggedIn = { isLoggedIn } />
         <div className = 'landing-hero'>
+        <div className='under-development'>
+            <h1>Under Development.. DEVELOPMENT COPY!</h1>
+        </div>
         </div>
         <div className = 'landing-body'>
           <div className='grid-container'>
@@ -54,6 +57,12 @@ const LandingPage = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 15rem;
+  }
+
+  .under-development h1 {
+    font-size: 5rem;
+    font-family: ${pr => pr.theme.fonts.primary};
+    color: ${pr => pr.theme.colors.berry};
   }
 
 
