@@ -11,9 +11,10 @@ import Home from "./views/Home";
 import Landing from "./views/Landing";
 import ProtectedRoute from "./components/ProtectedRoute";
 import TwitchRedirect from "./components/TwitchRedirect";
+import Music from "./views/Music";
 
 function App(props) {
-  const { isLoggedIn, checkLoggedIn } = props;
+  const { isLoggedIn, checkLoggedIn, userData } = props;
 
 
   useEffect(() => {
@@ -24,6 +25,7 @@ function App(props) {
     <AppStyled>
       <Routes>
         <Route path="/" element={<Landing isLoggedIn={isLoggedIn} />} />
+        <Route path = "/music" element={<Music isLoggedIn={isLoggedIn} userData = { userData } />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Home />} />
         </Route>
@@ -36,6 +38,7 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.isLoggedIn,
+    userData: state.userData
   };
 };
 

@@ -15,6 +15,7 @@ import Poll from "../components/home/Poll";
 import Commercial from "../components/home/Commercial";
 import SettingsDisplay from "../components/home/chat-settings/SettingsDisplay"
 import CustomCommands from "../components/home/custom-commands/CustomCommands";
+import MusicPlayer from "../components/home/MusicPlayer";
 
 import { getUserToken } from "../util/localData";
 
@@ -61,11 +62,14 @@ function Home(props) {
         <div className="column-2">
           <ModerationPanel token = { token } />
         </div>
+        <div className="column-3">
+          <MusicPlayer />
+        </div>
       </div>
       <div className="footer-text">
         <span>
           Made with <span className="heart">&hearts;</span> by{" "}
-          <a href="geoffkelly.dev">Geoff Kelly</a>
+          <a href="geoffkelly.dev">Geoff Kelly </a>
         </span>
       </div>
     </HomeStyled>

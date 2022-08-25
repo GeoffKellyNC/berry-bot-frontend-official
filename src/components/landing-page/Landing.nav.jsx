@@ -45,6 +45,9 @@ const LandingNav = ({ isLoggedIn }) => {
                 <NavLink to = '/contact' className='nav-link nav-contact'>
                     <span> Contact </span>
                 </NavLink>
+                <NavLink to = '/music' className='nav-link nav-music'>
+                    <span> Music </span>
+                </NavLink>
               </>
             }
 
