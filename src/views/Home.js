@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import * as actions from "../store/authState/authState.creators";
+import * as authActions from "../store/authState/authState.creators";
 
 import ClipIt from '../components/home/ClipIt'
 import ModerationPanel from "../components/home/moderation-panel/ModerationPanel";
@@ -15,7 +15,7 @@ import Poll from "../components/home/Poll";
 import Commercial from "../components/home/Commercial";
 import SettingsDisplay from "../components/home/chat-settings/SettingsDisplay"
 import CustomCommands from "../components/home/custom-commands/CustomCommands";
-import MusicPlayer from "../components/home/MusicPlayer";
+import MusicHome from '../components/home/music/Music-home'
 
 import { getUserToken } from "../util/localData";
 
@@ -63,7 +63,7 @@ function Home(props) {
           <ModerationPanel token = { token } />
         </div>
         <div className="column-3">
-          <MusicPlayer />
+          <MusicHome userData = { userData } />
         </div>
       </div>
       <div className="footer-text">
@@ -79,10 +79,11 @@ function Home(props) {
 const mapStateToProps = (state) => {
   return {
     userData: state.userData,
+    songsData: state.songsData
   };
 };
 
-export default connect(mapStateToProps, actions)(Home);
+export default connect(mapStateToProps, authActions)(Home);
 
 const HomeStyled = styled.div`
     ${'' /* background-image: url(${twinkle_bg}); */}

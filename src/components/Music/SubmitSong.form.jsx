@@ -4,17 +4,16 @@ import styled from 'styled-components'
 const iFormValues = {
     link: '',
     artist_name: '',
-    song_title: '',
+    song_name: '',
     terms: false,
-    for_twitch: false,
-    twitch_channel:''
 }
 
-const SubmitSong = ({ userData }) => {
+// artists_name, song_name, song_link, status, user_agreement
+
+const SubmitSong = ({ userData, addSong }) => {
     const [formValues, setFormValues] = useState(iFormValues)
 
 
-    console.log('Music Form UserData: ', userData)
 
     const onChange = (e) => {
         if (e.target.name === 'terms') {
@@ -31,29 +30,22 @@ const SubmitSong = ({ userData }) => {
                 })
             }
         }
-
-        if (e.target.name === 'for_twitch') {
-            if (e.target.checked) {
-                setFormValues({
-                    ...formValues,
-                    [e.target.name]: true
-                })
-            }
-            if (!e.target.checked) {
-                setFormValues({
-                    ...formValues,
-                    [e.target.name]: formValues.for_twitch
-                })
-            }
-        }
         setFormValues({
             ...formValues,
             [e.target.name]: e.target.value
         })
     }
+
     const onSubmit = (e) => {
         e.preventDefault()
         console.log(formValues)
+        addSong({
+            artist_name: formValues.artist_name,
+            song_name: formValues.song_name,
+            song_link: formValues.link,
+            status: 'pending',
+            user_agreement: formValues.terms === 'on' ? 1 : 0,
+        })
         setFormValues(iFormValues)
     }
 
@@ -77,24 +69,9 @@ const SubmitSong = ({ userData }) => {
         />
         <input 
             type='text'
-            name='song_title'
+            name='song_name'
             placeholder='Song Title'
-            value={formValues.song_title}
-            onChange={onChange}
-        />
-        <input 
-            type='text'
-            name='twitch_channel'
-            placeholder='Twitch Channel'
-            value={formValues.twitch_channel}
-            onChange={onChange}
-        />
-        <label className='twitch-label'> For Twitch: </label>
-        <input 
-            type='checkbox'
-            name='for_twitch'
-            placeholder='For Twitch'
-            defaultChecked={formValues.for_twitch}
+            value={formValues.song_name}
             onChange={onChange}
         />
         <label className='terms-label'> Terms: </label>

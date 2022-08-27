@@ -1,14 +1,16 @@
-import React, { useState } from "react"
+import React from "react"
 import ReactPlayer from "react-player"
 
-function MusicPlayer() {
-    const [currentSong, setCurrentSong] = useState('https://soundcloud.com/cherrii-music/cherrii-pierce-the-veil-bulls-in-the-bronx-remiix')
+function MusicPlayer( { currentSong } ) {
+
 
 
 
     return (
         <div>
-            <ReactPlayer
+            {
+                !currentSong ? null :
+                <ReactPlayer
                 url={currentSong}
                 width='500px'
                 height = '300px'
@@ -20,10 +22,12 @@ function MusicPlayer() {
                         options: {
                             show_artwork: false,
                             color: '#2b2d42',
+                            auto_play: true
                         }
                     }
                 }}
             />
+            }
         </div>
     )
 }

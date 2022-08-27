@@ -7,6 +7,9 @@ import { userData } from './authState/authState.reducer';
 import { chatSettings } from './botState/botState.reducer';
 import { customCommands } from './botState/botState.reducer';
 import { currentAutoModSettings } from './botState/botState.reducer';
+import { songsData } from './musicState/musicState.reducer'
+import { userPlaylists } from './musicState/musicState.reducer'
+import { playlistsSongs } from './musicState/musicState.reducer'
 
 
 
@@ -17,5 +20,8 @@ export default combineReducers({
     userData,
     chatSettings,
     customCommands,
-    currentAutoModSettings
+    currentAutoModSettings,
+    songsData,
+    userPlaylists,
+    playlistsSongs
 });
