@@ -98,6 +98,15 @@ const ModSettings = styled.div`
   justify-content: center;
   height: auto;
   padding: 10px;
+  animation: fadeIn 0.2s ease-in;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   .autoMod-settings-title {
     font-size: ${(pr) => pr.theme.fontSizes.large};

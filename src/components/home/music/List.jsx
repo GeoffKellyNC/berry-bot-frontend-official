@@ -1,4 +1,6 @@
-import React from 'react'
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import * as musicActions from '../../../store/musicState/musicState.actions'
@@ -7,9 +9,23 @@ import PlaylistSong from './PlaylistSong'
 
 
 
-const List = ({playlistsSongs, songsData, setCurrentSong}) => {
+const List = ({playlistsSongs, songsData, setCurrentSong, currentPlaylist, userPlaylists}) => {
+    const [thisPlaylist, setThisPlaylist] = useState('')
+
+
+
+  useEffect(() => {
+     setThisPlaylist(userPlaylists.filter(list => list.playlist_id === currentPlaylist )[0])  
+  }, [])
+  
+
+
+    
+
+
   return (
     <UserList className='playlist-songs'>
+        <h1> {thisPlaylist.playlist_name} </h1>
         {
             playlistsSongs.length > 0 ?
             playlistsSongs.map(song => {
@@ -32,7 +48,8 @@ const List = ({playlistsSongs, songsData, setCurrentSong}) => {
 const mapStateToProps = state => {
     return({
         playlistsSongs: state.playlistsSongs,
-        songsData: state.songsData
+        songsData: state.songsData,
+        userPlaylists: state.userPlaylists
 
 
     })

@@ -17,7 +17,7 @@ const CreatePlaylist = ({ userData, createPlaylist, getUserPlaylists }) => {
     }
     
     return (
-        <form>
+        <CreatePlaylistForm>
             <input 
                 type = 'text'
                 name = 'playlist_name'
@@ -26,8 +26,24 @@ const CreatePlaylist = ({ userData, createPlaylist, getUserPlaylists }) => {
                 className = 'playlist-name'
             />
             <button onClick = {onSubmit}> Create Playlist </button>
-        </form>
+        </CreatePlaylistForm>
     )
 }
 
 export default CreatePlaylist
+
+const CreatePlaylistForm = styled.form`
+    & > input {
+        background: black;
+        color: ${pr => pr.theme.colors.secondary};
+        border: none;
+        border-bottom: 1px solid ${pr => pr.theme.colors.berry};
+        padding: 10px;
+        margin-bottom: 10px;
+        width: auto;
+        box-sizing: border-box;
+        font-size: 1.5rem;
+        height: 3rem;
+    }
+
+`

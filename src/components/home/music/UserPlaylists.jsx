@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -13,9 +14,6 @@ const UserPlaylists = ({
 
   return (
     <StyledUserPlaylists>
-      <div className="user-playlists-header">
-        <h2>Playlists</h2>
-      </div>
       <div className="playlist-names">
         {userPlaylists.length > 0 ? (
           userPlaylists.map((playlist) => {
@@ -39,7 +37,7 @@ export default UserPlaylists;
 
 const StyledUserPlaylists = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   height: auto;
@@ -55,4 +53,17 @@ const StyledUserPlaylists = styled.div`
     justify-content: space-between;
     align-items: center;
   }
+
+  .user-playlists-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 0 5%;
+    margin-bottom: 5%;
+  }
+
+
 `;

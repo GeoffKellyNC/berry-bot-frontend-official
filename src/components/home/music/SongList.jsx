@@ -33,35 +33,37 @@ const SongList = ({
     <SongsList>
       <AiOutlineClose className="close-btn" onClick={() => setViewMusic(false)} />
       <SearchMasterSongs formValues={formValues} onChange={handleChange}  />
-      {
-        searchTerm === '' ?
-        songsData.map((song) => {
-          return (
-            <Song
-              key={song.idmusic_data}
-              song={song}
-              playSong={playSong}
-              userPlaylists={userPlaylists}
-              addSongToPlaylist={addSongToPlaylist}
-              playlistsSongs={playlistsSongs}
-            />
-          );
-        })
-        :
-        songsData.filter(song => song.artist_name.toLowerCase().includes(searchTerm.toLowerCase()) || song.song_name.toLowerCase().includes(searchTerm.toLowerCase())).map((song) => {
-          return (
-            <Song
-              key={song.idmusic_data}
-              song={song}
-              playSong={playSong}
-              userPlaylists={userPlaylists}
-              addSongToPlaylist={addSongToPlaylist}
-              playlistsSongs={playlistsSongs}
-            />
-          );
+      <div className="song-container">
+        {
+          searchTerm === '' ?
+          songsData.map((song) => {
+            return (
+              <Song
+                key={song.idmusic_data}
+                song={song}
+                playSong={playSong}
+                userPlaylists={userPlaylists}
+                addSongToPlaylist={addSongToPlaylist}
+                playlistsSongs={playlistsSongs}
+              />
+            );
+          })
+          :
+          songsData.filter(song => song.artist_name.toLowerCase().includes(searchTerm.toLowerCase()) || song.song_name.toLowerCase().includes(searchTerm.toLowerCase())).map((song) => {
+            return (
+              <Song
+                key={song.idmusic_data}
+                song={song}
+                playSong={playSong}
+                userPlaylists={userPlaylists}
+                addSongToPlaylist={addSongToPlaylist}
+                playlistsSongs={playlistsSongs}
+              />
+            );
+          }
+          )
         }
-        )
-      }
+      </div>
     </SongsList>
   );
 };
@@ -98,6 +100,16 @@ const SongsList = styled.div`
     box-sizing: border-box;
     background: rgba(19, 19, 19, 1);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    animation: fadeIn 0.2s ease-in;
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
 
     .close-btn {
       color: ${pr => pr.theme.colors.berry};
@@ -110,6 +122,15 @@ const SongsList = styled.div`
       &:hover {
         color: ${pr => pr.theme.colors.secondary};
       }
+    }
+
+    .song-container{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
     }
 
 

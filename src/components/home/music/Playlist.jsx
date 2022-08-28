@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import CreatePlaylist from "./CreatePlaylist.form";
 import UserPlaylists from "./UserPlaylists";
 import { connect } from 'react-redux'
 import * as musicActions from '../../../store/musicState/musicState.actions'
+
+import { BiAddToQueue } from "react-icons/bi";
 
 const Playlist = ({
   userData,
@@ -18,6 +21,8 @@ const Playlist = ({
   viewPlaylistHandler
 }) => {
 
+  const [create, setCreate] = useState(false)
+
   useEffect(() => {
     getAllSongs()
 
@@ -27,14 +32,18 @@ const Playlist = ({
     <PlaylistsStyled>
       <div className="playlist-header">
         <h1> Playlists </h1>
+        <BiAddToQueue className="add-playlist" onClick={() => setCreate(!create)} />
       </div>
       <div className="create-playlist">
-        <h1> Create Playlist </h1>
-        <CreatePlaylist
-          userData={userData}
-          createPlaylist={createPlaylist}
-          getUserPlaylists={getUserPlaylists}
-        />
+        {
+          create && (
+            <CreatePlaylist
+              userData={userData}
+              createPlaylist={createPlaylist}
+              getUserPlaylists={getUserPlaylists}
+          />
+          ) 
+        }
       </div>
       <div className="user-playlists">
         <UserPlaylists
@@ -73,9 +82,22 @@ const PlaylistsStyled = styled.div`
     align-items: center;
     width: 100%;
     height: auto;
-    font-size: ${pr => pr.theme.fontSizes.large};
-    color: ${pr => pr.theme.colors.berry};
+    margin: 20px 0;
+
+    & > h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-right: 1rem;
+    }
   }
+
+  .add-playlist {
+    font-size: 2rem;
+    color: ${pr => pr.theme.colors.primary};
+    cursor: pointer;
+  }
+
+
 
 
 `

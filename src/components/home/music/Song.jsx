@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import svgImg from "../../../assets/moon.svg";
+import svgImg from "../../../assets/nav-bg.svg";
 
 import { FaPlay } from "react-icons/fa";
 import { RiPlayList2Line } from "react-icons/ri";
@@ -44,11 +45,11 @@ const Song = ({
       <div className="song-info">
         <div className="preview"></div>
         <div className="artist-name-container">
-          <span className="artist-name-text">Artist: </span>
+          {/* <span className="artist-name-text">Artist: </span> */}
           <span className="artist-name">{song.artist_name}</span>
         </div>
         <div className="song-name-container">
-          <span className="song-name-text">Song: </span>
+          {/* <span className="song-name-text">Song: </span> */}
           <span className="song-name">{song.song_name}</span>
         </div>
         <FaPlay
@@ -60,7 +61,7 @@ const Song = ({
           onClick={() => setAddPlaylist(!addPlaylist)}
         />
         {addPlaylist && (
-          <form>
+          <form className="add-playlist-form">
             <select
               value={selectedPlaylist}
               onChange={(e) => setSelectedPlaylist(e.target.value)}
@@ -96,17 +97,26 @@ export default Song;
 const Songs = styled.div`
   display: flex;
   flex-direction: column;
-  height: 50px;
-  border-style: solid;
-  border-width: 2px 0 2px 0;
-  border-color: ${(pr) => pr.theme.colors.secondary};
+  width: 33%;
+  height: 100px;
+  border: 1px solid ${pr => pr.theme.colors.secondary};
   margin: 5px 0;
-  background-image: url(${svgImg});
+  ${'' /* background-image: url(${svgImg}); */}
   background-size: cover;
   transition: all 0.3s ease-in-out;
+  font-family: ${(pr) => pr.theme.fonts.primary};
+  justify-content: center;
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  .artist-name{
+    font-size: ${(pr) => pr.theme.fontSizes.medium};
+  }
+
+  .song-name{
+    font-size: ${(pr) => pr.theme.fontSizes.medium};
   }
 
   .song-info {
@@ -133,5 +143,20 @@ const Songs = styled.div`
   .error-duplicate{
     color: ${pr => pr.theme.colors.berry};
     font-size: ${pr => pr.theme.fontSizes.medium};
+  }
+
+  ${'' /* transition in from the right side */}
+  .add-playlist-form {
+    animation: slide-in-right 0.3s ease-in-out;
+
+    @keyframes slide-in-right {
+      0% {
+        transform: translateX(50%);
+
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
   }
 `;

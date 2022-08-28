@@ -12,6 +12,7 @@ const PlaylistSong = ({songItem, setCurrentSong}) => {
     const playSong = (songLink) => {
         setCurrentSong(songLink)
     }
+    
   return (
     <Songs>
         <div className='preview'>
