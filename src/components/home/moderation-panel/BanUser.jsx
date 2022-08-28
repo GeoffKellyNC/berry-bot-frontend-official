@@ -3,6 +3,9 @@ import styled from 'styled-components'
 
 import { MdOutlineDownloadDone } from 'react-icons/md'
 
+import { IoIosArrowDown } from "react-icons/io";
+import { MdClose } from "react-icons/md";
+
 const iFormValues = {
     userName: '',
     reason: '',
@@ -10,11 +13,11 @@ const iFormValues = {
 
 const BanUser = ({ token, userData}) => {
     const [ formValues, setFormValues ] = useState(iFormValues)
+    const [ isOpen, setIsOpen ] = useState(false)
 
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('submit');
     }
 
     const onChange = (e) => {
@@ -24,23 +27,32 @@ const BanUser = ({ token, userData}) => {
 
   return (
     <StyledBanUser>
-        <h3> Ban User </h3>
-        <form>
-            <input 
-                type="text"
-                placeholder='User Name'
-                name="userName" 
-                value={formValues.userName} 
-                onChange={ onChange } />
-            <input 
-                type="text" 
-                placeholder='Reason'
-                className='reason-input'
-                name="reason" 
-                value={formValues.reason} 
-                onChange={ onChange } />
-            <MdOutlineDownloadDone className='banUser-icon' onClick={onSubmit} />
-        </form>
+        <div className='ban-user-header' onClick={() => setIsOpen(!isOpen)}>
+            <h3> Ban User </h3>
+            {
+                !isOpen ? <IoIosArrowDown className="view-ban-icon" onClick={() => setIsOpen(!isOpen)} /> : <MdClose className="view-ban-icon" onClick={() => setIsOpen(!isOpen)} />
+            }
+        </div>
+        {
+            isOpen && (
+                <form>
+                    <input 
+                        type="text"
+                        placeholder='User Name'
+                        name="userName" 
+                        value={formValues.userName} 
+                        onChange={ onChange } />
+                    <input 
+                        type="text" 
+                        placeholder='Reason'
+                        className='reason-input'
+                        name="reason" 
+                        value={formValues.reason} 
+                        onChange={ onChange } />
+                    <MdOutlineDownloadDone className='banUser-icon' onClick={onSubmit} />
+                </form>
+            )
+        }
     </StyledBanUser>
   )
 }
@@ -73,7 +85,7 @@ const StyledBanUser = styled.div`
     & h3 {
         font-size: ${pr => pr.theme.fontSizes.medium};
         font-weight: bold;
-        color: ${pr => pr.theme.colors.berry};
+        color: ${pr => pr.theme.colors.secondary};
         
     }
 
@@ -93,6 +105,15 @@ const StyledBanUser = styled.div`
     .reason-input{
         width: 100%;
         margin-left: 0.5rem;
+    }
+
+    .ban-user-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+        border-bottom: 1px solid ${pr => pr.theme.colors.berry};
+        cursor: pointer;
     }
 
 

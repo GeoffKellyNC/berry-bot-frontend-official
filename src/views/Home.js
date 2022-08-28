@@ -4,49 +4,53 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import * as actions from "../store/authState/authState.creators";
+import * as authActions from "../store/authState/authState.creators";
+import { pingServer } from "../util/pingServer";
 
-import ClipIt from '../components/home/ClipIt'
+import ClipIt from "../components/home/ClipIt";
 import ModerationPanel from "../components/home/moderation-panel/ModerationPanel";
 import ButtonPanel from "../components/control-panel/ButtonPanel";
 import TitleBox from "../components/home/TitleBox";
 import TwitchChat from "../components/iframe/TwitchChat";
 import Poll from "../components/home/Poll";
 import Commercial from "../components/home/Commercial";
-import SettingsDisplay from "../components/home/chat-settings/SettingsDisplay"
+import SettingsDisplay from "../components/home/chat-settings/SettingsDisplay";
 import CustomCommands from "../components/home/custom-commands/CustomCommands";
+import MusicHome from "../components/home/music/Music-home";
 
 import { getUserToken } from "../util/localData";
 
-import twinkle_bg from "../assets/clouds.svg"
+import twinkle_bg from "../assets/clouds.svg";
 
 function Home(props) {
   const [selected, setSelected] = useState(null);
   const [token, setToken] = useState(getUserToken());
+  const [isConnected, setIsConnected] = useState(false);
 
   const { userData, refreshUserData } = props;
 
+  console.log("Is Connected: ", isConnected); //! REMOVE
+
   useEffect(() => {
     refreshUserData();
+    pingServer(userData.unx_id, token).then((res) => {
+      setIsConnected(res);
+    });
   }, []);
 
-  
   return (
     <HomeStyled>
       <div className="profile-information">
         <div className="profile-image">
           <NavLink to="/">
-            <img
-              src={userData.profile_img}
-              alt="profile-pic"
-            />
+            <img src={userData.profile_img} alt="profile-pic" />
           </NavLink>
           <span className="profile-name">{userData.twitch_user}</span>
         </div>
       </div>
       <div className="home-body">
         <div className="column-1">
-          <TitleBox userData = { userData } />
+          <TitleBox userData={userData} isConnected={isConnected} />
           <ButtonPanel />
           <Poll
             target={userData.twitch_user}
@@ -54,18 +58,21 @@ function Home(props) {
             selected={selected}
             setSelected={setSelected}
           />
-          <ClipIt userData = { userData } token = { token } />
+          <ClipIt userData={userData} token={token} />
           <Commercial token={token} userData={userData} />
-          <SettingsDisplay userData = { userData } token = { token } />
+          <SettingsDisplay userData={userData} token={token} />
         </div>
         <div className="column-2">
-          <ModerationPanel token = { token } />
+          <ModerationPanel token={token} />
+        </div>
+        <div className="column-3">
+          <MusicHome userData={userData} />
         </div>
       </div>
       <div className="footer-text">
         <span>
           Made with <span className="heart">&hearts;</span> by{" "}
-          <a href="geoffkelly.dev">Geoff Kelly</a>
+          <a href="geoffkelly.dev">Geoff Kelly </a>
         </span>
       </div>
     </HomeStyled>
@@ -75,17 +82,17 @@ function Home(props) {
 const mapStateToProps = (state) => {
   return {
     userData: state.userData,
+    songsData: state.songsData,
   };
 };
 
-export default connect(mapStateToProps, actions)(Home);
+export default connect(mapStateToProps, authActions)(Home);
 
 const HomeStyled = styled.div`
-    ${'' /* background-image: url(${twinkle_bg}); */}
-    ${'' /* background-color: #0B0B0B; */}
+  ${"" /* background-image: url(${twinkle_bg}); */}
+  ${"" /* background-color: #0B0B0B; */}
     background: rgba(19, 19, 19, 1);
-    width: 100%;
-
+  width: 100%;
 
   .profile-information {
     display: flex;
@@ -117,7 +124,7 @@ const HomeStyled = styled.div`
     margin-left: 10px;
     font-size: ${(pr) => pr.theme.fontSizes.large};
     font-weight: bold;
-    color: ${pr => pr.theme.colors.secondary};
+    color: ${(pr) => pr.theme.colors.secondary};
     text-transform: uppercase;
   }
 
@@ -141,7 +148,7 @@ const HomeStyled = styled.div`
   .column-2 {
     display: flex;
     flex-direction: column;
-    ${'' /* align-items: center; */}
+    ${"" /* align-items: center; */}
     gap: 1rem;
   }
 
@@ -171,7 +178,6 @@ const HomeStyled = styled.div`
     margin-top: 1.7rem;
     font-family: ${(pr) => pr.theme.fonts.primary};
   }
-
 
   @media (max-width: 880px) {
     .home-body {

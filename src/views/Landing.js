@@ -8,7 +8,6 @@ import LandingNav from '../components/landing-page/Landing.nav'
 
 
 const Landing = ({ isLoggedIn }) => {
-  console.log('isLoggedIn', isLoggedIn) // !REMOVE
   return (
     <LandingPage>
         <LandingNav isLoggedIn = { isLoggedIn } />
@@ -60,7 +59,7 @@ const LandingPage = styled.div`
   }
 
   .under-development h1 {
-    font-size: 5rem;
+    font-size: 2rem;
     font-family: ${pr => pr.theme.fonts.primary};
     color: ${pr => pr.theme.colors.berry};
   }

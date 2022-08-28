@@ -18,7 +18,7 @@ export default {
         small: '0.8rem',
         medium: '1rem',
         large: '1.2rem',
-        xlarge: '1.4rem',
+        xlarge: '1.8rem',
         heading: '2.1rem',
         logo: '3.5rem',
         hero: '3rem'
