@@ -29,7 +29,6 @@ function Home(props) {
 
   const { userData, refreshUserData } = props;
 
-  console.log("Is Connected: ", isConnected); //! REMOVE
 
   useEffect(() => {
     refreshUserData();
@@ -67,6 +66,7 @@ function Home(props) {
         </div>
         <div className="column-3">
           <MusicHome userData={userData} />
+          <TwitchChat target = {userData.twitch_user} />
         </div>
       </div>
       <div className="footer-text">
