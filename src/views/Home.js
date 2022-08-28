@@ -66,7 +66,7 @@ function Home(props) {
         </div>
         <div className="column-3">
           <MusicHome userData={userData} />
-          <TwitchChat target = {userData.twitch_user} />
+          {/* <TwitchChat target = {userData.twitch_user} /> */}
         </div>
       </div>
       <div className="footer-text">
