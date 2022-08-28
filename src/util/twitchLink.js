@@ -1,5 +1,5 @@
 
- const redirect_uri = 'http://localhost:3000/redirect/';
+ const redirect_uri = 'https://berrytwitchbot.netlify.app/redirect/';
  
  
  
