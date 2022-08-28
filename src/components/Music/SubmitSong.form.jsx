@@ -38,7 +38,6 @@ const SubmitSong = ({ userData, addSong }) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(formValues)
         addSong({
             artist_name: formValues.artist_name,
             song_name: formValues.song_name,

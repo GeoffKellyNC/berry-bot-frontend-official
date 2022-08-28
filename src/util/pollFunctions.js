@@ -7,7 +7,6 @@ export const postPoll = (target, unx_id, jwt, bitVote, channelPoints, choiceArra
         return res.data
     }
     if (res.status === 500) {
-        console.log('Server Error') //! REMOVE
         return res.data
     }
 

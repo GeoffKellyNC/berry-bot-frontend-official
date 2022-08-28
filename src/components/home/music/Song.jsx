@@ -9,6 +9,7 @@ import { RiPlayList2Line } from 'react-icons/ri'
 const Song = ({song, playSong, userPlaylists, addSongToPlaylist }) => {
     const [ addPlaylist, setAddPlaylist ] = useState(false)
     const [ selectedPlaylist, setSelectedPlaylist ] = useState('')
+
   
 
 
@@ -48,6 +49,7 @@ const Song = ({song, playSong, userPlaylists, addSongToPlaylist }) => {
                             value={selectedPlaylist}
                             onChange={(e) => setSelectedPlaylist(e.target.value)}
                             >
+                            <option value=''> Select Playlist </option>
                             {
                                 userPlaylists.map(playlist => {
                                     return (

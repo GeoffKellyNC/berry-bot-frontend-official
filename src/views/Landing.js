@@ -8,7 +8,6 @@ import LandingNav from '../components/landing-page/Landing.nav'
 
 
 const Landing = ({ isLoggedIn }) => {
-  console.log('isLoggedIn', isLoggedIn) // !REMOVE
   return (
     <LandingPage>
         <LandingNav isLoggedIn = { isLoggedIn } />

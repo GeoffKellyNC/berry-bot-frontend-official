@@ -14,7 +14,6 @@ const BanUser = ({ token, userData}) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('submit');
     }
 
     const onChange = (e) => {

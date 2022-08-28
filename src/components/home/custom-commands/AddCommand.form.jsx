@@ -22,7 +22,6 @@ const AddCommand = ({ userData, refreshCommands, token}) => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        console.log(formValues)
         const commandData = {
             command_name: formValues.command_name,
             command_action: formValues.command_action,

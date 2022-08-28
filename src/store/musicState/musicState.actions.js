@@ -41,7 +41,6 @@ export const createPlaylist =  (user_unx_id, playlist_name ) => async (dispatch)
 
 export const getUserPlaylists = (unx_id) => async (dispatch) => {
     try {
-        console.log('Getting user playlists')
         const userPlaylistData = await axios.post('https://twitch-berry-bot.herokuapp.com/music/getUserPlaylist', { data: { unx_id }})
         dispatch({
             type: types.GET_USER_PLAYLISTS,
@@ -68,8 +67,11 @@ export const addSongToPlaylist = (song_id, playlist_id) => async (dispatch) => {
 export const getPlaylistSongs = (playlist_id) => async (dispatch) => {
     try {
         const playlistSongsData = await axios.post('https://twitch-berry-bot.herokuapp.com/music/getPlaylistSongs', { data: { playlist_id }})
+        dispatch({
+            type: types.GET_PLAYLISTS_SONGS,
+            payload: playlistSongsData.data.message
+        })
         
-        console.log('getPlaylistSongs', playlistSongsData.data.message)
 
         return playlistSongsData.data.message
     } catch (error) {

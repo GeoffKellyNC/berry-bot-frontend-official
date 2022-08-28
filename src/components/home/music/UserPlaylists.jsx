@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
+import List from './List'
+import PlaylistItem from './PlaylistItem'
 
 
 
-const UserPlaylists = ({ userPlaylists, playlistsSongs, getPlaylistSongs }) => {
+
+const UserPlaylists = ({ userPlaylists, playlistsSongs, getPlaylistSongs, songsData }) => {
     const [ viewPlaylist, setViewPlaylist ] = useState(false)
 
     const viewPlaylistHandler = async (id) => {
@@ -13,26 +16,54 @@ const UserPlaylists = ({ userPlaylists, playlistsSongs, getPlaylistSongs }) => {
 
     }
 
+
     return (
-        <div>
+        <StyledUserPlaylists>
+            <div className='playlist-names'>
+                {
+                    userPlaylists.length > 0 ?
+                    userPlaylists.map(playlist => {
+                        return (
+                            <PlaylistItem
+                                key={playlist.playlist_id}
+                                playlist={playlist}
+                                viewPlaylistHandler={viewPlaylistHandler}
+                            />
+                        )
+                    }) 
+                    :
+                    <h1> No Playlists </h1>
+                }
+            </div>
             {
-                userPlaylists.length > 0 ?
-                userPlaylists.map(playlist => {
-                    return (
-                        <div key={playlist.playlist_id}>
-                            <h1> {playlist.playlist_name} </h1>
-                            <button 
-                                className='view-playlist-button'
-                                onClick={ () => viewPlaylistHandler(playlist.playlist_id) }
-                                > View Playlist </button>
-                        </div>
-                    )
-                }) 
-                :
-                <h1> No Playlists </h1>
+                viewPlaylist && <List playlistsSongs={playlistsSongs} songsData={songsData} />
+                
             }
-        </div>
+        </StyledUserPlaylists>
     )
 }
 
 export default UserPlaylists
+
+const StyledUserPlaylists = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+
+    .playlist-names {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .playlist-ind {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+`
