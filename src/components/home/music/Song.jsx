@@ -1,99 +1,137 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
-import { FaPlay } from 'react-icons/fa'
-import { RiPlayList2Line } from 'react-icons/ri'
+import svgImg from "../../../assets/moon.svg";
 
-
-
-const Song = ({song, playSong, userPlaylists, addSongToPlaylist }) => {
-    const [ addPlaylist, setAddPlaylist ] = useState(false)
-    const [ selectedPlaylist, setSelectedPlaylist ] = useState('')
-
-  
+import { FaPlay } from "react-icons/fa";
+import { RiPlayList2Line } from "react-icons/ri";
 
 
-    useEffect(() => {
-        
-    } , [song])
+const Song = ({
+  song,
+  playSong,
+  userPlaylists,
+  addSongToPlaylist,
+  playlistsSongs,
+}) => {
+  const [addPlaylist, setAddPlaylist] = useState(false);
+  const [selectedPlaylist, setSelectedPlaylist] = useState("");
+  const [duplicate, setDuplicate] = useState(false)
 
-    const handleAddPlaylist = async (e) => {
-        e.preventDefault()
-        await addSongToPlaylist(song.unx_id, selectedPlaylist)
-        setAddPlaylist(false)
+
+
+  const handleAddPlaylist = async (e) => {
+    e.preventDefault();
+   const exists =  playlistsSongs.map(item => {
+        return selectedPlaylist === item.playlist_id && item.song_id === song.unx_id ? true : false
+    })
+    if (!exists[0]){
+        await addSongToPlaylist(song.unx_id, selectedPlaylist);
+        setAddPlaylist(false);
     }
-
-
-
-
-    return (
-        <Songs>
-            <div className = 'song-info'>
-                <div className='preview'>
-
-                </div>
-                <div className='artist-name-container'>
-                    <span className='artist-name-text'>Artist: </span>
-                    <span className = 'artist-name'>{ song.artist_name}</span>
-                </div>
-                <div className='song-name-container'>
-                    <span className='song-name-text'>Song: </span>
-                    <span className = 'song-name'>{ song.song_name}</span>
-                </div>
-                <FaPlay className='play-button' onClick = {() => playSong(song.song_link)} />
-                <RiPlayList2Line className='play-button' onClick = {() => setAddPlaylist(!addPlaylist)} />
-                {
-                    addPlaylist && 
-                    <form>
-                        <select 
-                            value={selectedPlaylist}
-                            onChange={(e) => setSelectedPlaylist(e.target.value)}
-                            >
-                            <option value=''> Select Playlist </option>
-                            {
-                                userPlaylists.map(playlist => {
-                                    return (
-                                        <option key={playlist.playlist_id} value={playlist.playlist_id}> {playlist.playlist_name} </option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <button onClick={handleAddPlaylist}> Add to Playlist </button>
-                    </form>
-                }
-            </div>
-
-            
-        </Songs>
-    )
+    if(exists[0]){
+        setDuplicate(true)
+        setTimeout(() => {
+            setDuplicate(false)
+        }, 5000);
     }
+  };
 
-export default Song
+
+
+  return (
+    <Songs>
+      <div className="song-info">
+        <div className="preview"></div>
+        <div className="artist-name-container">
+          <span className="artist-name-text">Artist: </span>
+          <span className="artist-name">{song.artist_name}</span>
+        </div>
+        <div className="song-name-container">
+          <span className="song-name-text">Song: </span>
+          <span className="song-name">{song.song_name}</span>
+        </div>
+        <FaPlay
+          className="play-button"
+          onClick={() => playSong(song.song_link)}
+        />
+        <RiPlayList2Line
+          className="play-button"
+          onClick={() => setAddPlaylist(!addPlaylist)}
+        />
+        {addPlaylist && (
+          <form>
+            <select
+              value={selectedPlaylist}
+              onChange={(e) => setSelectedPlaylist(e.target.value)}
+            >
+              <option value=""> Select Playlist </option>
+              {userPlaylists.map((playlist) => {
+                return (
+                  <option
+                    key={playlist.playlist_id}
+                    value={playlist.playlist_id}
+                  >
+                    {" "}
+                    {playlist.playlist_name}{" "}
+                  </option>
+                );
+              })}
+            </select>
+            <button onClick={handleAddPlaylist}> Add to Playlist </button>
+          </form>
+        )}
+      </div>
+      <div className="error-container">
+        {
+            duplicate && <span className="error-duplicate">Song Already In Playlist!</span>
+        }
+      </div>
+    </Songs>
+  );
+};
+
+export default Song;
 
 const Songs = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  border-style: solid;
+  border-width: 2px 0 2px 0;
+  border-color: ${(pr) => pr.theme.colors.secondary};
+  margin: 5px 0;
+  background-image: url(${svgImg});
+  background-size: cover;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .song-info {
     display: flex;
-    flex-direction: column;
-    height: 50px;
-    border-style: solid;
-    border-width: 2px 0 2px 0;
-    border-color: ${pr => pr.theme.colors.secondary};
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .song-info {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+  .play-button {
+    font-size: ${(pr) => pr.theme.fontSizes.medium};
+    color: ${(pr) => pr.theme.colors.secondary};
+    cursor: pointer;
+
+    &:hover {
+      color: ${(pr) => pr.theme.colors.berry};
     }
+  }
 
-    .play-button {
-        font-size: ${pr => pr.theme.fontSizes.medium};
-        color: ${pr => pr.theme.colors.secondary};
-        cursor: pointer;
+  .error-container{
+    padding: 10px;
+  }
 
-        &:hover {
-            color: ${pr => pr.theme.colors.berry};
-        }
-    }
-
-
-`
+  .error-duplicate{
+    color: ${pr => pr.theme.colors.berry};
+    font-size: ${pr => pr.theme.fontSizes.medium};
+  }
+`;

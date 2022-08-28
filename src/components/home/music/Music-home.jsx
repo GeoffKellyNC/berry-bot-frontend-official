@@ -6,55 +6,49 @@ import * as musicActions from "../../../store/musicState/musicState.actions";
 import MusicPlayer from "./MusicPlayer";
 import SongList from "./SongList";
 import Playlist from "./Playlist";
+import List from './List'
 
 const MusicHome = (props) => {
   const {
     userData,
-    songsData,
-    getAllSongs,
-    createPlaylist,
-    userPlaylists,
-    playlistsSongs,
     getUserPlaylists,
-    addSongToPlaylist,
-    getPlaylistSongs,
+    setCurrentSong,
+    getPlaylistSongs
   } = props;
 
-  const [currentSong, setCurrentSong] = useState(false);
+  const [viewMusic, setViewMusic] = useState(false)
+  const [viewPlaylist, setViewPlaylist] = useState(false);
+
+  const viewPlaylistHandler = async (id) => {
+    setViewPlaylist(!viewPlaylist);
+    await getPlaylistSongs(id); 
+  };
+  
+
 
   const playSong = (link) => {
     setCurrentSong(link);
   };
 
+
   useEffect(() => {
-    getAllSongs();
     getUserPlaylists(userData.unx_id);
   }, []);
 
 
   return (
     <HomeMusic>
-      <h1> Songs </h1>
-      <button onClick={() => playSong(false)}> Stop </button>
-
-      <SongList
-        songsData={songsData}
-        playSong={playSong}
-        userPlaylists={userPlaylists}
-        addSongToPlaylist={addSongToPlaylist}
-      />
-
-      <MusicPlayer currentSong={currentSong} />
-
-      <Playlist
-        userData={userData}
-        createPlaylist={createPlaylist}
-        userPlaylists={userPlaylists}
-        playlistsSongs={playlistsSongs}
-        getUserPlaylists={getUserPlaylists}
-        getPlaylistSongs={getPlaylistSongs}
-        songsData={songsData}
-      />
+      <h1 className="music-header"> Music </h1>
+      <button onClick={() => playSong(false)}> Stop Playing </button>
+      <button onClick={() => setViewMusic(!viewMusic)}>View All Music</button>
+      {
+        viewMusic && <SongList setViewMusic = {setViewMusic} />
+      }
+      <MusicPlayer />
+      <Playlist  viewPlaylistHandler = { viewPlaylistHandler }/>
+      {
+        viewPlaylist && <List />
+      }
     </HomeMusic>
   );
 };
@@ -62,8 +56,6 @@ const MusicHome = (props) => {
 const mapStateToProps = (state) => {
   return {
     songsData: state.songsData,
-    userPlaylists: state.userPlaylists,
-    playlistsSongs: state.playlistsSongs,
   };
 };
 
@@ -79,4 +71,13 @@ const HomeMusic = styled.div`
   background: rgba(19, 19, 19, 1);
   box-shadow: 0px 0px 10px 0px ${(pr) => pr.theme.colors.secondary};
   color: white;
+
+
+  .music-header {
+    font-size: ${pr => pr.theme.fontSizes.large};
+    color: ${pr => pr.theme.colors.berry};
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
 `;

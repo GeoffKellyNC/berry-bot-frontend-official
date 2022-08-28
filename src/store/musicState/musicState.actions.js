@@ -26,6 +26,17 @@ export const addSong = (songObj) => async (dispatch) => {
     }
 }
 
+export const setCurrentSong = (link) => async (dispatch) => {
+    try {
+        dispatch({
+            type: types.SET_CURRENT_SONG,
+            payload: link
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 export const createPlaylist =  (user_unx_id, playlist_name ) => async (dispatch) => {
     try {

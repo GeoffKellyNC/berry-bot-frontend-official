@@ -1,5 +1,6 @@
 export const GET_ALL_SONGS = 'GET_ALL_SONGS';
 export const ADD_SONG = 'ADD_SONG';
+export const SET_CURRENT_SONG = 'SET_CURRENT_SONG';
 
 
 

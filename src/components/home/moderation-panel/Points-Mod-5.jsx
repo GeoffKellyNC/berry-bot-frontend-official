@@ -32,7 +32,7 @@ const TopFive = styled.div`
     margin: 10px;
 
     .top-five-title{ 
-        font-size: ${pr => pr.theme.fontSizes.heading};
+        font-size: ${pr => pr.theme.fontSizes.xlarge};
         font-weight: bold;
         color: ${pr => pr.theme.colors.berry};
         margin-bottom: 0.5rem;
@@ -49,7 +49,7 @@ const PointObj = styled.div`
 
 
     .number{
-        font-size: ${pr => pr.theme.fontSizes.xlarge};
+        font-size: ${pr => pr.theme.fontSizes.medium};
         font-weight: bold;
         color: ${pr => pr.theme.colors.berry};
         margin-bottom: 0.5rem;
@@ -58,7 +58,7 @@ const PointObj = styled.div`
     }
 
     .user-text{
-        font-size: ${pr => pr.theme.fontSizes.xlarge};
+        font-size: ${pr => pr.theme.fontSizes.medium};
         font-weight: bold;
         margin-bottom: 0.5rem;
     }

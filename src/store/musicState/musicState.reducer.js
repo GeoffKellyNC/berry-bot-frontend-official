@@ -30,5 +30,13 @@ export function playlistsSongs (state = [], action) {
         default:
             return state
     }
-    
+}
+
+export function currentSong (state = '', action) {
+    switch(action.type){
+        case types.SET_CURRENT_SONG:
+            return action.payload
+        default:
+            return state
+    }
 }

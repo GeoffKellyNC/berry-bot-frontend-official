@@ -10,6 +10,7 @@ import { currentAutoModSettings } from './botState/botState.reducer';
 import { songsData } from './musicState/musicState.reducer'
 import { userPlaylists } from './musicState/musicState.reducer'
 import { playlistsSongs } from './musicState/musicState.reducer'
+import { currentSong } from './musicState/musicState.reducer'
 
 
 
@@ -23,5 +24,6 @@ export default combineReducers({
     currentAutoModSettings,
     songsData,
     userPlaylists,
-    playlistsSongs
+    playlistsSongs,
+    currentSong
 });

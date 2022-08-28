@@ -1,7 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import * as musicActions from '../../../store/musicState/musicState.actions'
 
-const List = ({playlistsSongs, songsData}) => {
+import PlaylistSong from './PlaylistSong'
+
+
+
+const List = ({playlistsSongs, songsData, setCurrentSong}) => {
   return (
     <UserList className='playlist-songs'>
         {
@@ -10,9 +16,8 @@ const List = ({playlistsSongs, songsData}) => {
                     return songsData.map(songItem => {
                         if (song.song_id === songItem.unx_id) {
                             return (
-                                <div key={songItem.idmusic_data}>
-                                    <h1> {songItem.song_name} </h1>
-                                </div>
+                                <PlaylistSong key={songItem.idmusic_data} songItem={songItem}
+                                setCurrentSong = { setCurrentSong } />
                             )
                         }
                     })
@@ -24,7 +29,16 @@ const List = ({playlistsSongs, songsData}) => {
   )
 }
 
-export default List
+const mapStateToProps = state => {
+    return({
+        playlistsSongs: state.playlistsSongs,
+        songsData: state.songsData
+
+
+    })
+}
+
+export default connect(mapStateToProps, musicActions) (List)
 
 
 const UserList = styled.div`
