@@ -34,6 +34,10 @@ const TitleBoxStyled = styled.div`
     background: rgba(19, 19, 19, 1);
     box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
 
+    &:hover {
+        box-shadow: 0px 0px 20px 0px ${pr => pr.theme.colors.secondary};
+    }
+
     .title-text {
         color: ${pr => pr.theme.colors.berry};
         font-size: ${pr => pr.theme.fontSizes.large};

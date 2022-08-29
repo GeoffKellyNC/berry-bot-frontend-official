@@ -90,6 +90,9 @@ const ModPanel = styled.div`
     background: rgba(19, 19, 19, 1);
     box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
     color: white;
+    &:hover {
+        box-shadow: 0px 0px 20px 0px ${pr => pr.theme.colors.secondary};
+    }
 
     .mod-header{
         justify-content: space-around;

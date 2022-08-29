@@ -8,12 +8,21 @@ const iFormValues = {
 
 const CreatePlaylist = ({ userData, createPlaylist, getUserPlaylists }) => {
     const [formValues, setFormValues] = useState(iFormValues)
+    const [error, setError] = useState(false)
 
     const onSubmit = async (e) => {
+        if (formValues.playlist_name.length > 0){
+            e.preventDefault()
+            await createPlaylist(userData.unx_id, formValues.playlist_name)
+            setFormValues(iFormValues)
+            await getUserPlaylists(userData.unx_id)
+        }
         e.preventDefault()
-        await createPlaylist(userData.unx_id, formValues.playlist_name)
-        setFormValues(iFormValues)
-        await getUserPlaylists(userData.unx_id)
+        setError(true)
+        setTimeout(() => {
+            setError(false)
+        }, 2000);
+        return
     }
     
     return (
@@ -26,6 +35,9 @@ const CreatePlaylist = ({ userData, createPlaylist, getUserPlaylists }) => {
                 className = 'playlist-name'
             />
             <button onClick = {onSubmit}> Create Playlist </button>
+            {
+                error && <span className='error'>Playlist Must Have a Name!</span>
+            }
         </CreatePlaylistForm>
     )
 }
@@ -44,6 +56,11 @@ const CreatePlaylistForm = styled.form`
         box-sizing: border-box;
         font-size: 1.5rem;
         height: 3rem;
+    }
+
+    .error{
+        font-size: ${pr => pr.theme.fontSizes.medium};
+        color: ${pr => pr.theme.colors.berry};
     }
 
 `
