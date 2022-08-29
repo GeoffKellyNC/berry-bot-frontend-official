@@ -45,6 +45,7 @@ const SongList = ({
                 userPlaylists={userPlaylists}
                 addSongToPlaylist={addSongToPlaylist}
                 playlistsSongs={playlistsSongs}
+                setCurrentSong = { setCurrentSong }
               />
             );
           })

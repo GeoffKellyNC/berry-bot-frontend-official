@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import svgImg from "../../../assets/nav-bg.svg";
+import svgImg from "../../../assets/Valley-red-black.svg";
 
 import { FaPlay } from "react-icons/fa";
 import { RiPlayList2Line } from "react-icons/ri";
@@ -14,6 +14,7 @@ const Song = ({
   userPlaylists,
   addSongToPlaylist,
   playlistsSongs,
+  setCurrentSong
 }) => {
   const [addPlaylist, setAddPlaylist] = useState(false);
   const [selectedPlaylist, setSelectedPlaylist] = useState("");
@@ -41,8 +42,8 @@ const Song = ({
 
 
   return (
-    <Songs>
-      <div className="song-info">
+    <Songs onMouseEnter={() => playSong(song.song_link)} onMouseLeave = {() => playSong(null)}>
+      <div  className={`song-info ${song.song_name}`}>
         <div className="preview"></div>
         <div className="artist-name-container">
           {/* <span className="artist-name-text">Artist: </span> */}
@@ -101,7 +102,7 @@ const Songs = styled.div`
   height: 100px;
   border: 1px solid ${pr => pr.theme.colors.secondary};
   margin: 5px 0;
-  ${'' /* background-image: url(${svgImg}); */}
+  background-image: url(${svgImg});
   background-size: cover;
   transition: all 0.3s ease-in-out;
   font-family: ${(pr) => pr.theme.fonts.primary};
