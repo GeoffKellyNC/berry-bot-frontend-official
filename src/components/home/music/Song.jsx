@@ -14,7 +14,10 @@ const Song = ({
   userPlaylists,
   addSongToPlaylist,
   playlistsSongs,
-  setCurrentSong
+  setCurrentSong,
+  isPlaying,
+  setIsPlaying,
+  setViewMusic
 }) => {
   const [addPlaylist, setAddPlaylist] = useState(false);
   const [selectedPlaylist, setSelectedPlaylist] = useState("");
@@ -41,8 +44,14 @@ const Song = ({
 
 
 
-  return (
-    <Songs onMouseEnter={() => playSong(song.song_link)} onMouseLeave = {() => playSong(null)}>
+  return ( 
+    <Songs 
+      onMouseEnter={() => {
+        playSong(song.song_link)
+    }} 
+      onMouseLeave = {() => {
+      return isPlaying ? null : playSong(null)
+    }}>
       <div  className={`song-info ${song.song_name}`}>
         <div className="preview"></div>
         <div className="artist-name-container">
@@ -55,11 +64,17 @@ const Song = ({
         </div>
         <FaPlay
           className="play-button"
-          onClick={() => playSong(song.song_link)}
+          onClick={() => {
+            playSong(song.song_link)
+            setIsPlaying(true)
+            setViewMusic(false)
+          }} 
         />
         <RiPlayList2Line
           className="play-button"
-          onClick={() => setAddPlaylist(!addPlaylist)}
+          onClick={() => {
+            setAddPlaylist(!addPlaylist)
+          }}
         />
         {addPlaylist && (
           <form className="add-playlist-form">

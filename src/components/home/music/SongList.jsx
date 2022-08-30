@@ -15,6 +15,8 @@ const SongList = ({
   playlistsSongs,
   setCurrentSong,
   setViewMusic,
+  isPlaying,
+  setIsPlaying
 }) => {
   const [formValues, setFormValues] = useState({term: ''})
   const [searchTerm, setSearchTerm] = useState('')
@@ -46,6 +48,9 @@ const SongList = ({
                 addSongToPlaylist={addSongToPlaylist}
                 playlistsSongs={playlistsSongs}
                 setCurrentSong = { setCurrentSong }
+                isPlaying = {isPlaying}
+                setIsPlaying = {setIsPlaying}
+                setViewMusic = {setViewMusic}
               />
             );
           })
@@ -59,6 +64,8 @@ const SongList = ({
                 userPlaylists={userPlaylists}
                 addSongToPlaylist={addSongToPlaylist}
                 playlistsSongs={playlistsSongs}
+                isPlaying = {isPlaying}
+                setIsPlaying = {setIsPlaying}
               />
             );
           }

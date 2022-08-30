@@ -5,6 +5,8 @@ Front app of Official Twitch app
 -- iPhone companion app
 -- SOUND BOARD!!!!
 -- Approve or disapprove of a song in discord
+-- Vote on songs
+
 
 
 --Bugs:

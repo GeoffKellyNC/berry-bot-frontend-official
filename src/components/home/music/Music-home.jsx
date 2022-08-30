@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import * as musicActions from "../../../store/musicState/musicState.actions";
@@ -22,6 +22,7 @@ const MusicHome = (props) => {
   const [viewMusic, setViewMusic] = useState(false)
   const [viewPlaylist, setViewPlaylist] = useState(false);
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false)
 
   const viewPlaylistHandler = async (id) => {
     setViewPlaylist(!viewPlaylist);
@@ -29,13 +30,18 @@ const MusicHome = (props) => {
     await getPlaylistSongs(id); 
   };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
 
 
   const playSong = (link) => {
     setCurrentSong(link);
   };
+
+  const stopSong = () => {
+    playSong(false)
+    isPlaying(false)
+  }
 
 
   useEffect(() => {
@@ -47,17 +53,22 @@ const MusicHome = (props) => {
       <h1 className="music-header"> Music </h1>
       <div className="music-btn-container">
         <button 
-          onClick={() => playSong(false)}
+          onClick={stopSong}
           className = 'stop-music'> Stop Playing </button>
         <button 
           onClick={() => setViewMusic(!viewMusic)}
           className = "view-all-music">View All Music</button>
-		<button
+		{/* <button
 			onClick={() => navigate("/music")}
-			className = "view-all-music">Submit a song</button>
+			className = "view-all-music">Submit a song</button> */}
       </div>
       {
-        viewMusic && <SongList setViewMusic = {setViewMusic} />
+        viewMusic && 
+          <SongList 
+            setViewMusic = {setViewMusic} 
+            isPlaying = {isPlaying}
+            setIsPlaying = {setIsPlaying}
+            />
       }
       <MusicPlayer />
       <Playlist  viewPlaylistHandler = { viewPlaylistHandler }/>
