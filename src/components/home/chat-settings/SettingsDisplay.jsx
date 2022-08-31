@@ -10,16 +10,22 @@ import { FiRefreshCw,  } from 'react-icons/fi'
 
 const SettingsDisplay = (props) => {
 
-    const { chatSettings, getChatSettings, userData, token } = props
+    const { chatSettings, getChatSettings, userData } = props
+
+    const getSettings = async () => {
+        const token = await localStorage.getItem('jwtToken')
+        getChatSettings(token, userData.unx_id, userData.twitch_id, userData.twitch_user)
+        
+    }
 
 
     useEffect(() => {
-
-        getChatSettings(token, userData.unx_id, userData.twitch_id, userData.twitch_user)
+        getSettings()
 
     }, [])
 
-    const refreshSettings = () => {
+    const refreshSettings = async () => {
+        const token = await localStorage.getItem('jwtToken')
         getChatSettings(token, userData.unx_id, userData.twitch_id, userData.twitch_user)
     }
 
@@ -40,7 +46,8 @@ const SettingsDisplay = (props) => {
 
 const mapStateToProps = state => {
     return({
-        chatSettings: state.chatSettings
+        chatSettings: state.chatSettings,
+        userData: state.userData
     })
 }
 

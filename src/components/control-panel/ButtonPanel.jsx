@@ -10,7 +10,15 @@ import StartbotBtn from '../buttons/Startbot.btn'
 import StartMod from '../buttons/StartMod.btn'
 
 
-const ButtonPanel = (props) => {
+const ButtonPanel = ({ killBot, userData }) => {
+
+    const kill = async () => {
+        const target = userData.twitch_user
+        const unx_id = userData.unx_id
+        const jwt = await localStorage.getItem('jwtToken')
+        const message = 'killBot'
+        await killBot(target, unx_id, jwt, message)
+    }   
 
 
     return (
@@ -22,6 +30,7 @@ const ButtonPanel = (props) => {
                 <StartbotBtn />
                 <StartMod />
                 {/* <StartVoteBtn /> */}
+                <button onClick={ kill }>Kill Bot</button>
             </div>
 
         </PanelStyled>
@@ -31,6 +40,7 @@ const ButtonPanel = (props) => {
 const mapStateToProps = state => {
     return {
       target: state.target,
+      userData: state.userData,
     }
   }
   

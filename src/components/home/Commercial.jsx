@@ -2,14 +2,17 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import { startAd } from '../../util/commercial'
+import { connect } from 'react-redux'
+import * as authActions from '../../store/authState/authState.creators'
 
 
-const Commercial = ({ token, userData}) => {
+const Commercial = ({userData}) => {
     const [ duration, setDuration ] = useState(30)
     const [ error, setError ] = useState(null)
 
 
     const runAd = async () => {
+        const token = await localStorage.getItem('jwtToken')
        const ad =  await startAd(token, userData.unx_id, userData.twitch_id, duration)
          if(ad.error){
              setError(ad.message)
@@ -40,7 +43,14 @@ const Commercial = ({ token, userData}) => {
   )
 }
 
-export default Commercial
+
+const mapStateToProps = state => {
+    return({
+        userData: state.userData
+    })
+}
+
+export default connect(mapStateToProps, authActions) (Commercial)
 
 const CommercialStyled = styled.div`
     width: 300px;

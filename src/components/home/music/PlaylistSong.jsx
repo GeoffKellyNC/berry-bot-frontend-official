@@ -2,12 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { FaPlay } from 'react-icons/fa'
+import { TiDelete } from 'react-icons/ti'
 
 
 
 
 
-const PlaylistSong = ({songItem, setCurrentSong}) => {
+const PlaylistSong = ({songItem, setCurrentSong, deleteSongFromPlaylist, thisPlaylist}) => {
 
     const playSong = (songLink) => {
         setCurrentSong(songLink)
@@ -26,7 +27,10 @@ const PlaylistSong = ({songItem, setCurrentSong}) => {
             <span className='song-name-text'>Song: </span>
             <span className = 'song-name'>{ songItem.song_name}</span>
         </div>
-        <FaPlay className='play-button' onClick = {() => playSong(songItem.song_link)} />     
+        <FaPlay className='play-button' onClick = {() => playSong(songItem.song_link)} />
+        <TiDelete 
+            className='delete-button' 
+            onClick = {() => deleteSongFromPlaylist(songItem.unx_id, thisPlaylist.playlist_id)} />
     </Songs>
   )
 }

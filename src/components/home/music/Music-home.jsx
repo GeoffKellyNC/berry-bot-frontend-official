@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import * as musicActions from "../../../store/musicState/musicState.actions";
@@ -8,7 +7,7 @@ import * as musicActions from "../../../store/musicState/musicState.actions";
 import MusicPlayer from "./MusicPlayer";
 import SongList from "./SongList";
 import Playlist from "./Playlist";
-import List from './List'
+import List from './List' 
 
 const MusicHome = (props) => {
   const {
@@ -30,7 +29,6 @@ const MusicHome = (props) => {
     await getPlaylistSongs(id); 
   };
 
-  // const navigate = useNavigate();
   
 
 
@@ -58,9 +56,6 @@ const MusicHome = (props) => {
         <button 
           onClick={() => setViewMusic(!viewMusic)}
           className = "view-all-music">View All Music</button>
-		{/* <button
-			onClick={() => navigate("/music")}
-			className = "view-all-music">Submit a song</button> */}
       </div>
       {
         viewMusic && 
@@ -82,6 +77,7 @@ const MusicHome = (props) => {
 const mapStateToProps = (state) => {
   return {
     songsData: state.songsData,
+    userData: state.userData
   };
 };
 

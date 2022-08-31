@@ -4,6 +4,7 @@ import axios from 'axios'
 const START_BOT_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/start'
 const START_MOD_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/startModeration'
 const PLAYER_POINTS_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/modPointData'
+const KILL_BOT_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/killBot'
 
 
 
@@ -11,10 +12,32 @@ const PLAYER_POINTS_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/modPo
 export const startBerry = (target, unx_id, jwt, message) => async (dispatch) => {
     try{
         const res = await axios.post(START_BOT_EP, { data: { target, unx_id, jwt, message } })
+
+        if (res.status === 200 || 'ok'){
+            dispatch({
+                type: types.START_BOT,
+                payload: true
+            })
+        }
+
         return res.status
 
     } catch(err){
         console.log(err)
+    }
+}
+
+export const killBot = (target, unx_id, jwt, message) => async (dispatch) => {
+    try {
+        const killres =await axios.post(KILL_BOT_EP, { data: {target, unx_id, jwt, message}})
+        if (killres === 200 || 'ok'){
+            dispatch({
+                type: types.KILL_BOT,
+                payload: false
+            })
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
 
@@ -86,3 +109,5 @@ export const getAutoModSettings = (token, userObj) => async (dispatch) => {
         console.log(error)
     }
 }
+
+

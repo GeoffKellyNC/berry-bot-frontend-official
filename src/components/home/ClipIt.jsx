@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import * as authActions from '../../store/authState/authState.creators'
 
 import { createClip } from '../../util/createClip'
 
-const ClipIt = ({ userData, token}) => {
+const ClipIt = ({ userData }) => {
     const [clipLink, setClipLink] = useState(null)
     const [error, setError] = useState(null)
 
 
     const makeClip = async () => {
+        const token = await localStorage.getItem('jwtToken')
         const clip = await createClip(token, userData.unx_id, userData.twitch_user, userData.twitch_id)
         if(clip.error){
             setError(clip.message)
@@ -42,7 +45,13 @@ const ClipIt = ({ userData, token}) => {
   )
 }
 
-export default ClipIt
+const mapStateToProps = state => {
+    return({
+        userData: state.userData
+    })
+}
+
+export default connect(mapStateToProps, authActions) (ClipIt)
 
 
 const Clips = styled.div`

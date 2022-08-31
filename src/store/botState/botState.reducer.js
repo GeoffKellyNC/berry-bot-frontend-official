@@ -38,3 +38,14 @@ export function currentAutoModSettings (state = {}, action){
       return state;
   }
 }
+
+export function botRunning (state = false, action){
+  switch(action){
+    case types.START_BOT:
+      return action.payload
+    case types.KILL_BOT:
+      return action.payload
+    default:
+      return state
+  }
+}

@@ -5,36 +5,26 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import * as authActions from "../store/authState/authState.creators";
-import { pingServer } from "../util/pingServer";
 
-import ClipIt from "../components/home/ClipIt";
-import ModerationPanel from "../components/home/moderation-panel/ModerationPanel";
 import ButtonPanel from "../components/control-panel/ButtonPanel";
-import TitleBox from "../components/home/TitleBox";
-import TwitchChat from "../components/iframe/TwitchChat";
-import Poll from "../components/home/Poll";
+import ClipIt from "../components/home/ClipIt";
 import Commercial from "../components/home/Commercial";
+import Poll from "../components/home/Poll";
 import SettingsDisplay from "../components/home/chat-settings/SettingsDisplay";
-import CustomCommands from "../components/home/custom-commands/CustomCommands";
+import TitleBox from "../components/home/TitleBox";
+import ModerationPanel from "../components/home/moderation-panel/ModerationPanel";
 import MusicHome from "../components/home/music/Music-home";
 
 import { getUserToken } from "../util/localData";
 
-import twinkle_bg from "../assets/clouds.svg";
-
 function Home(props) {
-  const [selected, setSelected] = useState(null);
   const [token, setToken] = useState(getUserToken());
-  const [isConnected, setIsConnected] = useState(false);
 
   const { userData, refreshUserData } = props;
 
-
   useEffect(() => {
     refreshUserData();
-    pingServer(userData.unx_id, token).then((res) => {
-      setIsConnected(res);
-    });
+
   }, []);
 
   return (
@@ -49,24 +39,18 @@ function Home(props) {
       </div>
       <div className="home-body">
         <div className="column-1">
-          <TitleBox userData={userData} isConnected={isConnected} />
+          <TitleBox />
           <ButtonPanel />
-          <Poll
-            target={userData.twitch_user}
-            userData={userData}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <ClipIt userData={userData} token={token} />
-          <Commercial token={token} userData={userData} />
-          <SettingsDisplay userData={userData} token={token} />
+          <Poll />
+          <ClipIt />
+          <Commercial />
+          <SettingsDisplay />
         </div>
         <div className="column-2">
-          <ModerationPanel token={token} />
+          <ModerationPanel />
         </div>
         <div className="column-3">
-          <MusicHome userData={userData} />
-          {/* <TwitchChat target = {userData.twitch_user} /> */}
+          <MusicHome  />
         </div>
       </div>
       <div className="footer-text">
@@ -89,10 +73,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, authActions)(Home);
 
 const HomeStyled = styled.div`
-  ${"" /* background-image: url(${twinkle_bg}); */}
-  ${"" /* background-color: #0B0B0B; */}
-    background: rgba(19, 19, 19, 1);
-  width: 100%;
+  background: radial-gradient(circle, rgba(37,70,94,1) 0%, rgba(32,18,42,1) 70%);
 
   .profile-information {
     display: flex;
@@ -130,7 +111,6 @@ const HomeStyled = styled.div`
 
   .home-body {
     min-width: 90%;
-    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -148,10 +128,10 @@ const HomeStyled = styled.div`
   .column-2 {
     display: flex;
     flex-direction: column;
-    ${"" /* align-items: center; */}
     gap: 1rem;
   }
 
+  
   .test-modal {
     background: rgb(0, 185, 255);
     background: linear-gradient(

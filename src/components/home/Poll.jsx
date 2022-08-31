@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import * as authActions from '../../store/authState/authState.creators'
 
 import PollsHome from "./modals/PollsHome";
 
-const Poll = ({ userData, target, selected, setSelected }) => {
+const Poll = ({ userData }) => {
+
+  const [selected, setSelected] = useState(null)
+
+
   return (
     <StyledPoll className="poll-tile">
       <button
@@ -15,7 +21,7 @@ const Poll = ({ userData, target, selected, setSelected }) => {
       {selected === "poll" && (
         <PollsHome
           userData={userData}
-          target={target}
+          target={userData.twitch_user}
           setSelected={setSelected}
         />
       )}
@@ -23,7 +29,13 @@ const Poll = ({ userData, target, selected, setSelected }) => {
   );
 };
 
-export default Poll;
+const mapStateToProps = state => {
+  return({
+    userData: state.userData
+  })
+}
+
+export default connect(mapStateToProps, authActions) (Poll);
 
 const StyledPoll = styled.div`
   color: white;
