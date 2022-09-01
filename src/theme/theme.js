@@ -6,9 +6,8 @@ export default {
         accent: '#7BFF58', // light grey // rgba(255, 255, 255, 0.5)
         berry: '#ff003e', // rgba(255, 0, 62, 0.5) // Red
         berryLight: 'rgba(255, 0, 62, 0.5)', // Red // #ff003e
-        blue: '#2b2d42',
-        white: '#fff', // white // rgba(255, 255, 255, 1)
         green : '#00ff05', // green // rgba(0, 255, 5, 1)
+        white: '#ffffff', // white // rgba(255, 255, 255, 1)
     },
     fonts: {
         primary: '"Poppins", sans-serif',
@@ -23,9 +22,14 @@ export default {
         logo: '3.5rem',
         hero: '3rem'
     },
+    fontColors: {
+        primary: 'white',
+        secondary: '#00ff05', // green // rgba(0, 255, 5, 1)
+        tertiary: 'black', 
+    },
     gradients: {
         secondary: 'radial-gradient(circle, rgba(163,255,255,1) 0%, rgba(13,213,178,1) 100%) rgb(163,255,255)',
-        primary: 'linear-gradient(330deg, rgba(217,189,238,1) 0%, rgba(121,21,201,1) 23%);'
+        primary: 'linear-gradient(330deg, rgba(217,189,238,1) 0%, rgb(21 124 201) 23%);'
     },
     margins: {
         small: '1rem',

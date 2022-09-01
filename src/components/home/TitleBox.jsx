@@ -52,22 +52,16 @@ const TitleBoxStyled = styled.div`
     height: auto;
     font-family: ${pr => pr.theme.fonts.primary};
     margin: 10px;
-    ${'' /* border-radius: 5px; */}
     box-sizing: border-box;
-    ${'' /* background: rgba(19, 19, 19, 1); */}
-    ${'' /* box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary}; */}
-
-
-
-
     background: ${pr => pr.theme.gradients.primary};
+    border-radius: 5px;
 
     &:hover {
         box-shadow: 0px 0px 20px 0px ${pr => pr.theme.colors.secondary};
     }
 
     .title-text {
-        color: ${pr => pr.theme.colors.berry};
+        color: ${ pr => pr.theme.fontColors.primary };
         font-size: ${pr => pr.theme.fontSizes.large};
         font-weight: bold;
         padding: 0.5rem 1rem;
@@ -93,7 +87,7 @@ const TitleBoxStyled = styled.div`
     }
 
     .status-text {
-        color: ${pr => pr.theme.colors.berry};
+        color: ${pr => pr.theme.fontColors.primary};
         font-size: ${pr => pr.theme.fontSizes.medium};
         font-weight: bold;
         padding: 0.5rem 1rem;

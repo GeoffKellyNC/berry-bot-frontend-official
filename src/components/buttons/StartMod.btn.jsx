@@ -7,13 +7,13 @@ import * as actions from '../../store/botState/botState.actions'
 import { MdAddModerator } from 'react-icons/md'
 
 const StartMod = (props) => {
-  const { startModeration } = props;
+  const { startModeration, userData } = props;
 
   const handleStartMod = async () => {
     const target = localStorage.getItem('target')
     const unx_id = JSON.parse(localStorage.getItem('user')).unx_id
     const jwt = localStorage.getItem('jwtToken')
-    startModeration(target, unx_id, jwt, 'startModeration')
+    startModeration(target, unx_id, jwt, 'startModeration', userData.twitch_id )
     localStorage.setItem('botRunning', true)
   }
 
@@ -25,7 +25,13 @@ const StartMod = (props) => {
   )
 }
 
-export default connect(null, actions)(StartMod)
+const mapStateToProps = state => {
+  return({
+    userData: state.userData
+  })
+}
+
+export default connect(mapStateToProps, actions)(StartMod)
 
 const StartModStyled = styled.div`
     display: flex;
@@ -53,7 +59,7 @@ const StartModStyled = styled.div`
   .mod-text{
     font-size: ${pr => pr.theme.fontSizes.medium};
     padding: 0.5rem;
-    color: ${pr => pr.theme.colors.berry};
+    color: ${pr => pr.theme.fontColors.primary};
   }
 
     

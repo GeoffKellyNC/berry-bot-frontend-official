@@ -29,8 +29,6 @@ const ButtonPanel = ({ killBot, userData }) => {
             <div className = 'panel-btns'>
                 <StartbotBtn />
                 <StartMod />
-                {/* <StartVoteBtn /> */}
-                <button onClick={ kill }>Kill Bot</button>
             </div>
 
         </PanelStyled>
@@ -55,7 +53,7 @@ const PanelStyled = styled.div`
     margin: 10px;
     border-radius: 5px;
     box-sizing: border-box;
-    background: rgba(19, 19, 19, 1);
+    background: ${pr => pr.theme.gradients.primary};
     box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
     color: white;
 
@@ -77,7 +75,7 @@ const PanelStyled = styled.div`
     }
 
     .control-panel-text{
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${ pr => pr.theme.fontColors.primary };
         font-size: ${pr => pr.theme.fontSizes.large};
         font-weight: bold;        
     }

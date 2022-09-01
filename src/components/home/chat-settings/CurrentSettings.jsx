@@ -53,7 +53,7 @@ const Settings = styled.div`
         font-weight: bold;
         margin: 0;
         padding: 0.5rem 1rem;
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${pr => pr.theme.fontColors.primary};
     }
 
     .status-text {
@@ -61,7 +61,7 @@ const Settings = styled.div`
         font-weight: bold;
         margin: 0;
         padding: 0.5rem 1rem;
-        color: ${pr => pr.theme.colors.berry};
+        color: ${pr => pr.theme.fontColors.tertiary};
     }
 
     .active {

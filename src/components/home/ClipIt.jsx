@@ -69,26 +69,26 @@ const Clips = styled.div`
         cursor: pointer;
 
         &:hover {
-            color: ${pr => pr.theme.colors.secondary};
+            color: ${pr => pr.theme.colors.secondary}; 
         }
     }
 
     .clip-button {
         width: 300px;
         height: 75px;
-        background: rgba(19, 19, 19, 1);
+        background: ${pr => pr.theme.gradients.primary};
         box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
         border: none;
         outline: none;
         border-radius: 0.5rem;
-        color: ${(pr) => pr.theme.colors.berry};
+        color: ${ pr => pr.theme.fontColors.primary };
         font-size: ${(pr) => pr.theme.fontSizes.large};
         font-weight: bold;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
             &:hover {
             background-color: ${(pr) => pr.theme.colors.berry};
-            color: ${(pr) => pr.theme.colors.secondary};
+            color: ${(pr) => pr.theme.colors.berry};
         }
   }
 

@@ -9,16 +9,15 @@ import * as authActions from "../store/authState/authState.creators";
 import ButtonPanel from "../components/control-panel/ButtonPanel";
 import ClipIt from "../components/home/ClipIt";
 import Commercial from "../components/home/Commercial";
-import Poll from "../components/home/Poll";
+import Poll from "../components/home/poll/Poll";
 import SettingsDisplay from "../components/home/chat-settings/SettingsDisplay";
 import TitleBox from "../components/home/TitleBox";
 import ModerationPanel from "../components/home/moderation-panel/ModerationPanel";
 import MusicHome from "../components/home/music/Music-home";
 
-import { getUserToken } from "../util/localData";
+
 
 function Home(props) {
-  const [token, setToken] = useState(getUserToken());
 
   const { userData, refreshUserData } = props;
 
@@ -77,7 +76,7 @@ const HomeStyled = styled.div`
 
   .profile-information {
     display: flex;
-    color: white;
+    color: ${pr => pr.theme.fontColors.white};
     font-size: ${(pr) => pr.theme.fontSizes.medium};
     width: 100%;
     margin-left: 3%;
@@ -96,7 +95,7 @@ const HomeStyled = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    color: white;
+    color: ${pr => pr.theme.fontColors.white};
     width: 100px;
     height: 100px;
   }
@@ -105,7 +104,7 @@ const HomeStyled = styled.div`
     margin-left: 10px;
     font-size: ${(pr) => pr.theme.fontSizes.large};
     font-weight: bold;
-    color: ${(pr) => pr.theme.colors.secondary};
+    color: ${(pr) => pr.theme.fontColors.secondary};
     text-transform: uppercase;
   }
 

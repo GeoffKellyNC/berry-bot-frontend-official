@@ -4,6 +4,8 @@ import { connect } from "react-redux"
 import * as musicActions from '../../../store/musicState/musicState.actions'
 import styled from "styled-components"
 
+
+
 function MusicPlayer( { currentSong } ) {
 
 

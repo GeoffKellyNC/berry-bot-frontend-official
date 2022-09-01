@@ -59,7 +59,7 @@ const CommercialStyled = styled.div`
     margin: 10px;
     border-radius: 5px;
     box-sizing: border-box;
-    background: rgba(19, 19, 19, 1);
+    background: ${pr => pr.theme.gradients.primary};
     box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
 
     .commercial-header {
@@ -70,9 +70,9 @@ const CommercialStyled = styled.div`
         padding: 10px;
     }
     .commercial-title {
-        font-size: ${pr => pr.theme.fontSizes.medium};
+        font-size: ${pr => pr.theme.fontSizes.large};
         text-align: center;
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${pr => pr.theme.fontColors.primary};
         font-weight: bold;
     }
     .commercial-config-form {
@@ -84,7 +84,7 @@ const CommercialStyled = styled.div`
         & > label {
             font-size: ${pr => pr.theme.fontSizes.medium};
             font-weight: bold;
-            color: ${pr => pr.theme.colors.secondary};
+            color: ${pr => pr.theme.fontColors.primary};
             margin-bottom: 0.5rem;
         }
 
@@ -101,14 +101,15 @@ const CommercialStyled = styled.div`
         padding: 10px;
         border: none;
         outline: none;
-        background: ${pr => pr.theme.colors.secondary};
-        color: ${pr => pr.theme.colors.white};
-        font-size: ${pr => pr.theme.fontSizes.small};
+        background: ${pr => pr.theme.colors.white};
+        color: ${pr => pr.theme.fontColors.secondary};
+        font-size: ${pr => pr.theme.fontSizes.medium};
         cursor: pointer;
         border-radius: 5px;
         transition: all 0.2s ease-in-out;
         &:hover {
             background: ${pr => pr.theme.colors.berry};
+            color: ${pr => pr.theme.colors.primary}
         }
     }
 

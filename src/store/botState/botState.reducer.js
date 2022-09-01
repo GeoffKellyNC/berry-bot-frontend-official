@@ -49,3 +49,14 @@ export function botRunning (state = false, action){
       return state
   }
 }
+
+export function blockedTerms (state = [], action){
+  switch (action.type) {
+    case types.GET_BLOCKED_TERMS:
+      return action.payload;
+    case types.ADD_BLOCKED_TERM:
+      return [...state, action.payload];
+    default:
+      return state;
+  }
+}
