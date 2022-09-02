@@ -2,3 +2,6 @@ export const SET_USER_DATA_DELETE = 'SET_USER_DATA_DELETE';
 export const IS_LOGGED_IN = 'IS_LOGGED_IN';
 export const LOG_OUT = 'LOG_OUT';
 export const SET_USER_DATA = 'SET_USER_DATA';
+export const GET_ACCESS_TOKEN = 'GET_ACCESS_TOKEN'
+export const SET_TWITCH_VERIFIED = 'SET_TWITCH_VERIFIED'
+export const SET_EXPIRE_TIME = 'SET_EXPIRE_TIME'

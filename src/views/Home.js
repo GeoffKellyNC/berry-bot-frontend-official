@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -19,10 +20,27 @@ import MusicHome from "../components/home/music/Music-home";
 
 function Home(props) {
 
-  const { userData, refreshUserData } = props;
+  const { userData, refreshUserData, getAccessToken, verifyAccessToken, twitchVerified, accessToken, logoutUser } = props;
+
+  const [token] = useState(localStorage.getItem('jwtToken'))
+
+  const navigate = useNavigate()
+
+  const checkTwitchAccess = async () => {
+    console.log('Checking Logged In') //!REMOVE
+    await verifyAccessToken(accessToken, userData.twitch_user, userData.unx_id, token )
+
+    if (!twitchVerified){
+      await logoutUser()
+      navigate('/')
+    }
+
+  }
 
   useEffect(() => {
     refreshUserData();
+    // getAccessToken(token, userData.unx_id, userData.twitch_user)
+    // checkTwitchAccess()
 
   }, []);
 
@@ -66,6 +84,8 @@ const mapStateToProps = (state) => {
   return {
     userData: state.userData,
     songsData: state.songsData,
+    accessToken: state.accessToken,
+    twitchVerified: state.twitchVerified
   };
 };
 
