@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useCallback} from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import * as actions from '../../store/authState/authState.creators'
@@ -13,18 +12,18 @@ import LogoutButton from '../buttons/Logout.button'
 const TitleBox = ({ userData, refreshUserData }) => {
     const [isConnected, setIsConnected] = useState(false)
 
-    const getServerStatus = async () => {
+    const getServerStatus = useCallback( async () => {
         const token = localStorage.getItem('jwtToken')
         const status = await pingServer(userData.unx_id, token)
         setIsConnected(status)
-
-    }
+    }, [userData.unx_id])
 
     useEffect(() => {
         refreshUserData()
         getServerStatus()
         console.log('Getting user Data')
-    }, [refreshUserData])
+    }, [getServerStatus, refreshUserData])
+
   return (
     <TitleBoxStyled>
         <h1 className='title-text'> Welcome <span>{ userData.user_name.toUpperCase() }</span></h1>

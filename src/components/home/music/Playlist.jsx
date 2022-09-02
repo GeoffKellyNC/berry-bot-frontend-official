@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import CreatePlaylist from "./CreatePlaylist.form";
@@ -26,7 +25,7 @@ const Playlist = ({
   useEffect(() => {
     getAllSongs()
 
-  }, [])
+  }, [getAllSongs])
 
   return (
     <PlaylistsStyled>

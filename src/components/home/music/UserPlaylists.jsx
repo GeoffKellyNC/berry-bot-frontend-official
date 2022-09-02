@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import List from "./List";
 import PlaylistItem from "./PlaylistItem";
 
 const UserPlaylists = ({

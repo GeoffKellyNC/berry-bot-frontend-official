@@ -26,6 +26,7 @@ function MusicPlayer( { currentSong } ) {
                     onEnded = {() => {
                         console.log('ended')
                     }}
+                    playing = {true}
                     config = {{
                         soundcloud: {
                             options: {
@@ -33,7 +34,12 @@ function MusicPlayer( { currentSong } ) {
                                 color: '#2b2d42',
                                 auto_play: true
                             }
-                        }
+                        },
+                        youtube: {
+                            embedOptions: {
+                                auto_play: 1
+                            }
+                    },
                     }}
                 />
             }

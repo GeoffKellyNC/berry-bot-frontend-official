@@ -1,26 +1,24 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect }  from 'react'
+import React, { useEffect, useCallback }  from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../store/authState/authState.creators'
 
 const TwitchRedirect = ({loginUser, refreshUserData}) => {
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
 
     const navigate = useNavigate()
 
 
-    const handleRedirect = async () => {
+    const handleRedirect = useCallback( async () => {
         const code = searchParams.get('code')
         await loginUser(code)
         await refreshUserData()
+    },[searchParams, loginUser, refreshUserData])
 
-    }
 
     useEffect(() => {
         handleRedirect()
-    },[])
+    },[handleRedirect])
 
     setTimeout(() => {
         navigate('/dashboard')

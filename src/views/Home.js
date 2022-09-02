@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -26,23 +26,29 @@ function Home(props) {
 
   const navigate = useNavigate()
 
-  const checkTwitchAccess = async () => {
-    console.log('Checking Logged In') //!REMOVE
-    await verifyAccessToken(accessToken, userData.twitch_user, userData.unx_id, token )
+  const checkTwitchAccess = useCallback( async () => {
+    console.log('Checking Twitch Status...') //!REMOVE
+    await verifyAccessToken(accessToken, userData.twitch_user, userData.unx_id, token, userData.twitch_id )
 
     if (!twitchVerified){
       await logoutUser()
       navigate('/')
     }
 
-  }
+  }, [verifyAccessToken, accessToken, userData.twitch_user, userData.unx_id, userData.twitch_id, token, twitchVerified, logoutUser, navigate])
+
 
   useEffect(() => {
+    console.log('Refreshing.....') //!REMOVE
     refreshUserData();
-    // getAccessToken(token, userData.unx_id, userData.twitch_user)
-    // checkTwitchAccess()
+    getAccessToken(token, userData.unx_id, userData.twitch_user)
 
-  }, []);
+  }, [ getAccessToken, refreshUserData, token, userData.twitch_user, userData.unx_id]);
+
+  // useEffect(() => {
+  //   checkTwitchAccess()
+  // }, [checkTwitchAccess])
+  
 
   return (
     <HomeStyled>

@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import * as types from './streamState.types';
 import axios from 'axios';
 

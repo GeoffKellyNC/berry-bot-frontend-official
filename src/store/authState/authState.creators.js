@@ -25,7 +25,6 @@ export const loginUser = (code) => async (dispatch) => {
             type: types.GET_ACCESS_TOKEN,
             payload: access_token
         })
-        return res.status
         
     }catch(err){
         console.log(err)
@@ -83,7 +82,7 @@ export const getAccessToken = (token, unx_id, target) => async (dispatch) => {
     try {
         const getRes = await axios.post('https://twitch-berry-bot.herokuapp.com/users/getAccessToken', { data: {token, unx_id, target}})
 
-        console.log('authState accessToken: ', getRes.data) //!REMOVE
+
 
         const access_token = getRes.data.message
 
@@ -98,11 +97,11 @@ export const getAccessToken = (token, unx_id, target) => async (dispatch) => {
 }
 
 
-export const verifyAccessToken = (access_token, userName, unx_id, token) => async (dispatch) => {
+export const verifyAccessToken = (access_token, userName, unx_id, token, twitchId) => async (dispatch) => {
     try {
-        const veriRes = await axios.post('https://twitch-berry-bot.herokuapp.com/users/verifyAccess', { data: { access_token, userName, unx_id, token}})
+        const veriRes = await axios.post('https://twitch-berry-bot.herokuapp.com/users/verifyAccess', { data: { access_token, userName, unx_id, token, twitchId }})
 
-        console.log('VeriRes authState creators: ', veriRes)
+
 
         if (veriRes.status === 401) {
             dispatch({
@@ -119,7 +118,7 @@ export const verifyAccessToken = (access_token, userName, unx_id, token) => asyn
         })
         dispatch({
             type: types.SET_EXPIRE_TIME,
-            payload: data.verifiedData.expires_in
+            payload: data.data.expires_in
         })
         return true
     

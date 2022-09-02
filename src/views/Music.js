@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react'
+
+import React from 'react'
 import { connect } from 'react-redux'
 import * as songActions from '../store/musicState/musicState.actions'
 

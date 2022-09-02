@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
@@ -12,17 +11,12 @@ const SettingsDisplay = (props) => {
 
     const { chatSettings, getChatSettings, userData } = props
 
-    const getSettings = async () => {
-        const token = await localStorage.getItem('jwtToken')
-        getChatSettings(token, userData.unx_id, userData.twitch_id, userData.twitch_user)
-        
-    }
-
 
     useEffect(() => {
-        getSettings()
+        const token = localStorage.getItem('jwtToken')
+        getChatSettings(token, userData.unx_id, userData.twitch_id, userData.twitch_user)
 
-    }, [])
+    }, [getChatSettings, userData.twitch_id, userData.twitch_user, userData.unx_id])
 
     const refreshSettings = async () => {
         const token = await localStorage.getItem('jwtToken')

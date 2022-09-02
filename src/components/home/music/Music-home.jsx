@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -44,7 +43,7 @@ const MusicHome = (props) => {
 
   useEffect(() => {
     getUserPlaylists(userData.unx_id);
-  }, []);
+  }, [getUserPlaylists, userData.unx_id]);
 
   return (
     <HomeMusic>

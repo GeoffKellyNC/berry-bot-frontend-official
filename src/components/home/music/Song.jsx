@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import svgImg from "../../../assets/Valley-red-black.svg";
@@ -10,7 +9,6 @@ import { RiPlayList2Line } from "react-icons/ri";
 
 const Song = ({
   song,
-  playSong,
   userPlaylists,
   addSongToPlaylist,
   playlistsSongs,
@@ -47,10 +45,10 @@ const Song = ({
   return ( 
     <Songs 
       onMouseEnter={() => {
-        playSong(song.song_link)
+        setCurrentSong(song.song_link)
     }} 
       onMouseLeave = {() => {
-      return isPlaying ? null : playSong(null)
+      return isPlaying ? null : setCurrentSong('')
     }}>
       <div  className={`song-info ${song.song_name}`}>
         <div className="preview"></div>
@@ -65,7 +63,7 @@ const Song = ({
         <FaPlay
           className="play-button"
           onClick={() => {
-            playSong(song.song_link)
+            setCurrentSong(song.song_link)
             setIsPlaying(true)
             setViewMusic(false)
           }} 

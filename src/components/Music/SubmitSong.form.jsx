@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
@@ -52,7 +51,7 @@ const SubmitSong = ({ userData, addSong }) => {
 
   return (
 
-    <form>
+    <SubmitSongStyled>
         <input
             type='text'
             name='link'
@@ -83,8 +82,13 @@ const SubmitSong = ({ userData, addSong }) => {
             onChange={onChange}
         />
         <button onClick={onSubmit}>Submit</button>
-    </form>
+    </SubmitSongStyled>
   )
 }
 
 export default SubmitSong
+
+
+const SubmitSongStyled = styled.form`
+
+`

@@ -35,7 +35,7 @@ export function accessToken (state = '', action){
   }
 }
 
-export function twitchVerified (state = false, action){
+export function twitchVerified (state = true, action){
   switch(action.type){
     case types.SET_TWITCH_VERIFIED:
       return action.payload

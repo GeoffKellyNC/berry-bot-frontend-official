@@ -21,9 +21,7 @@ const SongList = ({
   const [formValues, setFormValues] = useState({term: ''})
   const [searchTerm, setSearchTerm] = useState('')
 
-  const playSong = (link) => {
-    setCurrentSong(link);
-  };
+
 
   const handleChange = (e) => {
     setFormValues({...formValues, [e.target.name]: e.target.value})
@@ -43,7 +41,6 @@ const SongList = ({
               <Song
                 key={song.idmusic_data}
                 song={song}
-                playSong={playSong}
                 userPlaylists={userPlaylists}
                 addSongToPlaylist={addSongToPlaylist}
                 playlistsSongs={playlistsSongs}
@@ -60,12 +57,13 @@ const SongList = ({
               <Song
                 key={song.idmusic_data}
                 song={song}
-                playSong={playSong}
                 userPlaylists={userPlaylists}
                 addSongToPlaylist={addSongToPlaylist}
                 playlistsSongs={playlistsSongs}
+                setCurrentSong = { setCurrentSong }
                 isPlaying = {isPlaying}
                 setIsPlaying = {setIsPlaying}
+                setViewMusic = {setViewMusic}
               />
             );
           }

@@ -1,11 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import * as actions from '../../store/streamState/streamState.actions'
 
-import { getUserData } from '../../util/localData'
 
 
 const StatsPanel = (props) => {
@@ -15,11 +12,8 @@ const StatsPanel = (props) => {
 
   useEffect(() => {
     getViewerCount(userData.unx_id, 'viewers', target, authData.jwt)
-  },[])
+  },[authData.jwt, getViewerCount, target, userData.unx_id])
 
-  // setInterval(() => {
-  //     getViewerCount(userData.unx_id, 'viewers', target, authData.jwt)
-  //   }, 60000); // every minute
 
 
   
