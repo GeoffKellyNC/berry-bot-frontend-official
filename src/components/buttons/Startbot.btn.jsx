@@ -59,7 +59,7 @@ const StartBot = styled.div`
     .start-bot-text{
         font-size: ${pr => pr.theme.fontSizes.medium};
         padding: 0.5rem;
-        color: ${pr => pr.theme.colors.berry};
+        color: ${pr => pr.theme.fontColors.primary};
     }
 
 

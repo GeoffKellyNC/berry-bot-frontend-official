@@ -10,7 +10,15 @@ import StartbotBtn from '../buttons/Startbot.btn'
 import StartMod from '../buttons/StartMod.btn'
 
 
-const ButtonPanel = (props) => {
+const ButtonPanel = ({ killBot, userData }) => {
+
+    const kill = async () => {
+        const target = userData.twitch_user
+        const unx_id = userData.unx_id
+        const jwt = await localStorage.getItem('jwtToken')
+        const message = 'killBot'
+        await killBot(target, unx_id, jwt, message)
+    }   
 
 
     return (
@@ -21,7 +29,6 @@ const ButtonPanel = (props) => {
             <div className = 'panel-btns'>
                 <StartbotBtn />
                 <StartMod />
-                {/* <StartVoteBtn /> */}
             </div>
 
         </PanelStyled>
@@ -31,6 +38,7 @@ const ButtonPanel = (props) => {
 const mapStateToProps = state => {
     return {
       target: state.target,
+      userData: state.userData,
     }
   }
   
@@ -45,7 +53,7 @@ const PanelStyled = styled.div`
     margin: 10px;
     border-radius: 5px;
     box-sizing: border-box;
-    background: rgba(19, 19, 19, 1);
+    background: ${pr => pr.theme.gradients.primary};
     box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
     color: white;
 
@@ -67,7 +75,7 @@ const PanelStyled = styled.div`
     }
 
     .control-panel-text{
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${ pr => pr.theme.fontColors.primary };
         font-size: ${pr => pr.theme.fontSizes.large};
         font-weight: bold;        
     }

@@ -32,9 +32,9 @@ const TopFive = styled.div`
     margin: 10px;
 
     .top-five-title{ 
-        font-size: ${pr => pr.theme.fontSizes.xlarge};
+        font-size: ${pr => pr.theme.fontSizes.large};
         font-weight: bold;
-        color: ${pr => pr.theme.colors.berry};
+        color: ${pr => pr.theme.fontColors.primary};
         margin-bottom: 0.5rem;
         text-align: center;
     }

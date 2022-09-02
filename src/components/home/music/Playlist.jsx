@@ -97,6 +97,10 @@ const PlaylistsStyled = styled.div`
     cursor: pointer;
   }
 
+  .user-playlists {
+    width: 100%;
+  }
+
 
 
 

@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import * as authActions from '../../store/authState/authState.creators'
 
 import { createClip } from '../../util/createClip'
 
-const ClipIt = ({ userData, token}) => {
+const ClipIt = ({ userData }) => {
     const [clipLink, setClipLink] = useState(null)
     const [error, setError] = useState(null)
 
 
     const makeClip = async () => {
+        const token = await localStorage.getItem('jwtToken')
         const clip = await createClip(token, userData.unx_id, userData.twitch_user, userData.twitch_id)
         if(clip.error){
             setError(clip.message)
@@ -42,7 +45,13 @@ const ClipIt = ({ userData, token}) => {
   )
 }
 
-export default ClipIt
+const mapStateToProps = state => {
+    return({
+        userData: state.userData
+    })
+}
+
+export default connect(mapStateToProps, authActions) (ClipIt)
 
 
 const Clips = styled.div`
@@ -60,26 +69,26 @@ const Clips = styled.div`
         cursor: pointer;
 
         &:hover {
-            color: ${pr => pr.theme.colors.secondary};
+            color: ${pr => pr.theme.colors.secondary}; 
         }
     }
 
     .clip-button {
         width: 300px;
         height: 75px;
-        background: rgba(19, 19, 19, 1);
+        background: ${pr => pr.theme.gradients.primary};
         box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
         border: none;
         outline: none;
         border-radius: 0.5rem;
-        color: ${(pr) => pr.theme.colors.berry};
+        color: ${ pr => pr.theme.fontColors.primary };
         font-size: ${(pr) => pr.theme.fontSizes.large};
         font-weight: bold;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
             &:hover {
             background-color: ${(pr) => pr.theme.colors.berry};
-            color: ${(pr) => pr.theme.colors.secondary};
+            color: ${(pr) => pr.theme.colors.berry};
         }
   }
 

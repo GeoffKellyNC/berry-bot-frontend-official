@@ -34,18 +34,18 @@ export default connect (mapStateToProps, action)(LogoutButton)
 
 
 const LogOutButton = styled.button`
-    background-color: ${pr => pr.theme.colors.secondary};
-    color: ${pr => pr.theme.colors.berry};
+    background:none;
+    color: ${pr => pr.theme.fontColors.primary};
     font-size: ${pr => pr.theme.fontSizes.small};
     font-weight: bold;
     padding: 0.5rem 1rem;
-    border: none;
+    border: 1px solid ${pr => pr.theme.colors.secondary};
     border-radius: 0.5rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     &:hover{
         background-color: ${pr => pr.theme.colors.berry};
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${pr => pr.theme.fontColors.primary};
     }
 
     

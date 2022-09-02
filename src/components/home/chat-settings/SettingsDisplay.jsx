@@ -5,21 +5,27 @@ import { connect } from 'react-redux'
 import * as actions from '../../../store/botState/botState.actions'
 
 import CurrentSettings from './CurrentSettings'
-import { FiRefreshCw,  } from 'react-icons/fi'
+import { FiRefreshCw } from 'react-icons/fi'
 
 
 const SettingsDisplay = (props) => {
 
-    const { chatSettings, getChatSettings, userData, token } = props
+    const { chatSettings, getChatSettings, userData } = props
+
+    const getSettings = async () => {
+        const token = await localStorage.getItem('jwtToken')
+        getChatSettings(token, userData.unx_id, userData.twitch_id, userData.twitch_user)
+        
+    }
 
 
     useEffect(() => {
-
-        getChatSettings(token, userData.unx_id, userData.twitch_id, userData.twitch_user)
+        getSettings()
 
     }, [])
 
-    const refreshSettings = () => {
+    const refreshSettings = async () => {
+        const token = await localStorage.getItem('jwtToken')
         getChatSettings(token, userData.unx_id, userData.twitch_id, userData.twitch_user)
     }
 
@@ -40,7 +46,8 @@ const SettingsDisplay = (props) => {
 
 const mapStateToProps = state => {
     return({
-        chatSettings: state.chatSettings
+        chatSettings: state.chatSettings,
+        userData: state.userData
     })
 }
 
@@ -53,7 +60,7 @@ const StyledSettingsDisplay = styled.div`
     margin: 10px;
     border-radius: 5px;
     box-sizing: border-box;
-    background: rgba(19, 19, 19, 1);
+    background: ${pr => pr.theme.gradients.primary};
     box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
     color: white;
 
@@ -66,12 +73,12 @@ const StyledSettingsDisplay = styled.div`
         text-align: center;
         font-size: ${pr => pr.theme.fontSizes.large};
         font-weight: bold;
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${pr => pr.theme.fontColors.primary};
     }
 
     .refresh-icon {
         font-size: ${pr => pr.theme.fontSizes.large};
-        color: ${pr => pr.theme.colors.secondary};
+        color: ${pr => pr.theme.colors.berry};
         cursor: pointer;
         margin-left: 0.5rem;
         &:hover {

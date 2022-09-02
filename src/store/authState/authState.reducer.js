@@ -26,4 +26,31 @@ export function userData  (state = {}, action) {
   }
 }
 
+export function accessToken (state = '', action){
+  switch(action.type) {
+    case types.GET_ACCESS_TOKEN:
+      return action.payload;
+    default:
+      return state
+  }
+}
+
+export function twitchVerified (state = false, action){
+  switch(action.type){
+    case types.SET_TWITCH_VERIFIED:
+      return action.payload
+    default:
+      return state
+  }
+}
+
+export function accessExpire (state = 0, action){
+  switch(action.type){
+    case types.SET_EXPIRE_TIME:
+      return action.payload
+    default:
+      return state
+  }
+}
+
 

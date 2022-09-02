@@ -12,14 +12,14 @@ import { AiOutlineClose } from 'react-icons/ai'
 const iFormValues = {
     bitVote: 0,
     channelPoints: 0,
-    choiceArray: '',
+    choiceArray: '', 
     duration: 30,
     title: ''
 
 
 }
 
-const PollsHome = ({ userData, target, token, setSelected }) => {
+const PollsHome = ({ userData, target, setSelected }) => {
   const [formValues, setFormValues] = useState(iFormValues)
 
   const onChange = e =>{
@@ -34,6 +34,7 @@ const PollsHome = ({ userData, target, token, setSelected }) => {
     e.preventDefault()
     const {bitVote, channelPoints, choiceArray, duration, title} = formValues
     const newChoiceArray = choiceArray.split('&')
+    const token = await localStorage.getItem('jwtToken')
     const newPoll = await postPoll(target, userData.unx_id, token, bitVote, channelPoints, newChoiceArray, duration, title )
     setSelected(null)
     setFormValues(iFormValues)

@@ -11,6 +11,10 @@ import { songsData } from './musicState/musicState.reducer'
 import { userPlaylists } from './musicState/musicState.reducer'
 import { playlistsSongs } from './musicState/musicState.reducer'
 import { currentSong } from './musicState/musicState.reducer'
+import { blockedTerms } from './botState/botState.reducer';
+import { accessToken } from './authState/authState.reducer';
+import { twitchVerified } from './authState/authState.reducer';
+import { accessExpire } from './authState/authState.reducer';
 
 
 
@@ -25,5 +29,9 @@ export default combineReducers({
     songsData,
     userPlaylists,
     playlistsSongs,
-    currentSong
+    currentSong,
+    blockedTerms,
+    accessToken,
+    twitchVerified,
+    accessExpire
 });

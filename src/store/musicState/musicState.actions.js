@@ -53,11 +53,13 @@ export const createPlaylist =  (user_unx_id, playlist_name ) => async (dispatch)
 
 export const getUserPlaylists = (unx_id) => async (dispatch) => {
     try {
-        const userPlaylistData = await axios.post('https://twitch-berry-bot.herokuapp.com/music/getUserPlaylist', { data: { unx_id }})
+        const res = await axios.post('https://twitch-berry-bot.herokuapp.com/music/getUserPlaylist', { data: { unx_id }})
+
         dispatch({
             type: types.GET_USER_PLAYLISTS,
-            payload: userPlaylistData.data.message
+            payload: res.data.message
         })
+        
 
     } catch (error) {
         console.log(error)
@@ -68,6 +70,10 @@ export const getUserPlaylists = (unx_id) => async (dispatch) => {
 export const addSongToPlaylist = (song_id, playlist_id) => async (dispatch) => {
     try {
         const addSongToPlaylistData = await axios.post('https://twitch-berry-bot.herokuapp.com/music/addSongToPlaylist', { data: { song_id, playlist_id }})
+        dispatch({
+            type: types.ADD_SONG_TO_PLAYLIST,
+            payload: addSongToPlaylistData.data.message
+        })
 
 
     } catch (error) {
@@ -86,6 +92,30 @@ export const getPlaylistSongs = (playlist_id) => async (dispatch) => {
         
 
         return playlistSongsData.data.message
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deletePlaylist = (playlist_id) => async (dispatch) => {
+    try {
+        await axios.post('https://twitch-berry-bot.herokuapp.com/music/deletePlaylist', { data: { playlist_id }})
+        dispatch({
+            type: types.DELETE_PLAYLIST,
+            payload: playlist_id
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteSongFromPlaylist = (song_id, playlist_id) => async (dispatch) => {
+    try {
+        await axios.post('https://twitch-berry-bot.herokuapp.com/music/deleteSongFromPlaylist', { data: { song_id, playlist_id }})
+        dispatch({
+            type: types.DELETE_SONG_FROM_PLAYLIST,
+            payload: song_id
+        })
     } catch (error) {
         console.log(error)
     }

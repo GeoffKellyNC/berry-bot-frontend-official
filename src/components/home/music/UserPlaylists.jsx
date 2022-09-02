@@ -8,7 +8,7 @@ import PlaylistItem from "./PlaylistItem";
 const UserPlaylists = ({
   userPlaylists,
   getPlaylistSongs,
-  viewPlaylistHandler
+  viewPlaylistHandler 
 }) => {
 
 
@@ -38,7 +38,7 @@ export default UserPlaylists;
 const StyledUserPlaylists = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  ${'' /* align-items: center; */}
   width: 100%;
   height: auto;
 

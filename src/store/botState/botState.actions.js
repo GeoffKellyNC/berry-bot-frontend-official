@@ -4,6 +4,7 @@ import axios from 'axios'
 const START_BOT_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/start'
 const START_MOD_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/startModeration'
 const PLAYER_POINTS_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/modPointData'
+const KILL_BOT_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/killBot'
 
 
 
@@ -11,6 +12,14 @@ const PLAYER_POINTS_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/modPo
 export const startBerry = (target, unx_id, jwt, message) => async (dispatch) => {
     try{
         const res = await axios.post(START_BOT_EP, { data: { target, unx_id, jwt, message } })
+
+        if (res.status === 200 || 'ok'){
+            dispatch({
+                type: types.START_BOT,
+                payload: true
+            })
+        }
+
         return res.status
 
     } catch(err){
@@ -18,9 +27,23 @@ export const startBerry = (target, unx_id, jwt, message) => async (dispatch) => 
     }
 }
 
-export const startModeration = (target, unx_id, jwt, message) => async (dispatch) => {
+export const killBot = (target, unx_id, jwt, message) => async (dispatch) => {
+    try {
+        const killres =await axios.post(KILL_BOT_EP, { data: {target, unx_id, jwt, message}})
+        if (killres === 200 || 'ok'){
+            dispatch({
+                type: types.KILL_BOT,
+                payload: false
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const startModeration = (target, unx_id, jwt, message, twitch_id) => async (dispatch) => {
     try{
-        const res = await axios.post(START_MOD_EP, { data: { target, unx_id, jwt, message } })
+        const res = await axios.post(START_MOD_EP, { data: { target, unx_id, jwt, message, twitch_id } })
         return res.status
 
     } catch(err){
@@ -86,3 +109,35 @@ export const getAutoModSettings = (token, userObj) => async (dispatch) => {
         console.log(error)
     }
 }
+
+export const getBlockedTerms = (token, unx_id, target, twitch_id) => async (dispatch) => {
+    try {
+        const blockedTerms = await axios.post('https://twitch-berry-bot.herokuapp.com/twitchBot/getBlockedTerms', 
+        { data: { token, unx_id, target, twitch_id}})
+
+        dispatch({
+            type: types.GET_BLOCKED_TERMS,
+            payload: blockedTerms.data.message
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const addBlockedTerm = (token, unx_id, target, twitch_id, term) => async (dispatch) =>{
+    try {
+        const res = await axios.post('https://twitch-berry-bot.herokuapp.com/twitchBot/addBlockedTerm', { data: { token, unx_id, target, twitch_id, term } })
+        
+        console.log('botState actions addBlockedTerm', res.data.message) //!REMOVE
+        const newTerm = res.data.message
+        dispatch({
+            type: types.ADD_BLOCKED_TERM,
+            payload: newTerm
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+

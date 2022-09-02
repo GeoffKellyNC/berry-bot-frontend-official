@@ -1,21 +1,30 @@
-import * as type from './authState.types';
+/* eslint-disable no-unused-vars */
+import * as types from './authState.types';
 import axios from 'axios'
+import { verificationTimer } from '../../util/validateToken';
 
 
 export const loginUser = (code) => async (dispatch) => {
     try{
         const res = await axios.post('https://twitch-berry-bot.herokuapp.com/users/login', { data : { code } })
-        const { jwtToken, userData } = res.data
+        const { jwtToken, userData, access_token } = res.data
         localStorage.setItem('jwtToken', jwtToken)
         localStorage.setItem('user', JSON.stringify(userData))
         localStorage.setItem('target', userData.twitch_user)
+
+        // verificationTimer()
+
         const data = {
             jwtToken,
             userData
         }
         dispatch({
-            type: type.SET_USER_DATA,
+            type: types.SET_USER_DATA,
             payload: data
+        })
+        dispatch({
+            type: types.GET_ACCESS_TOKEN,
+            payload: access_token
         })
         return res.status
         
@@ -28,7 +37,7 @@ export const refreshUserData = () => async (dispatch) => {
     try{
         const data = localStorage.getItem('user')
         dispatch({
-            type: type.SET_USER_DATA,
+            type: types.SET_USER_DATA,
             payload: JSON.parse(data)
         })
     }catch(err){
@@ -41,11 +50,11 @@ export const logoutUser = () => async (dispatch) => {
     try{
         localStorage.clear()
         dispatch({
-            type: type.SET_USER_DATA,
+            type: types.SET_USER_DATA,
             payload: null
         })
         dispatch({
-            type: type.LOG_OUT
+            type: types.LOG_OUT
         })
     }catch(err){
         console.log(err)
@@ -57,16 +66,67 @@ export const checkLoggedIn = () => async (dispatch) => {
         const token = localStorage.getItem('jwtToken')
         if (token){
             dispatch({
-                type: type.IS_LOGGED_IN,
+                type: types.IS_LOGGED_IN,
                 payload: true
             })
         }else{
             dispatch({
-                type: type.IS_LOGGED_IN,
+                type: types.IS_LOGGED_IN,
                 payload: false
             })
         }
     }catch(err){
         console.log(err)
+    }
+}
+
+export const getAccessToken = (token, unx_id, target) => async (dispatch) => {
+    try {
+        const getRes = await axios.post('https://twitch-berry-bot.herokuapp.com/users/getAccessToken', { data: {token, unx_id, target}})
+
+        console.log('authState accessToken: ', getRes.data) //!REMOVE
+
+        const access_token = getRes.data.message
+
+        dispatch({
+            type: types.GET_ACCESS_TOKEN,
+            payload: access_token
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const verifyAccessToken = (access_token, userName, unx_id, token) => async (dispatch) => {
+    try {
+        const veriRes = await axios.post('https://twitch-berry-bot.herokuapp.com/users/verifyAccess', { data: { access_token, userName, unx_id, token}})
+
+        console.log('VeriRes authState creators: ', veriRes)
+
+        if (veriRes.status === 401) {
+            dispatch({
+                type: types.SET_TWITCH_VERIFIED,
+                payload: false
+            })
+            return false
+        }
+
+        const data = veriRes.data.message
+        dispatch({
+            type: types.SET_TWITCH_VERIFIED,
+            payload: data.verified
+        })
+        dispatch({
+            type: types.SET_EXPIRE_TIME,
+            payload: data.verifiedData.expires_in
+        })
+        return true
+    
+
+
+    } catch (error) {
+        console.log(error)
     }
 }

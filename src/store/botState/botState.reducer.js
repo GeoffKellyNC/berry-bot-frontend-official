@@ -38,3 +38,25 @@ export function currentAutoModSettings (state = {}, action){
       return state;
   }
 }
+
+export function botRunning (state = false, action){
+  switch(action){
+    case types.START_BOT:
+      return action.payload
+    case types.KILL_BOT:
+      return action.payload
+    default:
+      return state
+  }
+}
+
+export function blockedTerms (state = [], action){
+  switch (action.type) {
+    case types.GET_BLOCKED_TERMS:
+      return action.payload;
+    case types.ADD_BLOCKED_TERM:
+      return [...state, action.payload];
+    default:
+      return state;
+  }
+}
