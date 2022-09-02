@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as types from './authState.types';
 import axios from 'axios'
-import { verificationTimer } from '../../util/validateToken';
 
 
 export const loginUser = (code) => async (dispatch) => {
