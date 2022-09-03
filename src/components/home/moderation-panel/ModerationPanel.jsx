@@ -10,6 +10,7 @@ import PointsMod5 from "./Points-Mod-5";
 import AutoMod from "./AutoMod";
 import BanUser from "./BanUser";
 import BlockedTerms from './BlockedTerms'
+import ChatAnnouncement from "./ChatAnnouncement";
 
 import { FiRefreshCw } from "react-icons/fi";
 import { TbSettings } from "react-icons/tb";
@@ -45,6 +46,7 @@ const ModerationPanel = (props) => {
         <BlockedTerms />
         <BanUser token={token} userData={userData} />
         <AutoMod userData={userData} token={token} />
+        <ChatAnnouncement />
       </div>
     </ModPanel>
   );
@@ -59,17 +61,17 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, action)(ModerationPanel);
 
 const ModPanel = styled.div`
-    min-width: 500px;
+    min-width: 600px;
     height: auto;
     font-family: ${(pr) => pr.theme.fonts.primary};
     border-radius: 5px;
     box-sizing: border-box;
-    background: ${(pr) => pr.theme.gradients.primary}
+    background: ${(pr) => pr.theme.gradients.primary};
     color: ${pr => pr.theme.fontColors.primary};
-
-    &:hover {
-        box-shadow: 0px 0px 20px 0px ${(pr) => pr.theme.colors.secondary};
-    }
+    transition: all 0.3s ease-in-out;
+      &:hover {
+          background: ${(pr) => pr.theme.gradients.secondary};
+      }
 
     .mod-header{
         justify-content: space-around;

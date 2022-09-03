@@ -87,7 +87,6 @@ const Clips = styled.div`
         transition: all 0.3s ease-in-out;
             &:hover {
             background-color: ${(pr) => pr.theme.colors.berry};
-            color: ${(pr) => pr.theme.colors.berry};
         }
   }
 

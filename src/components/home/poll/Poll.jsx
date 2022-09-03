@@ -39,9 +39,9 @@ export default connect(mapStateToProps, authActions) (Poll);
 
 const StyledPoll = styled.div`
   color: white;
-  font-family: ${(pr) => pr.theme.fonts.primary};
 
   .poll-tile-button {
+    font-family: ${(pr) => pr.theme.fonts.primary};
     width: 300px;
     height: 75px;
     background: ${pr => pr.theme.gradients.primary};
@@ -55,7 +55,6 @@ const StyledPoll = styled.div`
     transition: all 0.3s ease-in-out;
     &:hover {
       background-color: ${(pr) => pr.theme.colors.berry};
-      color: ${(pr) => pr.theme.colors.berry};
     }
   }
 `;

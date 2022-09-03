@@ -139,8 +139,8 @@ const HomeStyled = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 2rem;
-    align-items: center;
+    gap: 5rem;
+    align-items: flex-start;
   }
 
   .column-1 {

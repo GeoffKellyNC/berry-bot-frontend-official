@@ -86,6 +86,7 @@ const StyledBanUser = styled.div`
         font-size: ${pr => pr.theme.fontSizes.medium};
         font-weight: bold;
         color: ${pr => pr.theme.colors.secondary};
+        font-family: ${pr => pr.theme.fonts.primary};
         
     }
 
@@ -111,7 +112,7 @@ const StyledBanUser = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.5rem;
+        padding: 1rem;
         border-bottom: 1px solid ${pr => pr.theme.colors.berry};
         cursor: pointer;
     }

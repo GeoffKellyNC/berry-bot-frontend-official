@@ -97,7 +97,7 @@ const ModSettings = styled.div`
   flex-direction: column;
   justify-content: center;
   height: auto;
-  padding: 10px;
+  padding: 1rem;
   animation: fadeIn 0.2s ease-in;
   @keyframes fadeIn {
     from {
@@ -112,7 +112,7 @@ const ModSettings = styled.div`
     font-size: ${(pr) => pr.theme.fontSizes.large};
     font-weight: bold;
     color: ${(pr) => pr.theme.colors.berry};
-    margin-bottom: 0.5rem;
+    padding: 1rem;
     text-align: center;
     display: flex;
     justify-content: center;

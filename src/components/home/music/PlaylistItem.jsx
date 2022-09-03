@@ -31,10 +31,10 @@ const PlaylistItem = ({ playlist, viewPlaylistHandler, deletePlaylist }) => {
 export default connect(null, actions) (PlaylistItem);
 
 const StyledPlaylistItem = styled.div`
-  width: 520px;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  background: black;
+  background: ${pr => pr.theme.gradients.primary};
   cursor: pointer;
   justify-content: space-between;
   align-items: center;
@@ -48,10 +48,11 @@ const StyledPlaylistItem = styled.div`
 
   .playlist-name {
     font-size: ${(pr) => pr.theme.fontSizes.large};
-    color: ${(pr) => pr.theme.colors.berry};
+    color: ${(pr) => pr.theme.fontColors.primary};
     margin-bottom: 10px;
     text-align: center;
     font-weight: bold;
+    text-transform: uppercase;
   }
 
   .view-playlist-button {
