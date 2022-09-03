@@ -10,6 +10,7 @@ export const loginUser = (code) => async (dispatch) => {
         localStorage.setItem('jwtToken', jwtToken)
         localStorage.setItem('user', JSON.stringify(userData))
         localStorage.setItem('target', userData.twitch_user)
+        sessionStorage.setItem('access_token', access_token)
 
         // verificationTimer()
 
@@ -17,14 +18,18 @@ export const loginUser = (code) => async (dispatch) => {
             jwtToken,
             userData
         }
-        dispatch({
-            type: types.SET_USER_DATA,
-            payload: data
-        })
+
         dispatch({
             type: types.GET_ACCESS_TOKEN,
             payload: access_token
         })
+
+        dispatch({
+            type: types.SET_USER_DATA,
+            payload: data
+        })
+        
+
         
     }catch(err){
         console.log(err)
@@ -82,13 +87,17 @@ export const getAccessToken = (token, unx_id, target) => async (dispatch) => {
     try {
         const getRes = await axios.post('https://twitch-berry-bot.herokuapp.com/users/getAccessToken', { data: {token, unx_id, target}})
 
-
-
         const access_token = getRes.data.message
+
+        sessionStorage.setItem('access_token', access_token)
 
         dispatch({
             type: types.GET_ACCESS_TOKEN,
             payload: access_token
+        })
+        dispatch({
+            type: types.SET_TWITCH_VERIFIED,
+            payload: true
         })
 
     } catch (error) {
@@ -101,30 +110,29 @@ export const verifyAccessToken = (access_token, userName, unx_id, token, twitchI
     try {
         const veriRes = await axios.post('https://twitch-berry-bot.herokuapp.com/users/verifyAccess', { data: { access_token, userName, unx_id, token, twitchId }})
 
+        console.log('veriRes Status: ', veriRes.status)
 
-
-        if (veriRes.status === 401) {
+        if (veriRes.status === 200){
+            const data = veriRes.data.message
             dispatch({
                 type: types.SET_TWITCH_VERIFIED,
-                payload: false
+                payload: data.verified
             })
-            return false
+            dispatch({
+                type: types.SET_EXPIRE_TIME,
+                payload: data.data.expires_in
+            })
+            return true
         }
 
-        const data = veriRes.data.message
+        if (veriRes.status === 401) {
+            console.log('Access token is invalid') //!REMOVE
+        }
+    } catch (error) {
         dispatch({
             type: types.SET_TWITCH_VERIFIED,
-            payload: data.verified
+            payload: false
         })
-        dispatch({
-            type: types.SET_EXPIRE_TIME,
-            payload: data.data.expires_in
-        })
-        return true
-    
-
-
-    } catch (error) {
-        console.log(error)
+        return false
     }
 }

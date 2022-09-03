@@ -20,34 +20,34 @@ import MusicHome from "../components/home/music/Music-home";
 
 function Home(props) {
 
-  const { userData, refreshUserData, getAccessToken, verifyAccessToken, twitchVerified, accessToken, logoutUser } = props;
+  const { userData, refreshUserData, accessToken, verifyAccessToken, twitchVerified, getAccessToken, logoutUser } = props;
 
-  const [token] = useState(localStorage.getItem('jwtToken'))
+  const [token] = useState(localStorage.getItem("jwtToken"));
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const checkTwitchAccess = useCallback( async () => {
-    console.log('Checking Twitch Status...') //!REMOVE
-    await verifyAccessToken(accessToken, userData.twitch_user, userData.unx_id, token, userData.twitch_id )
-
-    if (!twitchVerified){
-      await logoutUser()
-      navigate('/')
+  const checkTwitchVerified = useCallback(async () => {
+    if (!twitchVerified) {
+       logoutUser();
+      navigate("/");
     }
+  }, [twitchVerified, logoutUser, navigate]);
 
-  }, [verifyAccessToken, accessToken, userData.twitch_user, userData.unx_id, userData.twitch_id, token, twitchVerified, logoutUser, navigate])
+
 
 
   useEffect(() => {
-    console.log('Refreshing.....') //!REMOVE
-    refreshUserData();
-    getAccessToken(token, userData.unx_id, userData.twitch_user)
+    refreshUserData()
+    getAccessToken(token, userData.unx_id, userData.twitch_user);
+    verifyAccessToken(accessToken, userData.twitch_user,userData.unx_id, token, userData.twitch_id);
+    checkTwitchVerified()
 
-  }, [ getAccessToken, refreshUserData, token, userData.twitch_user, userData.unx_id]);
+  }, [accessToken, checkTwitchVerified, getAccessToken, refreshUserData, token, userData.twitch_id, userData.twitch_user, userData.unx_id, verifyAccessToken]);
 
-  // useEffect(() => {
-  //   checkTwitchAccess()
-  // }, [checkTwitchAccess])
+
+
+
+
   
 
   return (
@@ -90,8 +90,8 @@ const mapStateToProps = (state) => {
   return {
     userData: state.userData,
     songsData: state.songsData,
-    accessToken: state.accessToken,
-    twitchVerified: state.twitchVerified
+    twitchVerified: state.twitchVerified,
+    accessToken: state.accessToken
   };
 };
 

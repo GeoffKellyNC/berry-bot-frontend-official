@@ -37,7 +37,7 @@ const MusicHome = (props) => {
 
   const stopSong = () => {
     playSong(false)
-    isPlaying(false)
+    setIsPlaying(false)
   }
 
 
@@ -90,7 +90,6 @@ const HomeMusic = styled.div`
   border-radius: 5px;
   box-sizing: border-box;
   background: ${pr => pr.theme.gradients.primary};
-  box-shadow: 0px 0px 10px 0px ${(pr) => pr.theme.colors.secondary};
   color: white;
 
 

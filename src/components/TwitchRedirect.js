@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../store/authState/authState.creators'
 
-const TwitchRedirect = ({loginUser, refreshUserData}) => {
+const TwitchRedirect = ({loginUser, refreshUserData, getAccessToken}) => {
     const [searchParams] = useSearchParams()
 
     const navigate = useNavigate()
@@ -13,16 +13,20 @@ const TwitchRedirect = ({loginUser, refreshUserData}) => {
         const code = searchParams.get('code')
         await loginUser(code)
         await refreshUserData()
-    },[searchParams, loginUser, refreshUserData])
+        const token = localStorage.getItem('jwtToken')
+        const userData = JSON.parse(localStorage.getItem('user'))
+        await getAccessToken(token, userData.unx_id, userData.twitch_user)
+    },[searchParams, loginUser, refreshUserData, getAccessToken])
 
 
     useEffect(() => {
         handleRedirect()
+
     },[handleRedirect])
 
     setTimeout(() => {
         navigate('/dashboard')
-    }, 2000);
+    }, 2500);
 
 
 

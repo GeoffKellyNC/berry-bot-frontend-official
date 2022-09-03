@@ -45,7 +45,6 @@ const StyledPoll = styled.div`
     width: 300px;
     height: 75px;
     background: ${pr => pr.theme.gradients.primary};
-    box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
     border: none;
     outline: none;
     border-radius: 0.5rem;

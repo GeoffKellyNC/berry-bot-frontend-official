@@ -31,7 +31,7 @@ export function accessToken (state = '', action){
     case types.GET_ACCESS_TOKEN:
       return action.payload;
     default:
-      return state
+      return sessionStorage.getItem('access_token');
   }
 }
 

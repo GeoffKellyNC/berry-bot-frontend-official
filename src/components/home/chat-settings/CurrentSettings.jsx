@@ -19,7 +19,7 @@ const CurrentSettings = ({ chatSettings }) => {
         </div>
         <div className='follower-duration-container'>
             <p className='setting-text follower-duration-text'> Follower Duration: </p>
-            <p className='status-text'> {chatSettings.follower_mode_duration === null ? 'Disabled' : chatSettings.follower_mode_duration} </p>
+            <p className='status-text'> {chatSettings.follower_mode_duration === null ? 'Disabled' : chatSettings.follower_mode_duration} MIN </p>
         </div>
         <div className = 'subscriber-mode-container'>
             <p className = 'setting-text subscriber-mode-text'> Subscriber Mode: </p>

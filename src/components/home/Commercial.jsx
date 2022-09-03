@@ -60,7 +60,6 @@ const CommercialStyled = styled.div`
     border-radius: 5px;
     box-sizing: border-box;
     background: ${pr => pr.theme.gradients.primary};
-    box-shadow: 0px 0px 10px 0px ${pr => pr.theme.colors.secondary};
 
     .commercial-header {
         display: flex;
@@ -105,7 +104,6 @@ const CommercialStyled = styled.div`
         color: ${pr => pr.theme.fontColors.secondary};
         font-size: ${pr => pr.theme.fontSizes.medium};
         cursor: pointer;
-        border-radius: 5px;
         transition: all 0.2s ease-in-out;
         &:hover {
             background: ${pr => pr.theme.colors.berry};

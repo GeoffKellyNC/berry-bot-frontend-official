@@ -9,20 +9,23 @@ import { pingServer } from '../../util/pingServer'
 
 import LogoutButton from '../buttons/Logout.button'
 
-const TitleBox = ({ userData, refreshUserData }) => {
+const TitleBox = ({ userData, refreshUserData, getAccessToken }) => {
     const [isConnected, setIsConnected] = useState(false)
+    const [token] = useState(localStorage.getItem('jwtToken'))
 
     const getServerStatus = useCallback( async () => {
-        const token = localStorage.getItem('jwtToken')
         const status = await pingServer(userData.unx_id, token)
         setIsConnected(status)
-    }, [userData.unx_id])
+    }, [token, userData.unx_id])
 
     useEffect(() => {
         refreshUserData()
         getServerStatus()
         console.log('Getting user Data')
-    }, [getServerStatus, refreshUserData])
+        getAccessToken(token, userData.unx_id, userData.twitch_user)
+    }, [getAccessToken, getServerStatus, refreshUserData, token, userData.twitch_user, userData.unx_id])
+
+ 
 
   return (
     <TitleBoxStyled>
