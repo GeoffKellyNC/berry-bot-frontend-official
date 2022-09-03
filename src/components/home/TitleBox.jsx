@@ -60,8 +60,8 @@ const TitleBoxStyled = styled.div`
     border-radius: 5px;
 
     &:hover {
-        box-shadow: 0px 0px 20px 0px ${pr => pr.theme.colors.secondary};
-    }
+          background: ${(pr) => pr.theme.gradients.secondary};
+      }
 
     .title-text {
         color: ${ pr => pr.theme.fontColors.primary };

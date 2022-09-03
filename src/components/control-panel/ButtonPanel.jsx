@@ -56,6 +56,10 @@ const PanelStyled = styled.div`
     background: ${pr => pr.theme.gradients.primary};
     color: white;
 
+    &:hover {
+          background: ${(pr) => pr.theme.gradients.secondary};
+      }
+
     .panel-btns{
         display: flex;
         flex-direction: row;

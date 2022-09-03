@@ -29,7 +29,7 @@ export default {
     },
     gradients: {
         primary: 'radial-gradient(circle, rgb(220 41 112 / 25%) 0%, rgb(25 7 112) 100%) rgb(163,255,255)',
-        secondary: 'radial-gradient(circle, rgba(255, 0, 62, .7) 0%, rgb(25 7 112) 100%) rgb(163,255,255)'
+        secondary: 'radial-gradient(circle, rgba(255, 0, 62, .9) 0%, rgb(25 7 112) 100%) rgb(163,255,255)'
     },
     margins: {
         small: '1rem',

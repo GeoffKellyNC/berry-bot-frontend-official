@@ -61,6 +61,10 @@ const CommercialStyled = styled.div`
     box-sizing: border-box;
     background: ${pr => pr.theme.gradients.primary};
 
+    &:hover {
+          background: ${(pr) => pr.theme.gradients.secondary};
+      }
+
     .commercial-header {
         display: flex;
         justify-content: space-between;

@@ -56,6 +56,9 @@ const StyledSettingsDisplay = styled.div`
     box-sizing: border-box;
     background: ${pr => pr.theme.gradients.primary};
     color: white;
+    &:hover {
+          background: ${(pr) => pr.theme.gradients.secondary};
+      }
 
     .chat-settings-title {
         display: flex;

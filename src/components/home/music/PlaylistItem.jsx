@@ -43,8 +43,8 @@ const StyledPlaylistItem = styled.div`
 
 
   &:hover {
-    background: #2f2f2f;
-  }
+          background: ${(pr) => pr.theme.gradients.secondary};
+      }
 
   .playlist-name {
     font-size: ${(pr) => pr.theme.fontSizes.large};

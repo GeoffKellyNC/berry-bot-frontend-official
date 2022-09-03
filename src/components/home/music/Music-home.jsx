@@ -92,6 +92,10 @@ const HomeMusic = styled.div`
   background: ${pr => pr.theme.gradients.primary};
   color: white;
 
+  &:hover {
+          background: ${(pr) => pr.theme.gradients.secondary};
+      }
+
 
   .music-header {
     font-size: ${pr => pr.theme.fontSizes.large};
