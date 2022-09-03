@@ -16,6 +16,8 @@ import TitleBox from "../components/home/TitleBox";
 import ModerationPanel from "../components/home/moderation-panel/ModerationPanel";
 import MusicHome from "../components/home/music/Music-home";
 
+import berryImg from '../assets/berry.png'
+
 
 
 function Home(props) {
@@ -55,7 +57,7 @@ function Home(props) {
       <div className="profile-information">
         <div className="profile-image">
           <NavLink to="/">
-            <img src={userData.profile_img} alt="profile-pic" />
+            <img src={userData.profile_img.includes('defaul') ? berryImg : userData.profile_img } alt="profile-pic" />
           </NavLink>
           <span className="profile-name">{userData.twitch_user}</span>
         </div>
