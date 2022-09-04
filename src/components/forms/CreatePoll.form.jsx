@@ -89,9 +89,7 @@ const PollForm = styled.form`
     font-size: ${(pr) => pr.theme.fontSizes.medium};
     font-weight: bold;
     color: ${(pr) => pr.theme.colors.berry};
-    border: 1px solid ${(pr) => pr.theme.colors.berry};
     border-radius: 5px;
-    background-color: black;
     height: 2rem;
 
     &:focus {

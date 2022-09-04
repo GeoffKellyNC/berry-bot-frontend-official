@@ -13,10 +13,16 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import TwitchRedirect from "./components/TwitchRedirect";
 import Music from "./views/Music";
 
+import ReactGA from 'react-ga';
+const TRACKING_ID = "UA-240003983-1"; 
+ReactGA.initialize(TRACKING_ID);
+
 function App(props) {
   const { isLoggedIn, checkLoggedIn, userData } = props;
 
-
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, []);
 
   useEffect(() => {
     checkLoggedIn();

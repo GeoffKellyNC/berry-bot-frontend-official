@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { FaPlay } from 'react-icons/fa'
 import { TiDelete } from 'react-icons/ti'
 
+import berryImg from '../../../assets/berry.png'
+
 
 
 
@@ -17,20 +19,24 @@ const PlaylistSong = ({songItem, setCurrentSong, deleteSongFromPlaylist, thisPla
   return (
     <Songs>
         <div className='preview'>
-
+            <img 
+                className='song-img'
+                src = {`${berryImg}`}
+                alt = 'song-art'
+            />
         </div>
-        <div className='artist-name-container'>
-            <span className='artist-name-text'>Artist: </span>
+        <div className='artist-name-container song'>
             <span className = 'artist-name'>{ songItem.artist_name}</span>
         </div>
         <div className='song-name-container'>
-            <span className='song-name-text'>Song: </span>
             <span className = 'song-name'>{ songItem.song_name}</span>
         </div>
-        <FaPlay className='play-button' onClick = {() => playSong(songItem.song_link)} />
-        <TiDelete 
-            className='delete-button' 
-            onClick = {() => deleteSongFromPlaylist(songItem.unx_id, thisPlaylist.playlist_id)} />
+        <div className='song-button'>
+            <FaPlay className='play-button' onClick = {() => playSong(songItem.song_link)} />
+            <TiDelete 
+                className='delete-button' 
+                onClick = {() => deleteSongFromPlaylist(songItem.unx_id, thisPlaylist.playlist_id)} />
+        </div>
     </Songs>
   )
 }
@@ -38,21 +44,16 @@ const PlaylistSong = ({songItem, setCurrentSong, deleteSongFromPlaylist, thisPla
 export default PlaylistSong
 
 const Songs = styled.div`
+    border: 1px solid black;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    width: auto;
-    gap: 10px;
+    gap: 1rem; 
+    width: 10rem;
 
-    .play-button {
-        font-size: ${pr => pr.theme.fontSizes.medium};
-        color: ${pr => pr.theme.colors.secondary};
-        cursor: pointer;
-
-        &:hover {
-            color: ${pr => pr.theme.colors.berry};
-        }
+    .song-img {
+        height: 30px;
+        width: 30px;
     }
 
 `

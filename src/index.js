@@ -7,10 +7,14 @@ import theme from './theme/theme';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 
+
+
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, legacy_createStore } from 'redux'
 import thunk from 'redux-thunk'
 import reducer from './store/root.reducer'
+
+
 
 
 

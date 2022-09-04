@@ -84,7 +84,7 @@ export default connect(mapStateToProps, musicActions)(MusicHome);
 
 const HomeMusic = styled.div`
   color: white;
-  min-width: auto;
+  max-width: 622px;
   height: auto;
   font-family: ${(pr) => pr.theme.fonts.primary};
   border-radius: 5px;

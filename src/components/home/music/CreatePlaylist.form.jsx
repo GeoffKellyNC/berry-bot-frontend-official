@@ -16,6 +16,7 @@ const CreatePlaylist = ({ userData, createPlaylist, getUserPlaylists }) => {
             await createPlaylist(userData.unx_id, formValues.playlist_name)
             setFormValues(iFormValues)
             await getUserPlaylists(userData.unx_id)
+            return
         }
         e.preventDefault()
         setError(true)
@@ -46,16 +47,18 @@ export default CreatePlaylist
 
 const CreatePlaylistForm = styled.form`
     & > input {
-        background: black;
         color: ${pr => pr.theme.colors.secondary};
-        border: none;
-        border-bottom: 1px solid ${pr => pr.theme.colors.berry};
         padding: 10px;
         margin-bottom: 10px;
         width: auto;
         box-sizing: border-box;
         font-size: 1.5rem;
         height: 3rem;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     .error{

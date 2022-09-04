@@ -81,7 +81,7 @@ function Home(props) {
       <div className="footer-text">
         <span>
           Made with <span className="heart">&hearts;</span> by{" "}
-          <a href="geoffkelly.dev">Geoff Kelly </a>
+          <a href='https://geoffkelly.dev' target='_blank' rel="noreferrer">Geoff Kelly </a>
         </span>
       </div>
     </HomeStyled>

@@ -32,6 +32,11 @@ const SongList = ({
   return (
     <SongsList>
       <AiOutlineClose className="close-btn" onClick={() => setViewMusic(false)} />
+      <div className = "song-list-header">
+        <h3> MUSIC</h3>
+        <p className="music-disclaimer"> All music in this list is approved to be used on stream using Berry Bot by the artist and or is non copyright music. </p>
+        <p className="add-music-tagline"> IF you would like your music here please join our Discord here: LINK</p>
+      </div>
       <SearchMasterSongs formValues={formValues} onChange={handleChange}  />
       <div className="song-container">
         {
@@ -102,10 +107,11 @@ const SongsList = styled.div`
     z-index: 10;
     height: auto;
     font-family: ${pr => pr.theme.fonts.primary};
-    border-radius: 5px;
-    box-sizing: border-box;
-    background: rgba(19, 19, 19, 1);
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     animation: fadeIn 0.2s ease-in;
 
     @keyframes fadeIn {
@@ -115,6 +121,16 @@ const SongsList = styled.div`
       to {
         opacity: 1;
       }
+    }
+
+    .song-list-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: auto;
+
     }
 
     .close-btn {
@@ -137,6 +153,9 @@ const SongsList = styled.div`
       justify-content: space-around;
       align-items: center;
       width: 100%;
+      overflow-y: scroll;
+      height: 50vh;
+      padding: 1rem 0; 
     }
 
 

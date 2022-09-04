@@ -66,16 +66,17 @@ const StyledPoll = styled.div`
   justify-content: center;
   align-items: center;
   padding: 5%;
-  border: 1px solid ${pr => pr.theme.colors.berry};
   text-align: center;
   font-size: 1.5rem;
   z-index: 10;
   height: auto;
   font-family: ${pr => pr.theme.fonts.primary};
-  border-radius: 5px;
-  box-sizing: border-box;
-  background: rgba(19, 19, 19, 1);
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
 
   .close-button {
     color: white;

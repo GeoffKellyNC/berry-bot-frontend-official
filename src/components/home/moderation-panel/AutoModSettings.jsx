@@ -163,6 +163,6 @@ const ModSettings = styled.div`
   }
 
   .value-4 {
-    color: purple;
+    color: #ff05e0;
   }
 `;
