@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import svgImg from "../../../assets/Valley-red-black.svg";
 
 import { FaPlay } from "react-icons/fa";
 import { RiPlayList2Line } from "react-icons/ri";
