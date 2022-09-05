@@ -50,9 +50,9 @@ const CreatePlaylistForm = styled.form`
         color: ${pr => pr.theme.colors.secondary};
         padding: 10px;
         margin-bottom: 10px;
-        width: auto;
+        width: 300px;
         box-sizing: border-box;
-        font-size: 1.5rem;
+        font-size: ${pr => pr.theme.fontSizes.medium};
         height: 3rem;
         background: rgba(255, 255, 255, 0.2);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

@@ -100,7 +100,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, authActions)(Home);
 
 const HomeStyled = styled.div`
-  background: radial-gradient(circle, rgba(37,70,94,1) 0%, rgba(32,18,42,1) 70%);
+  background: radial-gradient(circle,rgb(48 0 26) 0%,rgb(24 14 29) 70%);
 
   .profile-information {
     display: flex;

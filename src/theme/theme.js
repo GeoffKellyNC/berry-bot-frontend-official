@@ -2,7 +2,7 @@
 export default {
     colors: {
         primary: '#0070f3', // blue //  rgba(0, 112, 243, 1)
-        secondary: '#00b9ff', // lightblue // rgba(0, 185, 255, 1)
+        secondary: '#32EBCA', // lightblue // rgba(0, 185, 255, 1)
         accent: '#7BFF58', // light grey // rgba(255, 255, 255, 0.5)
         berry: '#ff003e', // rgba(255, 0, 62, 0.5) // Red
         berryLight: 'rgba(255, 0, 62, 0.5)', // Red // #ff003e
@@ -28,8 +28,8 @@ export default {
         tertiary: 'black', 
     },
     gradients: {
-        primary: 'radial-gradient(circle, rgb(220 41 112 / 25%) 0%, rgb(25 7 112) 100%) rgb(163,255,255)',
-        secondary: 'radial-gradient(circle, rgba(255, 0, 62, .9) 0%, rgb(25 7 112) 100%) rgb(163,255,255)'
+        primary: 'radial-gradient(circle,rgb(43 29 58 / 25%) 0%,rgb(45 45 53) 100%) rgb(90 84 84)',
+        secondary: 'radial-gradient(circle,rgb(248 0 255 / 46%) 0%,rgb(62 62 64) 91%) rgb(65 62 63);'
     },
     margins: {
         small: '1rem',
