@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const CreatePollForm = ({ formValues, onChange, onSubmit }) => {
+const CreatePollForm = ({ formValues, onChange, onSubmit, error }) => {
   return (
     <PollForm>
       <label className="poll-title-text">Poll Title</label>
@@ -11,6 +11,7 @@ const CreatePollForm = ({ formValues, onChange, onSubmit }) => {
         value={formValues.title}
         onChange={onChange}
         className="poll-title-input"
+        required
       />
       <label
         className="poll-bit-text"
@@ -68,6 +69,9 @@ const CreatePollForm = ({ formValues, onChange, onSubmit }) => {
       <button onClick={onSubmit} className="poll-submit-button">
         Submit
       </button>
+      {
+        error && <p className="error">{error}</p>
+      }
     </PollForm>
   );
 };
@@ -114,6 +118,12 @@ const PollForm = styled.form`
       background-color: ${(pr) => pr.theme.colors.berry};
       color: ${(pr) => pr.theme.colors.secondary};
     }
+  }
+
+  .error {
+    color: ${(pr) => pr.theme.colors.berry};
+    font-size: ${(pr) => pr.theme.fontSizes.medium};
+    padding: 0.5rem;
   }
 
 

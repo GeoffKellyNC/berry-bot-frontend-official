@@ -15,6 +15,8 @@ import { blockedTerms } from './botState/botState.reducer';
 import { accessToken } from './authState/authState.reducer';
 import { twitchVerified } from './authState/authState.reducer';
 import { accessExpire } from './authState/authState.reducer';
+import { botRunning } from './botState/botState.reducer';
+import { streamData } from './streamState/streamState.reducer'
 
 
 
@@ -33,5 +35,7 @@ export default combineReducers({
     blockedTerms,
     accessToken,
     twitchVerified,
-    accessExpire
+    accessExpire,
+    botRunning,
+    streamData
 });

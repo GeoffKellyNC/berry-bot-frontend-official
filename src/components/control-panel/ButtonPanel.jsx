@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import * as actions from '../../store/botState/botState.actions'
@@ -8,9 +8,11 @@ import * as actions from '../../store/botState/botState.actions'
 // Importing Components 
 import StartbotBtn from '../buttons/Startbot.btn'
 import StartMod from '../buttons/StartMod.btn'
+import KillBot from '../buttons/KillBot.button'
 
 
-const ButtonPanel = ({ killBot, userData }) => {
+const ButtonPanel = ({ killBot, userData, botRunning, getBotStatus }) => {
+    const [token] = useState(localStorage.getItem('jwtToken'))
 
     const kill = async () => {
         const target = userData.twitch_user
@@ -18,7 +20,12 @@ const ButtonPanel = ({ killBot, userData }) => {
         const jwt = await localStorage.getItem('jwtToken')
         const message = 'killBot'
         await killBot(target, unx_id, jwt, message)
-    }   
+    }
+
+    useEffect(() => {
+        getBotStatus(token, userData.unx_id)
+    }, [getBotStatus, token, userData.unx_id])
+
 
 
     return (
@@ -27,7 +34,9 @@ const ButtonPanel = ({ killBot, userData }) => {
                 <h3 className = 'control-panel-text'> Bot Controls </h3>
             </div>
             <div className = 'panel-btns'>
-                <StartbotBtn />
+                {
+                    botRunning ? <StartbotBtn /> : <KillBot />
+                }
                 <StartMod />
             </div>
 
@@ -39,6 +48,7 @@ const mapStateToProps = state => {
     return {
       target: state.target,
       userData: state.userData,
+      botRunning: state.botRunning
     }
   }
   

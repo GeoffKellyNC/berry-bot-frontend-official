@@ -19,8 +19,8 @@ const ClipIt = ({ userData }) => {
 
         setClipLink(clip.edit_url)
         setTimeout(() => {
-            
-        }, 10000); //
+            setError(null)
+        }, 5000); //
     }
 
 

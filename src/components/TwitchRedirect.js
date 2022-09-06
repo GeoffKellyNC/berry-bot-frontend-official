@@ -2,6 +2,7 @@ import React, { useEffect, useCallback }  from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../store/authState/authState.creators'
+import styled from 'styled-components'
 
 const TwitchRedirect = ({loginUser, refreshUserData, getAccessToken}) => {
     const [searchParams] = useSearchParams()
@@ -26,14 +27,36 @@ const TwitchRedirect = ({loginUser, refreshUserData, getAccessToken}) => {
 
     setTimeout(() => {
         navigate('/dashboard')
-    }, 2500);
+    }, 3000);
 
 
 
 
   return (
-    <div>TwitchRedirect</div>
+    <Redirect>
+        <h1>LOADING DATA....</h1>
+    </Redirect>
   )
 }
 
 export default connect(null, actions)(TwitchRedirect)
+
+const Redirect = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-family: ${pr => pr.theme.fonts.primary};
+    background: radial-gradient(circle,rgb(42 0 50) 0%,rgb(27 24 28) 70%);
+    color: ${pr => pr.theme.colors.secondary};
+    font-size: 5rem;
+    animation: fadein 2s;
+
+    @keyframes fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+
+`

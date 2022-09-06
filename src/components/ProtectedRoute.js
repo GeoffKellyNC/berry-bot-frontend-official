@@ -4,19 +4,26 @@ import * as authActions from "../store/authState/authState.creators"
 
 
 
-const ProtectedRoute = (props) => {
+const ProtectedRoute = ({twitchVerified, logoutUser}) => {
     
     let auth = localStorage.getItem('jwtToken');
-    if (auth) {
+    if (auth && twitchVerified) {
         return <Outlet />;
     }
+
+    if (!auth || !twitchVerified) {
+        logoutUser()
+        return <Navigate to="/" />;
+    }
+
     return <Navigate to="/" />;
 
 }
 
 const mapStateToProps = state => {
     return({
-        userData: state.userData
+        userData: state.userData,
+        twitchVerified: state.twitchVerified
     })
 }
 

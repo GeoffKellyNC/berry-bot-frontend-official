@@ -6,11 +6,35 @@ const iFormValues = {
     playlist_name: ''
 }
 
+const bannedCharacters = ["'","!"]
+
 const CreatePlaylist = ({ userData, createPlaylist, getUserPlaylists }) => {
     const [formValues, setFormValues] = useState(iFormValues)
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(null)
 
     const onSubmit = async (e) => {
+
+
+        if (bannedCharacters.some(char => formValues.playlist_name.includes(char))){
+            e.preventDefault()
+            setError('Playlist name cannot contain any of the following characters: ' + bannedCharacters.join(', '))
+            setFormValues(iFormValues)
+            setTimeout(() => {
+                setError(null)
+            }, 3000);
+            return
+        }
+
+        if (formValues.playlist_name.length < 1){
+            e.preventDefault()
+            setError('Playlist Must Have a Name!')
+            setFormValues(iFormValues)
+            setTimeout(() => {
+                setError(null)
+            }, 3000);
+            return
+        }
+
         if (formValues.playlist_name.length > 0){
             e.preventDefault()
             await createPlaylist(userData.unx_id, formValues.playlist_name)
@@ -18,12 +42,8 @@ const CreatePlaylist = ({ userData, createPlaylist, getUserPlaylists }) => {
             await getUserPlaylists(userData.unx_id)
             return
         }
-        e.preventDefault()
-        setError(true)
-        setTimeout(() => {
-            setError(false)
-        }, 2000);
-        return
+
+
     }
     
     return (
@@ -37,7 +57,7 @@ const CreatePlaylist = ({ userData, createPlaylist, getUserPlaylists }) => {
             />
             <button onClick = {onSubmit}> Create Playlist </button>
             {
-                error && <span className='error'>Playlist Must Have a Name!</span>
+                error && <span className='error'>{error}</span>
             }
         </CreatePlaylistForm>
     )

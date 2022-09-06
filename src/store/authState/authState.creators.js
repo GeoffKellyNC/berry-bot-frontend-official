@@ -2,6 +2,7 @@
 import * as types from './authState.types';
 import axios from 'axios'
 
+const START_BOT_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/start'
 
 export const loginUser = (code) => async (dispatch) => {
     try{
@@ -12,7 +13,7 @@ export const loginUser = (code) => async (dispatch) => {
         localStorage.setItem('target', userData.twitch_user)
         sessionStorage.setItem('access_token', access_token)
 
-        // verificationTimer()
+        await axios.post(START_BOT_EP, { data: { target: userData.twitch_user, unx_id: userData.unx_id, jwt: jwtToken, message: 'startBot'}})
 
         const data = {
             jwtToken,

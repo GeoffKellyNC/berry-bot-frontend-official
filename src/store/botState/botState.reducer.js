@@ -45,6 +45,8 @@ export function botRunning (state = false, action){
       return action.payload
     case types.KILL_BOT:
       return action.payload
+    case types.GET_BOT_STATUS:
+      return action.payload
     default:
       return state
   }

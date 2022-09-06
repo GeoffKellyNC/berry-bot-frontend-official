@@ -1,1 +1,4 @@
 export const GET_VIEWER_COUNT = 'GET_VIEWER_COUNT'
+export const GET_STREAM_DATA = 'GET_STREAM_DATA'
+
+export const SET_NEW_TITLE = 'SET_NEW_TITLE'

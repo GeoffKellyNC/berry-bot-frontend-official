@@ -21,6 +21,7 @@ const iFormValues = {
 
 const PollsHome = ({ userData, target, setSelected }) => {
   const [formValues, setFormValues] = useState(iFormValues)
+  const [error, setError] = useState(null)
 
   const onChange = e =>{
     setFormValues({
@@ -33,6 +34,10 @@ const PollsHome = ({ userData, target, setSelected }) => {
   const onSubmit = async e => {
     e.preventDefault()
     const {bitVote, channelPoints, choiceArray, duration, title} = formValues
+    if (title === '' || choiceArray === ''){
+      setError('Please fill out all fields')
+      return
+    }
     const newChoiceArray = choiceArray.split('&')
     const token = await localStorage.getItem('jwtToken')
     const newPoll = await postPoll(target, userData.unx_id, token, bitVote, channelPoints, newChoiceArray, duration, title )
@@ -44,7 +49,7 @@ const PollsHome = ({ userData, target, setSelected }) => {
 
   return (
     <StyledPoll>
-        <CreatePollForm formValues = {formValues} onChange = { onChange } onSubmit = { onSubmit } />
+        <CreatePollForm formValues = {formValues} onChange = { onChange } onSubmit = { onSubmit } error = {error} />
         <AiOutlineClose className = 'close-button' onClick = { () => setSelected(null) } />
     </StyledPoll>
   )

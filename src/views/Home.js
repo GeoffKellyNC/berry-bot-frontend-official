@@ -12,6 +12,7 @@ import ClipIt from "../components/home/ClipIt";
 import Commercial from "../components/home/Commercial";
 import Poll from "../components/home/poll/Poll";
 import SettingsDisplay from "../components/home/chat-settings/SettingsDisplay";
+import Stream from '../components/home/stream/Stream';
 import TitleBox from "../components/home/TitleBox";
 import ModerationPanel from "../components/home/moderation-panel/ModerationPanel";
 import MusicHome from "../components/home/music/Music-home";
@@ -73,6 +74,7 @@ function Home(props) {
         </div>
         <div className="column-2">
           <ModerationPanel />
+          <Stream />
         </div>
         <div className="column-3">
           <MusicHome  />
@@ -100,7 +102,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, authActions)(Home);
 
 const HomeStyled = styled.div`
-  background: radial-gradient(circle,rgb(48 0 26) 0%,rgb(24 14 29) 70%);
+  background: radial-gradient(circle,rgb(42 0 50) 0%,rgb(27 24 28) 70%);
 
   .profile-information {
     display: flex;
@@ -141,7 +143,7 @@ const HomeStyled = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 5rem;
+    gap: 3rem;
     align-items: flex-start;
   }
 
