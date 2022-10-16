@@ -24,7 +24,7 @@ const Landing = ({ isLoggedIn }) => {
   )
 }
 
-export default Landing
+export default Landing 
 
 
 const LandingPage = styled.div`
