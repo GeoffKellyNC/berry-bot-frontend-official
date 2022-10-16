@@ -35,7 +35,7 @@ const ButtonPanel = ({ killBot, userData, botRunning, getBotStatus }) => {
             </div>
             <div className = 'panel-btns'>
                 {
-                    botRunning ? <StartbotBtn /> : <KillBot />
+                    !botRunning ? <StartbotBtn /> : <KillBot />
                 }
                 <StartMod />
             </div>

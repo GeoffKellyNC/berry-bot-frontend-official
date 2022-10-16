@@ -12,9 +12,7 @@ const Landing = ({ isLoggedIn }) => {
     <LandingPage>
         <LandingNav isLoggedIn = { isLoggedIn } />
         <div className = 'landing-hero'>
-        <div className='under-development'>
-            <h1>Under Development.. DEVELOPMENT COPY!</h1>
-        </div>
+            <h1> Please Excuse the Mess. This app is still in its early stages and is considered still in Beta. Not all features are available as of yet.</h1>
         </div>
         <div className = 'landing-body'>
           <div className='grid-container'>
@@ -36,6 +34,12 @@ const LandingPage = styled.div`
 
   .landing-hero {
     border-bottom: 1px solid red;
+    color: ${props => props.theme.colors.white};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem 0;
+    font-size: ${props => props.theme.fontSizes.heading};
   }
 
 

@@ -20,12 +20,12 @@ const FeaturesGrid = () => {
         <div className="div2 light"> 
             <MdSecurity className = 'icon icon-security'/>
             <h1>Secure</h1>
-            <p>No 3rd party sign in's. We don't sell your data. No personal info needed.</p>
+            <p>Uses twitch Authentication. We store no data so you have the same security as logging in on twitch!</p>
         </div>
         <div className="div3 box">
             <FaTwitch className = 'icon icon-twitch'/>
-            <h1>Multiple Channels</h1>
-            <p>Connect Berry Bot to any or multiple twitch channel's! Make custom functions</p>
+            <h1>Auto Twitch Connect</h1>
+            <p>Connects to your twitch account automatically upon sign in.</p>
         </div>
         <div className="div4 light">
             <MdOutlineAddModerator className = 'icon icon-moderator'/>

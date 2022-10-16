@@ -17,12 +17,10 @@ export const startBerry = (target, unx_id, jwt, message) => async (dispatch) => 
 
         await axios.post(UPDATE_BOT_STATUS_EP, { data: { token: jwt, unx_id, status: true } })
 
-        if (res.status === 200 || 'ok'){
-            dispatch({
-                type: types.START_BOT,
-                payload: true
-            })
-        }
+        dispatch({
+            type: types.START_BOT,
+            payload: true
+        })
 
         return res.status
 
@@ -31,18 +29,18 @@ export const startBerry = (target, unx_id, jwt, message) => async (dispatch) => 
     }
 }
 
-export const killBot = (target, unx_id, jwt, message) => async (dispatch) => {
+export const killBot = (target, unx_id, jwt) => async (dispatch) => {
     try {
-        const killres =await axios.post(KILL_BOT_EP, { data: {target, unx_id, jwt, message}})
+        
+        await axios.post(KILL_BOT_EP, { data: {target, unx_id, jwt }})
 
         await axios.post(UPDATE_BOT_STATUS_EP, { data: { token: jwt, unx_id, status: false } })
 
-        if (killres === 200 || 'ok'){
-            dispatch({
-                type: types.KILL_BOT,
-                payload: false
-            })
-        }
+        dispatch({
+            type: types.KILL_BOT,
+            payload: false
+        })
+        
     } catch (error) {
         console.log(error)
     }

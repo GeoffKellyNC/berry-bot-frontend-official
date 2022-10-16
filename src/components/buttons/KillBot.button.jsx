@@ -8,10 +8,14 @@ import * as actions from '../../store/botState/botState.actions'
 import { TiCancel } from 'react-icons/ti'
 
 const KillBot = (props) => {
-  const { userData } = props;
+  const { userData, killBot } = props;
 
   const handleKillBot = async () => {
-    console.log('KillBot.handleKillBot')
+    // const target = userData.twitch_user
+    // const unx_id = userData.unx_id
+    // const jwt = localStorage.getItem('jwtToken')
+    // await killBot(target, unx_id, jwt )
+    console.log('kill bot')
   }
 
   return (

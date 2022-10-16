@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import * as types from './authState.types';
+import * as botStateTypes from '../botState/botState.types';
 import axios from 'axios'
 
 const START_BOT_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/start'
+const LOGIN_EP = process.env.REACT_APP_LOGIN
 
 export const loginUser = (code) => async (dispatch) => {
     try{
@@ -29,6 +31,11 @@ export const loginUser = (code) => async (dispatch) => {
             type: types.SET_USER_DATA,
             payload: data
         })
+
+        dispatch({
+            type: botStateTypes.START_BOT,
+            payload: true
+        })
         
 
         
@@ -51,8 +58,14 @@ export const refreshUserData = () => async (dispatch) => {
 
 
 export const logoutUser = () => async (dispatch) => {
+    console.log('Logging Out')
     try{
+        const userData = JSON.parse(localStorage.getItem('user'))
+        const jwtToken = localStorage.getItem('jwtToken')
+        await axios.post(START_BOT_EP, { data: { target: userData.twitch_user, unx_id: userData.unx_id, jwt: jwtToken, message: 'kill'}})
+
         localStorage.clear()
+        sessionStorage.clear()
         dispatch({
             type: types.SET_USER_DATA,
             payload: null
@@ -60,6 +73,8 @@ export const logoutUser = () => async (dispatch) => {
         dispatch({
             type: types.LOG_OUT
         })
+        return
+
     }catch(err){
         console.log(err)
     }

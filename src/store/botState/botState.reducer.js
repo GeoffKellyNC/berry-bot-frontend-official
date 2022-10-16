@@ -1,8 +1,6 @@
 import * as types from './botState.types'
 
 
-
-
 export function modPlayerPointData(state = [], action) {
   switch (action.type) {
     case types.GET_PLAYER_POINT_DATA:
@@ -39,7 +37,7 @@ export function currentAutoModSettings (state = {}, action){
   }
 }
 
-export function botRunning (state = false, action){
+export function botRunning (state = true, action){
   switch(action){
     case types.START_BOT:
       return action.payload
