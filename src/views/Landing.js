@@ -42,12 +42,9 @@ const LandingPage = styled.div`
     font-size: ${props => props.theme.fontSizes.heading};
   }
 
-
-
   .landing-body {
     height: 100vh;
     top: 0;
-
   }
 
   .features-title {
