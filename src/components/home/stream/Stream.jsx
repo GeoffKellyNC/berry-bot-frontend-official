@@ -38,7 +38,7 @@ const Stream = (props) => {
     return (
         <StreamStyled>
             <div className = 'stream-header'>
-                <h1 className='stream-tile'>Stream</h1>
+                <h1 className='stream-tile'>Current Stream Data</h1>
             </div>
             <div className='stream-body'>
                 <ViewerCount viewCount = {currentViewCount}/>
@@ -74,12 +74,19 @@ const StreamStyled = styled.div`
       &:hover {
           background: ${(pr) => pr.theme.gradients.secondary};
       }
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
     
     .stream-header {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 10px;
+    }
+
+    .stream-tile {
+        font-size: ${pr => pr.theme.fontSizes.heading};
     }
 
 

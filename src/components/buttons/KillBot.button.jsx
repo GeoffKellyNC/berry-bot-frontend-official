@@ -11,10 +11,10 @@ const KillBot = (props) => {
   const { userData, killBot } = props;
 
   const handleKillBot = async () => {
-    // const target = userData.twitch_user
-    // const unx_id = userData.unx_id
-    // const jwt = localStorage.getItem('jwtToken')
-    // await killBot(target, unx_id, jwt )
+    const target = userData.twitch_user
+    const unx_id = userData.unx_id
+    const jwt = localStorage.getItem('jwtToken')
+    await killBot(target, unx_id, jwt )
     console.log('kill bot')
   }
 

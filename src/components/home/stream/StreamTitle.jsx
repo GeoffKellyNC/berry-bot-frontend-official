@@ -72,7 +72,7 @@ const StreamTitleStyled = styled.div`
     gap: 1rem;
     align-items: center;
     margin-top: 1rem;
-    font-size: ${pr => pr.theme.fontSizes.large};
+    font-size: ${pr => pr.theme.fontSizes.xlarge};
 
     .edit-title-btn {
         font-size: ${pr => pr.theme.fontSizes.large};
@@ -83,6 +83,12 @@ const StreamTitleStyled = styled.div`
             color: ${pr => pr.theme.colors.primary};
         }
     }
+
+    .current-stream-text {
+        color: ${pr => pr.theme.colors.secondary};
+    }
+
+    
 
     
 

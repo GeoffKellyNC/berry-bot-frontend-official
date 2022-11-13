@@ -78,7 +78,7 @@ const StyledLandingNav = styled.div`
   }
 
   .berry-logo-text h1 {
-    font-size: ${pr => pr.theme.fontSizes.large};
+    font-size: ${pr => pr.theme.fontSizes.heading};
     font-weight: bold;
     margin: 0;
     padding: 0;
@@ -96,7 +96,7 @@ const StyledLandingNav = styled.div`
   .nav-link {
     text-decoration: none;
     color: white;
-    font-size: ${pr => pr.theme.fontSizes.small};
+    font-size: ${pr => pr.theme.fontSizes.large};
     font-family: ${pr => pr.theme.fonts.primary};
     font-weight: bold;
     padding-left: 2rem;

@@ -61,7 +61,7 @@ const Settings = styled.div`
         font-weight: bold;
         margin: 0;
         padding: 0.5rem 1rem;
-        color: ${pr => pr.theme.fontColors.tertiary};
+        color: ${pr => pr.theme.colors.berry};
     }
 
     .active {
