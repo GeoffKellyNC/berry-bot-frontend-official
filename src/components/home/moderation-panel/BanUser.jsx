@@ -11,13 +11,17 @@ const iFormValues = {
     reason: '',
 }
 
-const BanUser = ({ token, userData}) => {
+const BanUser = ({ token, userData, banUser}) => {
     const [ formValues, setFormValues ] = useState(iFormValues)
     const [ isOpen, setIsOpen ] = useState(false)
 
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
+        console.log('Banning User') //!REMOVE
         e.preventDefault();
+        await banUser(token, userData, { userName: formValues.userName, reason: formValues.reason })
+        setFormValues(iFormValues)
+
     }
 
     const onChange = (e) => {

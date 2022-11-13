@@ -7,6 +7,7 @@ const PLAYER_POINTS_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/modPo
 const KILL_BOT_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/killBot'
 const GET_BOT_STATUS_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/getBotStatus'
 const UPDATE_BOT_STATUS_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/updateBotStatus'
+const BAN_USER_EP = 'https://twitch-berry-bot.herokuapp.com/twitchBot/banUser'
 
 
 
@@ -159,6 +160,19 @@ export const addBlockedTerm = (token, unx_id, target, twitch_id, term) => async 
 
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const banUser = (token, userObj, banObj) => async dispatch => {
+    try {
+        console.log('Banning User!') //!REMOVE
+        const res = await axios.post(BAN_USER_EP, { data: { token, userObj, banObj}})
+
+        console.log(res) //! REMOVE
+        return
+
+    } catch (error) {
+        console.log('botState.actions banUser() Error: ', error)
     }
 }
 

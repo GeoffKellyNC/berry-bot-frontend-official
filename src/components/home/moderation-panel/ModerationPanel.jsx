@@ -18,7 +18,7 @@ import { TbSettings } from "react-icons/tb";
 
 
 const ModerationPanel = (props) => {
-  const { modPlayerPointData, getPlayerModPoints } = props;
+  const { modPlayerPointData, getPlayerModPoints, banUser } = props;
   const [userData, setUserData] = useState(getUserData());
   const [token, setToken] = useState(localStorage.getItem('jwtToken'))
 
@@ -44,7 +44,7 @@ const ModerationPanel = (props) => {
       </div>
       <div className="mod-panel-bottom">
         <BlockedTerms />
-        <BanUser token={token} userData={userData} />
+        <BanUser token={token} userData={userData} banUser = { banUser } />
         <AutoMod userData={userData} token={token} />
         <ChatAnnouncement />
       </div>
