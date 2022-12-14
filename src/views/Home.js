@@ -29,12 +29,12 @@ function Home(props) {
 
   const navigate = useNavigate();
 
-  const checkTwitchVerified = useCallback(async () => {
-    if (!twitchVerified) {
-       logoutUser();
-      navigate("/");
-    }
-  }, [twitchVerified, logoutUser, navigate]);
+  // const checkTwitchVerified = useCallback(async () => {
+  //   if (!twitchVerified) {
+  //      logoutUser();
+  //     navigate("/");
+  //   }
+  // }, [twitchVerified, logoutUser, navigate]);
 
 
 
@@ -42,7 +42,7 @@ function Home(props) {
   useEffect(() => {
     refreshUserData()
     getAccessToken(token, userData.unx_id, userData.twitch_user);
-    verifyAccessToken(accessToken, userData.twitch_user,userData.unx_id, token, userData.twitch_id);
+    // verifyAccessToken(accessToken, userData.twitch_user,userData.unx_id, token, userData.twitch_id);
 
   }, [accessToken, getAccessToken, refreshUserData, token, userData.twitch_id, userData.twitch_user, userData.unx_id, verifyAccessToken]);
 
