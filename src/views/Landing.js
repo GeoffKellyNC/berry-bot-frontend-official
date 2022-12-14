@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import FeaturesGrid from '../components/landing-page/FeaturesGrid'
-import LandingNav from '../components/landing-page/Landing.nav'
+import LandingNav from '../components/landing-page/Landing.nav' 
 
 
 

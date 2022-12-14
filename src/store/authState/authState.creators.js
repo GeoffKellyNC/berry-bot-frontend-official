@@ -132,7 +132,7 @@ export const verifyAccessToken = (access_token, userName, unx_id, token, twitchI
             const data = veriRes.data.message
             dispatch({
                 type: types.SET_TWITCH_VERIFIED,
-                payload: data.verified
+                payload: true
             })
             dispatch({
                 type: types.SET_EXPIRE_TIME,
@@ -143,6 +143,11 @@ export const verifyAccessToken = (access_token, userName, unx_id, token, twitchI
 
         if (veriRes.status === 401) {
             console.log('Access token is invalid') //!REMOVE
+            dispatch({
+                type: types.SET_TWITCH_VERIFIED,
+                payload: false
+            })
+            return false
         }
     } catch (error) {
         dispatch({
