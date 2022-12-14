@@ -11,7 +11,7 @@ const ProtectedRoute = ({twitchVerified, logoutUser}) => {
         return <Outlet />;
     }
 
-    if (!auth || !twitchVerified) {
+    if (!auth) {
         logoutUser()
         return <Navigate to="/" />;
     }
