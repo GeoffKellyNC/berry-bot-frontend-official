@@ -43,9 +43,8 @@ function Home(props) {
     refreshUserData()
     getAccessToken(token, userData.unx_id, userData.twitch_user);
     verifyAccessToken(accessToken, userData.twitch_user,userData.unx_id, token, userData.twitch_id);
-    checkTwitchVerified()
 
-  }, [accessToken, checkTwitchVerified, getAccessToken, refreshUserData, token, userData.twitch_id, userData.twitch_user, userData.unx_id, verifyAccessToken]);
+  }, [accessToken, getAccessToken, refreshUserData, token, userData.twitch_id, userData.twitch_user, userData.unx_id, verifyAccessToken]);
 
 
 
